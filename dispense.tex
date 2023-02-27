@@ -1,7 +1,7 @@
 \documentclass[12pt,openany]{book}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage[dvips,a4paper,hmargin={3.5cm,3.5cm},vmargin={2cm,2cm}]{geometry}
+\usepackage[dvips,a4paper,hmargin={3cm,3cm},vmargin={2cm,2cm}]{geometry}
 \usepackage[a4paper,colorlinks=true,bookmarksopen=false,linkcolor=brown,citecolor=red]{hyperref}
 \usepackage{pythontex}
 \usepackage{calc}
@@ -10,13 +10,13 @@
 \usepackage{amsthm}
 \usepackage{amsmath}
 \usepackage{amsrefs}
+\usepackage{thmtools}
 \usepackage{titlesec}
 \usepackage{titletoc}
 \usepackage{dsfont}
 \usepackage{euscript}
 \usepackage{fourier-orns}
 \usepackage{fontawesome}
-\usepackage{palatino}
 \usepackage{graphicx}
 \usepackage{tikz-cd}
 \tikzcdset{
@@ -101,57 +101,98 @@ diagrams={>=latex}
 
 \renewcommand*\thesection{\arabic{section}}
 
-\newtheoremstyle{mio}% name
-     {2\parskip}%      Space above
-     {\parskip}%      Space below
-     {\sl}%         Body font
-     {}%         Indent amount (empty = no indent, \parindent = para indent)
-     {\bfseries}% Thm head font
-     {}%        Punctuation after thm head
-     {1.5ex}%     Space after thm head: " " = normal interword space;
-           %   \newline = linebreak
-     {\llap{\thmnumber{#2}\hskip2mm}\thmname{#1}\thmnote{\bfseries{} #3}}% Thm head spec (can be left empty, meaning `normal')
+% \newcommand{\mylabel}[1]{{#1}\hfill}
+% \renewenvironment{itemize}
+%   {\begin{list}{$\cdot$}{%
+%   \setlength{\parskip}{0mm}
+%   \setlength{\topsep}{.2\baselineskip}
+%   \setlength{\rightmargin}{0mm}
+%   \setlength{\listparindent}{0mm}
+%   \setlength{\itemindent}{0mm}
+%   \setlength{\labelwidth}{3ex}
+%   \setlength{\itemsep}{.2\baselineskip}
+%   \setlength{\parsep}{.2\baselineskip}
+%   \setlength{\partopsep}{0mm}
+%   \setlength{\labelsep}{1ex}
+%   \setlength{\leftmargin}{\labelwidth+\labelsep}
+%   \let\makelabel\mylabel}}{%
+% \end{list}}
 
-\newtheoremstyle{liscio}% name
-     {2\parskip}%      Space above
-     {0mm}%      Space below
-     {}%         Body font
-     {}%         Indent amount (empty = no indent, \parindent = para indent)
-     {\bfseries}% Thm head font
-     {}%        Punctuation after thm head
-     {1.5ex}%     Space after thm head: " " = normal interword space;
-           %   \newline = linebreak
-     {\llap{\thmnumber{#2}\hskip2mm}\thmname{#1}\thmnote{\bfseries{} #3}}% Thm head spec (can be left empty, meaning `normal')
+\declaretheoremstyle[
+  headfont=\normalfont\bfseries,
+  notefont=\bfseries,
+  notebraces={(}{)},
+  bodyfont=\normalfont,
+  postheadspace=1em,
+  mdframed={
+  outerlinewidth=1pt,
+  linecolor=gray!25,
+  roundcorner = 1ex,    
+  backgroundcolor=gray!15, 
+  innerleftmargin=1ex,
+  leftmargin=-1ex,
+  innerrightmargin=1ex,
+  rightmargin=-1ex,
+  innertopmargin=1.5ex, 
+  innerbottommargin=1ex, 
+  skipabove=3ex,
+  skipbelow=1ex}, 
+]{mystyle}
 
-\newcounter{thm}[chapter]
+\declaretheorem[style=mystyle]%
+{theorem}
+\declaretheorem[style=mystyle,sibling=theorem]%
+{lemma,proposition,fact,corollary,definition,remark,example,claim,question}
 
-\renewcommand{\thethm}{\thechapter.\arabic{thm}}
+\let\proof\relax
+\declaretheoremstyle[
+  spaceabove=6pt, 
+  spacebelow=6pt, 
+  headfont=\normalfont\itshape, 
+  bodyfont = \normalfont,
+  postheadspace=1em, 
+  qed=\qedsymbol, 
+  headpunct={.}]
+{myproof} 
+\declaretheorem[style=myproof, unnumbered]{proof}
 
-\theoremstyle{mio}
-\newtheorem{theorem}[thm]{Theorem}
-\newtheorem{corollary}[thm]{Corollary}
-\newtheorem{proposition}[thm]{Proposition}
-\newtheorem{lemma}[thm]{Lemma}
-\newtheorem{fact}[thm]{Fact}
-\newtheorem{void_thm}[thm]{}
-\newtheorem{definition}[thm]{Definition}
-\theoremstyle{liscio}
-\newtheorem{void_def}[thm]{}
-\newtheorem{remark}[thm]{Remark}
-\newtheorem{notation}[thm]{Notation}
-\newtheorem{note}[thm]{Note}
-\newtheorem{exercise}[thm]{Exercise}
-\newtheorem{example}[thm]{Example}
-\setlength{\partopsep}{0mm}
-\setlength{\topsep}{0mm}
-\def\QED{\noindent\nolinebreak[4]\hfill\rlap{\ \ $\Box$}\medskip}
-\renewenvironment{proof}[1][Proof]%
-{\begin{trivlist}\item[\hskip\labelsep {\bf #1}]}
-{\QED\end{trivlist}}
 
-\newenvironment{void}[1][]%
-{\begin{trivlist}\item[\hskip\labelsep {\bf #1}]}
-{\QED\end{trivlist}}
+\declaretheoremstyle[
+  bodyfont=\normalfont, 
+  headpunct={},
+  postheadspace=0ex, 
+  mdframed={
+  outerlinewidth=1pt,
+  linecolor=gray!25,
+  roundcorner = 1ex,    
+  backgroundcolor=gray!15, 
+  innerleftmargin=1ex,
+  leftmargin=-1ex,
+  innerrightmargin=1ex,
+  rightmargin=-1ex,
+  innertopmargin=2ex, 
+  innerbottommargin=1ex, 
+  skipabove=3ex,
+  skipbelow=1ex}, 
+]{void}
+
+\declaretheorem[style=void,numbered=no,name={}]{void}
+
+
+\let\proof\relax
+\declaretheoremstyle[
+  spaceabove=6pt, 
+  spacebelow=6pt, 
+  headfont=\normalfont\itshape, 
+  bodyfont = \normalfont,
+  postheadspace=1em, 
+  qed=\qedsymbol, 
+  headpunct={.}]
+{myproof} 
+\declaretheorem[style=myproof, unnumbered]{proof, soluzione}
+
+\renewcommand*{\emph}[1]{%
+   \smash{\tikz[baseline]\node[rectangle, fill=teal!25, rounded corners, inner xsep=0.5ex, inner ysep=0.2ex, anchor=base, minimum height = 2.7ex]{#1};}}
 
 
 
@@ -188,7 +229,7 @@ diagrams={>=latex}
 \vskip0pt
 \normalsize\normalfont Per l'ultima versione:
 \vskip-10pt
-{\scriptsize\url{https://github.com/domenicozambella/statistica/raw/master/dispense/dispense.pdf}}
+{\scriptsize\url{}}
 
 % \begin{flushright}\normalfont\itshape
 % La matematica è di fondamentale importanza in ogni ambito scientifico.\\
@@ -222,26 +263,49 @@ Per esempi ed esercizi seguire i \hyperref[ch2]{link \faShare}
 \def\ceq#1#2#3{\parbox{24ex}{$\displaystyle #1$}\medrel{#2}$\displaystyle  #3$}
 
 
-Fisssiamo un insieme non vuoto \emph{$\Omega$\/} che chiameremo \emph{spazio campionario\/}  (\emph{sample space\/}) o \emph{popolazione}. Immagimiamo gli elementi \emph{$\omega$\ }$\in\Omega$ come i possibili \emph{risultati\/} di un rilevamento, un esperimento, un sorteggio, ecc. I sottoinsiemi $E\subseteq\Omega$ verranno chiamati \emph{eventi\/} e, intuitivamente, rapresentano proprietà osservabili.
+Fisssiamo un insieme non vuoto \emph{$\Omega$\/} che chiameremo \emph{spazio campionario\/}  [\textit{sample space\/}] o \emph{popolazione.}
+Immagimiamo gli elementi $\omega\in\Omega$ dello spazio campionario come i possibili \emph{risultati\/} di un rilevamento, un esperimento, un sorteggio, ecc. [\textit{outcomes of a trial or of an experiment or individuals of a pupulation\/}]. 
+I sottoinsiemi $E\subseteq\Omega$ verranno chiamati \emph{eventi.}
 
-Una \emph{misura di probabilità\/} è una funzione $\Pr:\P(\Omega)\to\RR$ tale che 
+
+\begin{void}
+  In molti casi solo particolari sottoinsiemi di $\Omega$ vengono considerati eventi. 
+  Questo per\`o \`e un dettaglio tecnico che ignoreremo
+\end{void}
+  
+
+Una \emph{misura di probabilità\/} è una funzione $\Pr:\P(\Omega)\to\RR$ che soddisfa i seguenti assiomi
 
 \begin{itemize}
-\item $\Pr(\Omega)=1$
-\item $\Pr(E)\ge0$ per ogni $E\in\P(\Omega)$
-\item $\Pr(E_1\cup E_2)=\Pr(E_1)+\Pr(E_2)$ per ogni coppia $E_1,E_2\in\P(\Omega)$ di insiemi \emph{disgiunti}, ovvero $E_1\cap E_2=\0$. Si dice anche che $E_1$ e $E_2$ sono \emph{eventi mutualmente esclusivi}.
+\item[1.] $\Pr(\Omega)=1$
+\item[2.] $\Pr(E)\ge0$ per ogni $E\in\P(\Omega)$
+\item[3.] $\Pr(E_1\cup E_2)=\Pr(E_1)+\Pr(E_2)$ per ogni coppia $E_1,E_2$ di eventi \emph{disgiunti}, ovvero $E_1\cap E_2=\0$. Si dice anche che $E_1$ e $E_2$ sono \emph{mutualmente esclusivi}.
 \end{itemize}
 
 Conseguenze:
 
-
 \begin{itemize}
-\item $\Pr(\0)=0$
-\item $\Pr(\neg E)=1-\Pr(E)$
+\item[1.] $\Pr(\0)=0$
+\item[2.] $\Pr(\neg E)=1-\Pr(E)$
 %\item $\Pr(E_1\cup E_2\cup E_3)=\Pr(E_1)+\Pr(E_2)+\Pr(E_3)$ per ogni $E_1,E_2,E_3$ mutualmente esclusivi.
-\item $\Pr(E_1\smallsetminus E_2)=\Pr(E_1)-\Pr(E_2)$ se $E_2\subseteq E_1$
-\item $\Pr(E_1\cup E_2)=\Pr(E_1)+\Pr(E_2)-\Pr(E_1\cap\E_2)$ per ogni $E_1,E_2\in\P(\Omega)$.
+\item[3.] $\Pr(E_1\smallsetminus E_2)=\Pr(E_1)-\Pr(E_2)$ se $E_2\subseteq E_1$
+\item[4.]  $\Pr(E_1\cup E_2\cup E_3)=\Pr(E_1)+\Pr(E_2)+\Pr(E_3)$ \ \ for mutually exclusive $E_1,E_2,E_3$
+\item[5.] $\Pr(E_1\cup E_2)=\Pr(E_1)+\Pr(E_2)-\Pr(E_1\cap\E_2)$ per ogni $E_1,E_2\in\P(\Omega)$.
 \end{itemize}
+
+
+Chiaramente (4) pu\`o essere generalizzata ad un numero qualsiasi di eventi $E_1,\dots,E_n$ mutualmente esclusivi.
+
+Per\`o a volte serve reneralizzare questa propriet\`a ad un numero qualsiasi di eventi.
+
+\begin{void}
+\begin{itemize}
+\item[3$'$.] $\displaystyle\Pr\bigg(\bigcup_{i=1}^{\infty}E_i\bigg)=\sum_{i=1}^\infty\Pr(E_i)$ \ \ per ogni sequenza $E_1,E_2,\ldots\subseteq\Omega$ di eventi mutualmente esclusivi.
+\end{itemize}
+\end{void}
+
+Per ragioni tecniche, (3') non è una conseguenza degli assiomi 1-3 e dev'essere aggiunto come assioma indipendente.
+
 
 %%%%%%%%%%%%
 %%%%%%%%%%%%
@@ -250,7 +314,7 @@ Conseguenze:
 
 {\color{brown}Esempi: \hyperref[Urna_biglie_diverse]{Urna con biglie di dimensioni diverse \faShare}}
 
-Una \emph{variabile aleatoria\/} è una funzione $X:\Omega\to R$, dove $\Omega$ è uno spazio campionario ed $R$ un insieme qualsiasi. Spesso si scrive \emph{$X\in R$\/} omettendo il riferimento ad $\Omega$ (è una notazione che può dar luogo a malintesi, in realtà si intende $X(\omega)\in R$ per ogni $\omega\in\Omega$).
+Una \emph{variabile aleatoria (v.a.)\/} [\textit{random variable (r.v.)}] è una funzione $X:\Omega\to R$, dove $\Omega$ è uno spazio campionario ed $R$ un insieme qualsiasi. Spesso si scrive \emph{$X\in R$\/} omettendo il riferimento ad $\Omega$ (è una notazione che può dar luogo a malintesi, in realtà si intende $X(\omega)\in R$ per ogni $\omega\in\Omega$).
 
 Se $R$ è un insieme numerico (un sottoinsieme di $\NN$, $\ZZ$, $\QQ$, $\RR$, $\RR^2$, ecc.) diremo che $X$ è una \emph{variabile aleatoria numerica\/} o \emph{quantitativa}. Una variabile aleatoria non numerica è detta \emph{qualitativa\/} o \emph{categorica}.
 
@@ -268,12 +332,15 @@ Dato $x\in R$ e $A\subseteq R$ scriveremo
 
 \ceq{\hfill \emph{$F_X(x)$}\medrel{=}\emph{$\Pr(X \le x$)}}{=}{\Pr\big(\{\omega\in\Omega\ :\ X(\omega)\le x\}\big)}\hfill  se $X$ \`e numerica.
 
-La funzione $\Pr(X=x)$ si chiama \emph{distribuzione di probabilità (probability mass function)}. La funzione $\Pr(X \le x)$ si chiama  \emph{funzione di ripartizione (cumulative distribution function)}, spesso indicata con \emph{$F_X(x)$}.
+La funzione $\Pr(X=x)$ si chiama \emph{distribuzione di probabilità\/}[\textit{probability mass function (p.m.f.)\/}].
+Spesso indicata con \emph{$p_x$,} \emph{$f(x)$\/} o \emph{$f_X(x)$.}
+La funzione $\Pr(X \le x)$ si chiama  \emph{funzione di ripartizione\/}[\textit{cumulative distribution function (c.d.f.)\/}].
+Spesso indicata con \emph{$F(x)$\/} o \emph{$F_X(x)$}.
 
+Le variabili numeriche possono dirsi \emph{discrete\/} o \emph{continue}.
+Una v.a.\@ $X$ è discreta se per ogni sottoinsieme $A\subseteq R$
 
-Le variabili numeriche possono dirsi \emph{discrete\/} o \emph{continue}. Una v.a.\@ $X$ è discreta se per ogni sottoinsieme $A\subseteq R$
-
-\ceq{\hfill \Pr\big(X\in A\big)}{=}{\sum_{x\in A}\Pr(X{=}x)}\hfill\hyperref[sommatorie_disordinate]{Per la notazione \faShare}
+\ceq{\hfill \Pr\big(X\in A\big)}{=}{\sum_{x\in A}\Pr(X{=}x)}
 
 Ovvero la probabilità è concentrata nei punti di $R$. 
 
@@ -294,14 +361,14 @@ N.B. Esistono variabili aleatorie (anche in esempi concreti) che sono intermedie
 %%%%%%%%%%%%%%%%%%%%%%%
 \hfill\rlap{.}\clearpage\section{Funzione quantile}
 
-
 La \emph{mediana\/} (o il \emph{valore mediano}) di una variabile aleatoria $X$ è quel valore $x$ tale che $Pr(X\le x)=1/2$.
 
-In generale definiamo la \emph{funzione quantile}. Questa è la funzione che dato $p\in(0,1)$ ritorna quel valore $x=Q_X(p)$ tale che $p\le\Pr(X\le x)\}$. In altre parole $Q_X(p)$ è la \textit{funzione inversa\/} della funzione di ripartizione $F_X(x)=\Pr(X\le x)$.
+In generale definiamo la \emph{funzione quantile\/} o  \emph{percentile.} Questa è la funzione che dato $p\in(0,1)$ ritorna quel valore $x=Q_X(p)$ tale che $p\le\Pr(X\le x)\}$. In altre parole $Q_X(p)$ è la \textit{funzione inversa\/} della funzione di ripartizione $F_X(x)=\Pr(X\le x)$.
+
+Quindi il valore mediano di $X$ è $Q_X(1/2)$.
 
 N.B. La definizione qui sopra non è sempre corretta. Può succedere che a più valori di $x$ corrisponda lo stesso valore di $F_X(x)$. (Ovvero $F_X$ non è invertibile.) In questo caso prendiamo il limite inferiore di questi $x$.
 
-Quindi il valore mediano di $X$ è $Q_X(1/2)$.
 
 
 %%%%%%%%%%%%
@@ -349,11 +416,33 @@ Questo si legge \emph{probabilità di $A$ dato $\Phi$}. Si verifica facilmente c
 \\
 \hphantom{Esempi:} \hyperref[Neonati_totali]{Peso neonati \faShare}
 \\
+\hphantom{Esempi:} \hyperref[dadi_diversi]{Urna con due tipi di dadi \faShare}
+\\
 \hphantom{Esempi:} \hyperref[HW_totali1]{Modello di Hardy-Weinberg \faShare}}
 
-Il fatto seguente si chiama \emph{Teorema delle Probabilità Totali}: siano $A_1,\dots,A_n$ eventi \emph{mutuamente esclusivi\/} ed \emph{esaustivi} di probabilità $\neq0$. Sia $C$ \`e un qualsiasi altro evento, allora
+Siano $\Phi_1,\dots,\Phi_n$ evnti \emph{mutuamente esclusivi\/} ed \emph{esaustivi} (la loro unione è tutto $\Omega$) di probabilità $\neq0$.
+Il fatto seguente si chiama \emph{Teorema delle Probabilità Totali.}
 
-\ceq{\hfill \Pr(C)}{=}{\sum^n_{i=1} \Pr(A_i)\cdot \Pr\big(C| A_i).}
+
+\begin{theorem}
+   Sia $C$ \`e un qualsiasi altro evento, allora
+  \ceq{\hfill \Pr(C)}{=}{\sum^n_{i=1} \Pr(\Phi_i)\cdot \Pr\big(C| \Phi_i).}
+\end{theorem}
+
+
+\begin{proof}
+  Verifichiamo il teorema per $n=2$.
+
+  \qquad$\Pr(C)\ \ =\ \ \Pr(\Phi_1)\cdot \Pr\big(C| \Phi_1\big) + \Pr(\Phi_2)\cdot \Pr\big(C| \Phi_2\big)$
+
+  Applichiamo la definizione di probabilità condizionata.
+
+  \qquad$\displaystyle\Pr(C)\ \ =\ \ \Pr(\Phi_1)\cdot \frac{\Pr\big(C\cap \Phi_1\big)}{\Pr\big(\Phi_1\big)} + \Pr(\Phi_2)\cdot \frac{\Pr\big(C\cap \Phi_2\big)}{\Pr\big(\Phi_2\big)}\ \ =\ \ Pr\big(C\cap \Phi_1\big)\ +\ \Pr\big(C\cap \Phi_2\big)$
+
+  As $C\cap\Phi_1$ and  $C\cap\Phi_2$ are disjoint
+
+  \qquad$\displaystyle\Pr(C)\ \ =\ \ \Pr\big((C\cap \Phi_1)\ \cup\ (C\cap \Phi_2)\big)\ \ =\ \ \Pr\big(C\cap (\Phi_1\cup\Phi_2)\big)\ \ =\ \ \Pr\big(C\cap \Omega\big)\ \ =\ \ \Pr(C)$.
+\end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -518,7 +607,7 @@ $\displaystyle\sum^n_{i=1}\E(X_i)$
 %%%%%%%%%%%%%%%%%%%%%%%
 
 \hfill\rlap{.}\clearpage\section{Teorema delle Probabilità Totali per la media}
-\label{TeoremaProbabilitaTotali}
+\label{TeoremaProbabilitaTotaliMedia}
 
 {\color{brown}Esempi: \hyperref[Neonati_totali]{Peso neonati \faShare}}
 
@@ -526,9 +615,9 @@ Il valore medio può essere condizionato ad un qualsiasi evento $\Phi\subseteq\O
 
 \ceq{\hfill \emph{$\E(X\,|\,\Phi)$}}{=}{\sum_{x\in R} x\cdot \Pr\big(X{=}x\,|\, \Phi).}
 
-Il fatto seguente è una conseguenza del Teorema delle Probabilità Totali. Siano $A_1,\dots,A_n$ eventi mutuamente esclusivi ed esaustivi di probabilità $\neq0$. Sia $X$ una v.a.\@ discreta
+Il fatto seguente è una conseguenza del Teorema delle Probabilità Totali. Siano $\Phi_1,\dots,\Phi_n$ eventi mutuamente esclusivi ed esaustivi di probabilità $\neq0$. Sia $X$ una v.a.\@ discreta
 
-\ceq{\hfill \E(X)}{=}{\sum^n_{i=1} \Pr(A_i)\cdot \E\big(X|A_i).}
+\ceq{\hfill \E(X)}{=}{\sum^n_{i=1} \Pr(\Phi_i)\cdot \E\big(X|\Phi_i).}
 
 La verifica è immediata.
 
@@ -770,26 +859,26 @@ Introduciamo la terminologia dei test d'ipotesi basandoci sulla notazione usata 
 In questa tavola contrapponiamo la terminologia usata nei \emph{test statistici\/}  a quella dei \textit{test diagnostici}. Molto comuni sono anche i simboli \emph{$\alpha$\/} e \emph{$\beta$\/}.\bigskip   
 
 
-\noindent\kern-3ex\fbox{\parbox[t]{33ex}{%
-\emph{$T_+\cap H_0$} \ \textit{falso positivo}\hfill \emph{errore I tipo\/}\\
+\noindent\kern0ex\fbox{\parbox[t]{38ex}{%
+\emph{$T_+\cap H_0$} \textit{falso positivo}\hfill \emph{errore I tipo\/}\\
 
 \emph{$\Pr(T_+|H_0)=\emph{$\alpha$}$}\hfill \emph{significatività\/}
 }}
 \kern1ex
-\fbox{\parbox[t]{38ex}{%
-\emph{$T_+\cap H_A$} \ \textit{corretto positivo}\\
+\fbox{\parbox[t]{41ex}{%
+\emph{$T_+\cap H_A$} \textit{corretto positivo}\\
 
-\emph{$\Pr(T_+|H_A)=1{-}\emph{$\beta$}$} \ \textit{sensibilità}\hfill \emph{potenza\/}
+\emph{$\Pr(T_+|H_A)=1{-}\emph{$\beta$}$} \textit{sensibilità}\hfill \emph{potenza\/}
 }}
 
 
-\noindent\kern-3ex\fbox{\parbox[t]{33ex}{%
+\noindent\kern0ex\fbox{\parbox[t]{38ex}{%
 \emph{$T_-\cap H_0$} \ \textit{corretto negativo}\\
 
-\emph{$\Pr(T_-|H_0)=1{-}\emph{$\alpha$}$} \ \textit{sepecificità}
+\emph{$\Pr(T_-|H_0)=1{-}\emph{$\alpha$}$} \textit{sepecificità}
 }}
 \kern1ex
-\fbox{\parbox[t]{38ex}{%
+\fbox{\parbox[t]{41ex}{%
 \emph{$T_-\cap H_A$} \ \textit{falso negativo}\hfill \emph{errore II tipo\/}\\
 
 \emph{$\Pr(T_-|H_A)=\emph{$\beta$}$}
@@ -1136,7 +1225,7 @@ $P(A)=P(A|F)P(F)+P(A|M)P(M)=0.05\cdot0.4+0.03\cdot0.6=0.038=3.8\%$
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 \hfill\rlap{.}\clearpage
-\hfill\textbf{{\color{brown}\hyperref[TeoremaProbabilitaTotali]{Pobabilità totali} \faShare} (richiede \hyperref[ValoreAtteso]{valore atteso \faShare})}
+\hfill\textbf{{\color{brown}\hyperref[TeoremaProbabilitaTotaliMedia]{Pobabilità totali} \faShare} (richiede \hyperref[ValoreAtteso]{valore atteso \faShare})}
 \subsection{Peso neonati}
 \label{Neonati_totali}
 
@@ -1151,6 +1240,65 @@ $F$ evento neonato femmina,\quad $\Pr(F)\ =1/2$,\quad $E(X|F)\ =3.4$
 
 $E(X)\medrel{=}E(X|M)\cdot\Pr(M)+ E(X|F)\cdot\Pr(F)\medrel{=}3.5\cdot\dfrac12 + 3.4\cdot\dfrac12\medrel{=}3.45$
 
+
+%%%%%%%%%%%%
+%%%%%%%%%%%%
+%%%%%%%%%%%%
+\hfill\rlap{.}\clearpage
+\hfill\textbf{{\color{brown}\hyperref[TeoremaProbabilitaTotali]{Pobabilità totali} \faShare} (richiede \hyperref[ValoreAtteso]{valore atteso \faShare})}
+\subsection{Urna con due tipi di dadi}
+\label{dadi_diversi}
+
+Un urna contiene dadi a 6 facce e dadi a 4 facce nella proporzione del $30\%$ e $70\%$.
+Tutti i dadi sono equilibrati.
+Estraiamo un dado dall'urna, lo lanciamo, ed osserviamo il risultato.
+Qual'è la probabilità di ottenere un numero tra 1 e 4?
+
+\begin{soluzione}
+Sia $C$ l'evento estrarre il dado a $6$ faccie (cubico). 
+Sia $T$ l'evento estrarre il dado a $4$ faccie (teraedrico). 
+Sappiamo che 
+
+\qquad$\Pr\big(C\big)=1/3$ 
+
+\qquad$\Pr\big(T\big)=2/3$ 
+
+Sia $E_i$, per $1\le i\le 6$, l'evento  il risultato del lancio (qualsiasi sia il dado estratto) \`e $i$.
+
+Sappiamo che
+
+\qquad$\Pr\big(E_i\vert T\big)=\left\{
+\begin{array}[c]{ll}
+    1/4&\textrm{per }i=1,\dots,4\\
+    0&\textrm{per }i=5, 6\\
+\end{array}\right.$
+
+\qquad$\Pr\big(E_i\vert C\}\big)=1/6$ per $i=1,\dots,6$.
+
+La consegna è calcolare
+
+\qquad$\displaystyle\Pr\bigg(\bigcup_{i=1}^4E_i\bigg)$.
+
+Applichiamo il Teorema delle Probabilità Totali
+
+\qquad$\displaystyle\Pr\bigg(\bigcup_{i=1}^4E_i\bigg)\quad=\quad
+\Pr\bigg(\bigcup_{i=1}^4E_i\ \Big|\ C\bigg)\cdot\Pr\big(C\big)\ +\ 
+\Pr\bigg(\bigcup_{i=1}^4E_i\ \Big|\ T\bigg)\cdot\Pr\big(T\big)
+$.
+
+\qquad$\displaystyle\phantom{\Pr\bigg(\bigcup_{i=1}^4E_i\bigg)}\quad=\quad
+\dfrac16\cdot\dfrac13\ +\ 
+1\cdot\dfrac23
+$.
+
+\qquad$\displaystyle\phantom{\Pr\bigg(\bigcup_{i=1}^4E_i\bigg)}\quad=\quad
+\dfrac{13}{18}
+$.
+\end{soluzione}
+
+Si noti che la forma esplicita di $\Omega$ \`e irrilevante.
+Volendo per una volta essere pedanti potremmo immaginare $\Omega=\{c,t\}\times\{1,\dots,6\}$ dove il primo elemento della coppia denota dado estratto, il secndo il risultato del lancio.
+Quindi $C=\{c\}\times\{1,\dots,6\}$, \ $T=\{t\}\times\{1,\dots,6\}$, ed $E_i=\{c,t\}\times\{i\}$.
 
 
 %%%%%%%%%%%%
