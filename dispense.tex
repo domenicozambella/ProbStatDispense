@@ -1,8 +1,10 @@
-\documentclass[12pt,openany]{book}
+\documentclass[11pt,openany]{book}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[dvips,a4paper,hmargin={3cm,3cm},vmargin={2cm,2cm}]{geometry}
 \usepackage[a4paper,colorlinks=true,bookmarksopen=false,linkcolor=brown,citecolor=red]{hyperref}
+\usepackage{tikz}
+\usepackage{datetime2} 
 \usepackage{pythontex}
 \usepackage{calc}
 \usepackage{comment}
@@ -17,7 +19,9 @@
 \usepackage{euscript}
 \usepackage{fourier-orns}
 \usepackage{fontawesome}
+% \usepackage{mathpazo}
 \usepackage{graphicx}
+\usepackage[framemethod=TikZ]{mdframed}
 \usepackage{tikz-cd}
 \tikzcdset{
 arrow style=tikz,
@@ -94,7 +98,7 @@ diagrams={>=latex}
 {0.5ex} % sep
 {} % before-code
 [] % after-code
-\titleformat{\section}[block]{\Large\bfseries}{\makebox[5ex][r]{\textbf{\thesection}}}{1.5ex}{}
+\titleformat{\section}[block]{\large\bfseries}{\makebox[5ex][r]{\textbf{\thesection}}}{1.5ex}{}
 \titlespacing{\subsection}{0ex}{.5ex plus .5ex minus .5ex}{1ex plus .2ex minus .2ex}
 \titlespacing*{\chapter}{0em}{.5ex plus .2ex minus .2ex}{2.3ex plus .2ex}
 \titlespacing*{\section}{-9.7ex}{3ex plus .5ex minus .5ex}{1ex plus .2ex minus .2ex}
@@ -227,9 +231,11 @@ diagrams={>=latex}
 
 \renewcommand{\contentsname}{Un bignami di probabilità e statistica
 \vskip0pt
+\hfill\texttt{\small Branch:\ main\ \DTMnow}\bigskip
+\vskip-0.5\baselineskip
 \normalsize\normalfont Per l'ultima versione:
-\vskip-10pt
-{\scriptsize\url{}}
+
+\scalebox{0.95}{\url{https://github.com/domenicozambella/ProbStatDispense/raw/main/PDF/dispense.pdf}}
 
 % \begin{flushright}\normalfont\itshape
 % La matematica è di fondamentale importanza in ogni ambito scientifico.\\
@@ -251,36 +257,37 @@ Per esempi ed esercizi seguire i \hyperref[ch2]{link \faShare}
 
 {\color{brown}Esempi: \hyperref[tetraedro]{Dado a $4$ facce \faShare}
 \\
-\hphantom{Esempi:} \hyperref[doppo_lancio_moneta]{Doppio lancio moneta \faShare}
+\hphantom{Esempi: }\hyperref[doppo_lancio_moneta]{Doppio lancio moneta \faShare}
 \\
-\hphantom{Esempi:} \hyperref[urna_3_colori]{Urna con biglie di 3 colori \faShare}}
+\hphantom{Esempi: }\hyperref[urna_3_colori]{Urna con biglie di 3 colori \faShare}}
 
 
 
 
 
 \def\medrel#1{\parbox[t]{5ex}{$\displaystyle\hfil #1$}}
-\def\ceq#1#2#3{\parbox{24ex}{$\displaystyle #1$}\medrel{#2}$\displaystyle  #3$}
+\def\ceq#1#2#3{\parbox{30ex}{$\displaystyle #1$}\medrel{#2}$\displaystyle  #3$}
 
 
 Fisssiamo un insieme non vuoto \emph{$\Omega$\/} che chiameremo \emph{spazio campionario\/}  [\textit{sample space\/}] o \emph{popolazione.}
-Immagimiamo gli elementi $\omega\in\Omega$ dello spazio campionario come i possibili \emph{risultati\/} di un rilevamento, un esperimento, un sorteggio, ecc. [\textit{outcomes of a trial or of an experiment or individuals of a pupulation\/}]. 
+Immagimiamo gli elementi $\omega\in\Omega$ dello spazio campionario come i possibili \emph{oggetti\/} di un rilevamento, un esperimento, un sorteggio, ecc. [\textit{outcomes of a trial or of an experiment or individuals of a pupulation\/}]. 
 I sottoinsiemi $E\subseteq\Omega$ verranno chiamati \emph{eventi.}
 
 
 \begin{void}
-  In molti casi solo particolari sottoinsiemi di $\Omega$ vengono considerati eventi. 
-  Questo per\`o \`e un dettaglio tecnico che ignoreremo
+  In molti casi solo particolari sottoinsiemi di $\Omega$ vengono considerati legittimi eventi. 
+  Questo per\`o \`e un dettaglio tecnico che ignoreremo.
 \end{void}
   
 
 Una \emph{misura di probabilità\/} è una funzione $\Pr:\P(\Omega)\to\RR$ che soddisfa i seguenti assiomi
-
+\begin{void}
 \begin{itemize}
-\item[1.] $\Pr(\Omega)=1$
+\item[1.] $\Pr(\Omega)=1$\rule[0ex]{0ex}{3ex}
 \item[2.] $\Pr(E)\ge0$ per ogni $E\in\P(\Omega)$
-\item[3.] $\Pr(E_1\cup E_2)=\Pr(E_1)+\Pr(E_2)$ per ogni coppia $E_1,E_2$ di eventi \emph{disgiunti}, ovvero $E_1\cap E_2=\0$. Si dice anche che $E_1$ e $E_2$ sono \emph{mutualmente esclusivi}.
+\item[3.] $\Pr(E_1\cup E_2)=\Pr(E_1)+\Pr(E_2)$ per ogni coppia $E_1,E_2$ di eventi \emph{disgiunti}, ovvero $E_1\cap E_2=\0$. Si dice anche che $E_1$ e $E_2$ sono \emph{mutualmente esclusivi}.\rule[-1.5ex]{0ex}{0ex}
 \end{itemize}
+\end{void}
 
 Conseguenze:
 
@@ -295,16 +302,15 @@ Conseguenze:
 
 
 Chiaramente (4) pu\`o essere generalizzata ad un numero qualsiasi di eventi $E_1,\dots,E_n$ mutualmente esclusivi.
-
 Per\`o a volte serve reneralizzare questa propriet\`a ad un numero qualsiasi di eventi.
 
 \begin{void}
 \begin{itemize}
-\item[3$'$.] $\displaystyle\Pr\bigg(\bigcup_{i=1}^{\infty}E_i\bigg)=\sum_{i=1}^\infty\Pr(E_i)$ \ \ per ogni sequenza $E_1,E_2,\ldots\subseteq\Omega$ di eventi mutualmente esclusivi.
+\item[3$'$.] $\displaystyle\Pr\bigg(\bigcup_{i=1}^{\infty}E_i\bigg)=\sum_{i=1}^\infty\Pr(E_i)$ \ \ per ogni  $E_1,E_2,\ldots\subseteq\Omega$ mutualmente esclusivi.\rule[1ex]{0ex}{3.8ex}
 \end{itemize}
 \end{void}
 
-Per ragioni tecniche, (3') non è una conseguenza degli assiomi 1-3 e dev'essere aggiunto come assioma indipendente.
+Per ragioni tecniche, (3$'$) non è una conseguenza degli assiomi (1)-(3) e dev'essere aggiunto come assioma indipendente.
 
 
 %%%%%%%%%%%%
@@ -314,9 +320,9 @@ Per ragioni tecniche, (3') non è una conseguenza degli assiomi 1-3 e dev'esser
 
 {\color{brown}Esempi: \hyperref[Urna_biglie_diverse]{Urna con biglie di dimensioni diverse \faShare}}
 
-Una \emph{variabile aleatoria (v.a.)\/} [\textit{random variable (r.v.)}] è una funzione $X:\Omega\to R$, dove $\Omega$ è uno spazio campionario ed $R$ un insieme qualsiasi. Spesso si scrive \emph{$X\in R$\/} omettendo il riferimento ad $\Omega$ (è una notazione che può dar luogo a malintesi, in realtà si intende $X(\omega)\in R$ per ogni $\omega\in\Omega$).
+Una \emph{variabile aleatoria (v.a.)\/} [\textit{random variable (r.v.)\,}\/] è una funzione $X:\Omega\to R$, dove $\Omega$ è uno spazio campionario ed $R$ un insieme qualsiasi. Spesso si scrive \emph{$X\in R$\/} omettendo il riferimento ad $\Omega$ (è una notazione che può dar luogo a malintesi, in realtà si intende $X(\omega)\in R$ per ogni $\omega\in\Omega$).
 
-Se $R$ è un insieme numerico (un sottoinsieme di $\NN$, $\ZZ$, $\QQ$, $\RR$, $\RR^2$, ecc.) diremo che $X$ è una \emph{variabile aleatoria numerica\/} o \emph{quantitativa}. Una variabile aleatoria non numerica è detta \emph{qualitativa\/} o \emph{categorica}.
+Se $R$ è un insieme numerico (un sottoinsieme di $\NN$, $\ZZ$, $\QQ$, $\RR$, $\RR^2$, ecc.) diremo che $X$ è una \emph{variabile aleatoria numerica\/} o \emph{quantitativa.} Una variabile aleatoria non numerica è detta \emph{qualitativa\/} o \emph{categorica.}
 
 
 %%%%%%%%%%%%
@@ -332,9 +338,9 @@ Dato $x\in R$ e $A\subseteq R$ scriveremo
 
 \ceq{\hfill \emph{$F_X(x)$}\medrel{=}\emph{$\Pr(X \le x$)}}{=}{\Pr\big(\{\omega\in\Omega\ :\ X(\omega)\le x\}\big)}\hfill  se $X$ \`e numerica.
 
-La funzione $\Pr(X=x)$ si chiama \emph{distribuzione di probabilità\/}[\textit{probability mass function (p.m.f.)\/}].
+La funzione $\Pr(X=x)$ si chiama \emph{distribuzione di probabilità\/}[\textit{probability mass function (p.m.f.)\,}].
 Spesso indicata con \emph{$p_x$,} \emph{$f(x)$\/} o \emph{$f_X(x)$.}
-La funzione $\Pr(X \le x)$ si chiama  \emph{funzione di ripartizione\/}[\textit{cumulative distribution function (c.d.f.)\/}].
+La funzione $\Pr(X \le x)$ si chiama  \emph{funzione di ripartizione\/}[\textit{cumulative distribution function (c.d.f.)\,}].
 Spesso indicata con \emph{$F(x)$\/} o \emph{$F_X(x)$}.
 
 Le variabili numeriche possono dirsi \emph{discrete\/} o \emph{continue}.
@@ -353,6 +359,14 @@ Si noti che la seconda uguaglianza non sarebbe corretta se $\Pr(X{=}a)\neq0$.
 
 N.B. Esistono variabili aleatorie (anche in esempi concreti) che sono intermedie tra il continuo e il discreto ma per il momento non le considereremo.
 
+Assumeremo sempre l'esistenza di una funzione $f:\mathds{R}\to\mathds{R}$ che chiameremo \emph{densità di probabilità\/} [\textit{probability density function (p.d.f.)\,}] tale che
+
+\qquad$\displaystyle\Pr(X \le t)\ \ =\ \ \int_{-\infty}^t f(x)\,{\rm d}x$
+
+Intuitivamente $f(x)$ è la probabilità che $X\in[x,x+{\rm d}x]$.
+
+
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -363,32 +377,15 @@ N.B. Esistono variabili aleatorie (anche in esempi concreti) che sono intermedie
 
 La \emph{mediana\/} (o il \emph{valore mediano}) di una variabile aleatoria $X$ è quel valore $x$ tale che $Pr(X\le x)=1/2$.
 
-In generale definiamo la \emph{funzione quantile\/} o  \emph{percentile.} Questa è la funzione che dato $p\in(0,1)$ ritorna quel valore $x=Q_X(p)$ tale che $p\le\Pr(X\le x)\}$. In altre parole $Q_X(p)$ è la \textit{funzione inversa\/} della funzione di ripartizione $F_X(x)=\Pr(X\le x)$.
+In generale definiamo la \emph{funzione quantile\/} o  \emph{percentile.} 
+Questa è la funzione che dato $p\in(0,1)$ ritorna il valore $x=Q_X(p)$ che è il minimo (o più correttamente il limite inferiore) degli $x$ tale che $p\le\Pr(X\le x)\}$.
 
 Quindi il valore mediano di $X$ è $Q_X(1/2)$.
+ 
+In prima approssimazione $Q_X(p)$ è la funzione inversa della funzione di ripartizione $F_X(x)=\Pr(X\le x)$.
+Solo che può succerere che $F_X$ non sia invertibile: più valori di $x$ corrisponda lo stesso valore di $F_X(x)$. 
+In questo caso prendiamo il limite inferiore di questi $x$.
 
-N.B. La definizione qui sopra non è sempre corretta. Può succedere che a più valori di $x$ corrisponda lo stesso valore di $F_X(x)$. (Ovvero $F_X$ non è invertibile.) In questo caso prendiamo il limite inferiore di questi $x$.
-
-
-
-%%%%%%%%%%%%
-%%%%%%%%%%%%
-%%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\section{Variabili aleatorie di Bernoulli}
-
-Una variabile aleatoria $X:\Omega\to R$ si dice di \emph{Bernoulli\/} se $R=\{0,1\}$, che spesso si abbrevia scrivendo \emph{$X\in\{0,1\}$}.
-
-Possiamo identificare in modo canonico eventi e variabili aletorie di Bernoulli. L'evento associato ad $X$ è l'insieme $\{\omega:X(\omega)=1\}$ che chiameremo \emph{successo}. 
-
-Viceversa, la v.a.\@ di Bernoulli associata ad un evento $E$ è spesso denotata con \emph{$1_E$}
-
-\ceq{\hfill 1_E(x)}{=}{\left\{\begin{array}{ll}1&\textrm{ se }\ x\in E\\0&\textrm{ se }\ x\notin E\end{array}\right.}
-
-Queste funzione di chiama \emph{funzione indicatrice\/} (o \emph{caratteristica}) dell'evento $E$. 
-
-Chiameremo \emph{$p$}\ $ = \Pr(X{=}1)$ la \emph{probabilità di successo}.
-
-Per dire che $X$ è una variabile aleatoria di Bernoulli con probabilità di successo $p$ scriveremo \emph{$X\sim B(1,p)$}.
 
 
 
@@ -414,34 +411,41 @@ Questo si legge \emph{probabilità di $A$ dato $\Phi$}. Si verifica facilmente c
 
 {\color{brown}Esempi: \hyperref[MF_totali]{Popolazione maschile e femminile \faShare}
 \\
-\hphantom{Esempi:} \hyperref[Neonati_totali]{Peso neonati \faShare}
+\hphantom{Esempi: }\hyperref[dadi_diversi]{Urna con due tipi di dadi \faShare}
 \\
-\hphantom{Esempi:} \hyperref[dadi_diversi]{Urna con due tipi di dadi \faShare}
-\\
-\hphantom{Esempi:} \hyperref[HW_totali1]{Modello di Hardy-Weinberg \faShare}}
+\hphantom{Esempi: }\hyperref[HW_totali1]{Modello di Hardy-Weinberg \faShare}}
 
-Siano $\Phi_1,\dots,\Phi_n$ evnti \emph{mutuamente esclusivi\/} ed \emph{esaustivi} (la loro unione è tutto $\Omega$) di probabilità $\neq0$.
-Il fatto seguente si chiama \emph{Teorema delle Probabilità Totali.}
+Siano $\Phi_1,\dots,\Phi_n$ eventi di probabilità $\neq0$ mutuamente esclusivi ed \emph{esaustivi} (la loro unione è tutto $\Omega$).
+Il teorema seguente si chiama \emph{Teorema delle Probabilità Totali.}
 
 
 \begin{theorem}
    Sia $C$ \`e un qualsiasi altro evento, allora
-  \ceq{\hfill \Pr(C)}{=}{\sum^n_{i=1} \Pr(\Phi_i)\cdot \Pr\big(C| \Phi_i).}
+
+  \ceq{\hfill \Pr(C)}{=}{\sum^n_{i=1} \Pr(\Phi_i)\cdot \Pr\big(C\mathbin{|} \Phi_i).}
 \end{theorem}
 
 
 \begin{proof}
   Verifichiamo il teorema per $n=2$.
 
-  \qquad$\Pr(C)\ \ =\ \ \Pr(\Phi_1)\cdot \Pr\big(C| \Phi_1\big) + \Pr(\Phi_2)\cdot \Pr\big(C| \Phi_2\big)$
+  \qquad$\Pr(C)\ \ =\ \ \Pr(\Phi_1)\cdot \Pr\big(C\mathbin{|} \Phi_1\big) + \Pr(\Phi_2)\cdot \Pr\big(C\mathbin{|} \Phi_2\big)$
 
   Applichiamo la definizione di probabilità condizionata.
 
-  \qquad$\displaystyle\Pr(C)\ \ =\ \ \Pr(\Phi_1)\cdot \frac{\Pr\big(C\cap \Phi_1\big)}{\Pr\big(\Phi_1\big)} + \Pr(\Phi_2)\cdot \frac{\Pr\big(C\cap \Phi_2\big)}{\Pr\big(\Phi_2\big)}\ \ =\ \ Pr\big(C\cap \Phi_1\big)\ +\ \Pr\big(C\cap \Phi_2\big)$
+  \qquad$\displaystyle\Pr(C)\ \ =\ \ \Pr(\Phi_1)\cdot \frac{\Pr\big(C\cap \Phi_1\big)}{\Pr\big(\Phi_1\big)} + \Pr(\Phi_2)\cdot \frac{\Pr\big(C\cap \Phi_2\big)}{\Pr\big(\Phi_2\big)}$
+  
+  \qquad$\displaystyle\phantom{\Pr(C)}\ \ =\ \ Pr\big(C\cap \Phi_1\big)\ +\ \Pr\big(C\cap \Phi_2\big)$
 
   As $C\cap\Phi_1$ and  $C\cap\Phi_2$ are disjoint
 
-  \qquad$\displaystyle\Pr(C)\ \ =\ \ \Pr\big((C\cap \Phi_1)\ \cup\ (C\cap \Phi_2)\big)\ \ =\ \ \Pr\big(C\cap (\Phi_1\cup\Phi_2)\big)\ \ =\ \ \Pr\big(C\cap \Omega\big)\ \ =\ \ \Pr(C)$.
+  \qquad$\displaystyle\Pr(C)\ \ =\ \ \Pr\big((C\cap \Phi_1)\ \cup\ (C\cap \Phi_2)\big)$
+  
+  \qquad$\displaystyle\phantom{\Pr(C)}\ \ =\ \ \Pr\big(C\cap (\Phi_1\cup\Phi_2)\big)$
+  
+  \qquad$\displaystyle\phantom{\Pr(C)}\ \ =\ \ \Pr\big(C\cap \Omega\big)$
+  
+  \qquad$\displaystyle\phantom{\Pr(C)}\ \ =\ \ \Pr(C)$.
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -451,11 +455,16 @@ Il fatto seguente si chiama \emph{Teorema delle Probabilità Totali.}
 \hfill\rlap{.}\clearpage\section{Indipendenza stocastica}
 \label{indipendenza}
 
+
+
+{\color{brown}Esempi: \hyperref[esercizio_indipendenza]{Esercizio su v.a.\@ indipendenti \faShare}
+}\\
+
 Due eventi $A$ e $B$ si dicono \emph{(stocasticamente) indipenenti\/} se 
 
 \ceq{\hfill \Pr(A\cap B)}{=}{\Pr(A)\cdot \Pr(B)}. 
 
-Il seguente fatto è facile da verificare: se $A$ e $B$ sono eventi probabilità non nulla allora sono indipendenti se e solo se $\Pr(A|B)=\Pr(A)$ se e solo se $\Pr(B|A)=\Pr(B)$.
+Il seguente fatto è facile da verificare: se $A$ e $B$ sono eventi probabilità non nulla allora sono indipendenti se e solo se $\Pr(A\mathbin{|}B)=\Pr(A)$ se e solo se $\Pr(B\mathbin{|}A)=\Pr(B)$.
 
 Due variabili aleatorie discrete $X$ ed $Y$ si dicono \emph{(stocasticamente) indipenenti\/} se per ogni $x\in\range X$ e $y\in\range Y$
 
@@ -466,54 +475,6 @@ Nel caso di variabili aleatorie continue la condizione diventa
 
 \ceq{\hfill \Pr(X\le x\ \textrm{ and }\ Y\le y)}{=}{\Pr(X\le x)\cdot \Pr(Y\le y)}.
 
-
-
-%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\section{Esperimenti ripetuti: prodotto di spazi}
-
-Sia $X:\Omega\to\{0,1\}$ una variabile aleatoria di Bernoulli (per avere un esempio semplice). Immaginiamo che $X$ modelli il lancio di una moneta. Per brevità definiamo $A=\{\omega\in\Omega\ :\  X(\omega)=1\}$.
-
-Il lancio ripetuto di una monetina è modellato usando mome spazio campionario il prodotto cartesiano di $\Omega$ con se stesso: $\Omega^2$.
-
-Per esempio: l'evento  $A\times\Omega\subseteq\Omega^2$  corrisponde  ad ottenere $1$ nel primo lancio. L'evento $\Omega\times\!\neg A$ corrisponde ad ottenere $0$ nel secondo lancio. L'intersezione di questi eventi è $A\times\!\neg A$. Questo corrisponde ad ottenere nei due lanci la sequenza $1\,0$. 
-
-In generale la probabilità di un evento $A\times B\subseteq\Omega^2$ è per definizione $\Pr(A)\cdot \Pr(B)$. Gli eventi $A\times\Omega$ e $\Omega\times B$ sono quindi (per costruzione) indipendenti.
-
-Introduciamo due v.a.\@ di Bernoulli $X_1:\Omega^2\to\{0,1\}$ ed $X_2:\Omega^2\to\{0,1\}$.  
-
-La v.a.\@ $X_1$ guarda solo alla prima coordinata di un risultato in $\Omega^2$ e restituisce lo valore di $X$. Quindi $X_1$ restituisce $1$ per i risusltati in $A\times\Omega$. La v.a.\@ $X_2$ fa lo stesso con la seconda coordinata,  restituisce $1$ per i risusltati in $\Omega\times A$.
-
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\section{Binomial random variables}
-\label{Binomial_rv}
-
-\def\ceq#1#2#3{\parbox{18ex}{$\displaystyle #1$}\medrel{#2}$\displaystyle  #3$}
-
-{\color{brown}Esempi: \hyperref[estrazione_biglie_ripetuta]{Estrazione ripetuta \faShare}}
-
-We say that $X$ is a \emph{binomial random variable with parameters $n$ and $p$}, for short $X\sim B(n,p)$, if
-
-\ceq{\hfill X}{=}{\sum^n_{i=1}X_i}
-
-where the $X_i$ are independent Bernoulli random variables with success probability $p$. So, $X$ counts the number of successes in a sequence of $n$ independent experiments (Bernoulli trials with success probability $p$). Clearly $X\in\{0,\dots,n\}$.
-
-We may also say that $X$ has a \emph{binomial distribution\/} with parameters $n$ and $p$. In fact binomial random variables are characterized by their distribution which is not difficult to compute
-
-\ceq{\hfill P(X{=}k)}{=}{{n\choose k}p^k(1-p)^{n-k}}\hfill \href{http://homepage.divms.uiowa.edu/~mbognar/applets/bin.html}{il grafico \faShare}
-
-The cumulative distribution function is
-
-\ceq{\hfill P(X{\le}k)}{=}{\sum^k_{i=0}{n\choose i}p^i(1-p)^{n-i}}
 
 
 
@@ -535,41 +496,109 @@ La lettera $\mu$ viene usata quando è chiaro a quale variabile ci si riferisce.
 
 ATTENZIONE: non si confonda il concetto di media di popolazione con quello di media campionaria (che introdurremo più avanti). Entrambi vengono spesso abbreviati con \emph{media}\,!
 
-%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\section{Valore atteso della somma di v.a.}
-\label{ValoreAtteso}
+When $X$ is a continuous r.v.\@ the expected value is computed by an integral
 
-Siano $X$ ed $Y$ due variabili aleatorie discrete. Supponiamo di conoscere $\E(X)$ ed $\E(Y)$. La somma $X+Y$ è anche una variabile aleatoria e 
 
-\ceq{\hfill\E(X+Y)}{=}{\sum_{z\in R} z\cdot \Pr(X+Y=z)}
-
-\ceq{}{=}{\E(X)+\E(Y)}
-
-L'uguaglianza non è difficile da verificare (noi la prendiamo comunque per buona). 
-
-È anche interessante notare che se $c$ \`e una costante qualsiasi
-
-\ceq{\hfill\E(cX)}{=}{c\,\E(X)} 
-
-Le due proprietà congiunte si chiamano \emph{linearità}, ovvero si dice che il valore atteso è un operatore \emph{lineare}.
+\qquad$\displaystyle{\rm E}(X)\ \ =\ \ \int_{-\infty}^{+\infty} x\, f(x)\,{\rm d}x$
 
 %%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\section{Valore atteso del prodotto di v.a.}
-\label{ValoreAttesoProdotto}
+\hfill\rlap{.}\clearpage\section{Valore atteso della somma e prodotto di v.a.}
+\label{ValoreAttesoSommaProdotto}
 
-Siano $X$ ed $Y$ due variabili aleatorie discrete. Supponiamo di conoscere $\E(X)$ ed $\E(Y)$. Il prodotto $XY$ è anche una variabile aleatoria e 
+Se $X$ is una v.a.\@ numerica e $c$ una costante scriviamo $cX$ per la v.a.\@ che mappa $\omega\mapsto c\cdot X(\omega)$.
 
-\ceq{\hfill\E(XY)}{=}{\sum_{z\in R} z\cdot \Pr(XY=z)}
+\begin{theorem}\label{them_Ecostante}
+  Per ogni v.a.\@ $X$
+  \hfill${\rm E}(cX)\ \ =\ \ c\,{\rm E}(X)$
+\end{theorem}
+\begin{comment}
+\begin{proof}
+  We prove the theorem for $X\in\mathds{N}$ discrete though the theorem is true in general.
+  Denote by $c\mathds{N}$ the set $\{cx:x\in\mathds{N}\}$
 
-\ceq{}{=}{\E(X)\E(Y)}\hfill\textbf{\color{red} se $X$ e $Y$ sono indipendenti}
+  \qquad$\displaystyle{\rm E}( cX)\ \ =\ \ 
+  \phantom{c}\sum_{t\,\in\, c\mathds{N}}\ t\, \Pr(cX=t)$
 
-L'uguaglianza non è difficile da verificare (noi la prendiamo per buona).
+  \qquad$\displaystyle\phantom{{\rm E}(c\, X)}\ \ =\ \ 
+  \phantom{c}\sum_{x\in\mathds{N}}\ c\,x\, \Pr(cX=cx)$
+
+  \qquad$\displaystyle\phantom{{\rm E}(c\, X)}\ \ =\ \ 
+  \phantom{c}\sum_{x\in \mathds{N}}\ c\,x\, \Pr(X=x)$
+
+  \qquad$\displaystyle\phantom{{\rm E}(c\, X)}\ \ =\ \ 
+   c\sum_{x\in\mathds{N}}\ x\,\Pr(X=x)$
+
+  \qquad$\displaystyle\phantom{{\rm E}(c\, X)}\ \ =\ \ 
+  \ c\; {\rm E}(X)$.
+\end{proof}
+\end{comment}
+
+Se $X, Y$ sono v.a.\@ (numeriche) scriviamo e $X+Y$ per la v.a.\@ che mappa $\omega\mapsto X(\omega)+Y(\omega)$.
+La v.a.\@ $X\cdot Y$ è definita in modo simile.
+
+\begin{theorem}\label{thm_Esomma}
+  Per ogni v.a.\@ $X,Y$
+  \hfill${\rm E}(X+Y)\ \ =\ \ {\rm E}(X) + {\rm E}(Y)$
+\end{theorem}
+
+
+Le due proprietà qui sopra congiunte si chiamano \emph{linearità}, ovvero i teoremi~\ref{them_Ecostante} e~\ref{thm_Esomma} dicono che il valore atteso è un operatore \emph{lineare}.
+
+\begin{theorem}
+  Se $X,Y$ sono v.a.\@ \textit{{indipendenti}} allora \hfill${\rm E}(X\cdot Y)\ \ =\ \ {\rm E}(X) \cdot {\rm E}(Y)$
+\end{theorem}
+
+
+
+%%%%%%%%%%%%
+%%%%%%%%%%%%
+%%%%%%%%%%%%
+\hfill\rlap{.}\clearpage\section{Variabili aleatorie di Bernoulli}
+\label{Bernoulli}
+
+Una variabile aleatoria $X:\Omega\to R$ si dice di \emph{Bernoulli\/} se $R=\{0,1\}$, che spesso si abbrevia scrivendo \emph{$X\in\{0,1\}$}.
+
+Possiamo identificare in modo canonico eventi e variabili aletorie di Bernoulli. L'evento associato ad $X$ è l'insieme $\{\omega:X(\omega)=1\}$ che chiameremo \emph{successo}. 
+
+Viceversa, la v.a.\@ di Bernoulli associata ad un evento $E$ è spesso denotata con \emph{$1_E$}
+
+\ceq{\hfill 1_E(x)}{=}{\left\{\begin{array}{ll}1&\textrm{ se }\ x\in E\\0&\textrm{ se }\ x\notin E\end{array}\right.}
+
+Queste funzione di chiama \emph{funzione indicatrice\/} (o \emph{caratteristica}) dell'evento $E$. 
+
+Chiameremo \emph{$p$}\ $ = \Pr(X{=}1)$ la \emph{probabilità di successo.}
+
+Per dire che $X$ è una variabile aleatoria di Bernoulli con probabilità di successo $p$ scriveremo \emph{$X\sim B(1,p)$}.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%
+\hfill\rlap{.}\clearpage\section{Binomial random variables}
+\label{Binomial_rv}
+
+\def\ceq#1#2#3{\parbox{25ex}{$\displaystyle #1$}\medrel{#2}$\displaystyle  #3$}
+
+{\color{brown}Esempi: \hyperref[estrazione_biglie_ripetuta]{Estrazione ripetuta \faShare}}
+
+We say that $X$ is a \emph{binomial\/} r.v.\@ with parameters $n$ and $p$, for short $X\sim B(n,p)$, if
+
+\ceq{\hfill X}{=}{\sum^n_{i=1}X_i}
+
+where the $X_i$ are independent Bernoulli random variables with success probability $p$. So, $X$ counts the number of successes in a sequence of $n$ independent experiments (Bernoulli trials with success probability $p$). Clearly $X\in\{0,\dots,n\}$.
+
+We may also say that $X$ has a \emph{binomial distribution\/} with parameters $n$ and $p$. In fact binomial random variables are characterized by their distribution which is not difficult to compute
+
+\ceq{\hfill P(X=k)}{=}{{n\choose k}p^k(1-p)^{n-k}}\hfill \href{http://homepage.divms.uiowa.edu/~mbognar/applets/bin.html}{il grafico \faShare}
+
+The cumulative distribution function is
+
+\ceq{\hfill P(X\le k)}{=}{\sum^k_{i=0}{n\choose i}p^i(1-p)^{n-i}}
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -633,11 +662,26 @@ La \emph{varianza\/} di una variabile aleatoria numerica discreta $X$ a valori i
 
 \ceq{\hfill\emph{$\sigma^2\medrel{=} \Var(X)$}}{=}{\E\Big(\big(X-E(X)\big)^2\Big)}
 
-per la definizione di valore atteso
+Il seguente fatto è utile
 
-\ceq{}{=}{\sum_{x\in R} \Big(x- E(X)\Big)^2\cdot \Pr(X=x)}
+\begin{fact}
+  Per ogni v.a.\@ $X$
+\hfill\ceq{\hfill\Var(X)}{=}{\E(X^2)-\E(X)^2}
 
-\ceq{}{=}{E(X^2)-E(X)^2}\hfill (facile da verificare).
+\end{fact}
+
+\begin{proof}
+  Per semplicità verifichiamo l'uguaglianza nel caso di variabili discrete.
+  Per la definizione di valore atteso
+
+\ceq{\hfill\Var(X)}{=}{\sum_{x\in R} \Big(x- \E(X)\Big)^2\cdot \Pr(X=x)}
+
+\ceq{}{=}{\sum_{x\in R} \Big(x^2 + \E(X)^2 - 2x\E(X)\Big)\cdot \Pr(X=x)}
+
+\ceq{}{=}{ \Big(\E(X^2) + \E(X)^2 - 2\E(X)\sum_{x\in R}x\Pr(X=x)}
+
+\ceq{}{=}{E(X^2)-E(X)^2}.
+\end{proof}
 
 La \emph{deviazione standard\/} è la radice della varianza
 
@@ -655,7 +699,17 @@ La lettera $\sigma$ viene usata quando è chiaro a quale variabile ci si riferis
 
 Enunciamo senza dimostrazione un caso particolare di famoso teorema.
 
-Per ogni variabile aleatoria numerica $X$ con valore atteso $\mu$ e varianza $\sigma^2$.
+ 
+
+\begin{theorem}
+  Sia $X$ una v.a.\@ con valore atteso $\mu$ e varianza $\sigma^2$.
+  Allora per ogni $k\in\mathds{R}^+$
+
+
+\ceq{\hfill\Pr\Big(\big|X-\mu|\le k\sigma\Big)}{\le}{1 - \frac1{k^2}}
+\end{theorem}
+
+Vediamo un caso numerico ($k=2$)
 
 \ceq{\hfill 75\%}{\le}{\Pr\Big(\mu - 2\sigma \le X\le\mu+2\sigma\Big) }
 
@@ -668,26 +722,19 @@ Per alcune particolari v.a.\@ valgono anche proprietà ancora più forti. (Per e
 %%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%
 \hfill\rlap{.}\clearpage\section{Varianza della somma di v.a.}
-\label{VarianzaSomma}
+\label{Covarianza}
 
-Siano $X$ ed $Y$ due variabili aleatorie discrete \textit{indipendenti}. Supponiamo di conoscere $\Var(X)$ ed $\Var(Y)$. La somma $X+Y$ è anche una variabile aleatoria e 
-
-\ceq{\hfill\Var(X+Y)}{=}{\sum_{z\in R} \big(z-\E(X+Y)\big)^2\cdot \Pr(X+Y=z)}
-
-%\ceq{}{=}{\sum_{z\in R} (z-\E(X)-\E(Y)\big)^2\cdot \Pr(X+Y=z)}
-
-\ceq{\hfill(*)}{=}{\Var(X)+\Var(Y)+2\big[\E(XY)-\E(X)\E(Y)\big]}
-
-\ceq{}{=}{\Var(X)+\Var(Y)}\hfill\textbf{\color{red} se $X$ e $Y$ sono indipendenti}
-
-L'uguaglianza (*) la prendiamo per buona.
 
 Chiemeremo \emph{covarianza\/} di $X$ ed $Y$ la quantità
 
-
 \ceq{\hfill\emph{$\coVar(X,Y)$}}{=}{\E(XY)-\E(X)\E(Y)}
 
-Notare che per \hyperref[ValoreAttesoProdotto]{quando detto in \faShare} se $X$ ed $Y$ sono indipendenti allora il termine $\coVar(X,Y)$ si annulla.
+Notare che per \hyperref[ValoreAttesoSommaProdotto]{quando visto in \faShare} se $X$ ed $Y$ sono indipendenti allora il termine $\coVar(X,Y)$ si annulla.
+
+\begin{theorem}
+  \hfill
+  \ceq{\hfill\Var(X+Y)}{=}{\Var(X)+\Var(Y)+2\,\coVar(X,Y)}
+\end{theorem}
 
 
 
@@ -699,10 +746,13 @@ Notare che per \hyperref[ValoreAttesoProdotto]{quando detto in \faShare} se $X$ 
 \label{VarianzaMultiplo}
 
 
-Sia $X$ una variabile aleatoria e sia $c$ una costante. Supponiamo di conoscere $\Var(X)$. La v.a.\@ $cX$ è anche una variabile aleatoria e 
+Sia $X$ una variabile aleatoria e sia $c$ una costante. 
+Supponiamo di conoscere $\Var(X)$. 
+La v.a.\@ $cX$ è anche una variabile aleatoria e 
 
 \ceq{\hfill\Var(cX)}{=}{c^2\,\Var(X)}
 
+L'uguaglianza è immediata da verificare usando la definizione di varianza e la linearità del valore atteso.
 
 %%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -721,7 +771,9 @@ N.B. Possiamo calcolarla così
 
 \ceq{}{=}{\E(X^2)-E(X)^2}
 
-\ceq{}{=}{p-p^2}\hfill (perché se $X\sim B(1,p)$ allora $X^2=X$).
+\ceq{}{=}{p-p^2}\hfill (perché se $X\sim B(1,p)$ allora $X^2=X$)
+
+\ceq{}{=}{p(1-p)}.
 
 Sia ora $X\sim B(n,p)$, allora possiamo immaginare $X$ come 
 
@@ -767,20 +819,24 @@ si dice ottenuta da $X$ per \emph{standardizzazione}. La variabile $Z$ ha media 
 
 {\color{brown}Esempi: \hyperref[Fumatori_Bayes]{Fumatori \faShare}
 \\
-\hphantom{Esempi:} \hyperref[Hemophilia]{Hemophilia gene carrier \faShare}
+\hphantom{Esempi: }\hyperref[Hemophilia]{Hemophilia gene carrier \faShare}
 \\
-\hphantom{Esempi:} \hyperref[rain_desert]{Rain forcasts \faShare}
+\hphantom{Esempi: }\hyperref[rain_desert]{Rain forcasts \faShare}
 \\
-\hphantom{Esempi:} \hyperref[HIV_test]{Diagnostic test: HIV \faShare}}
+\hphantom{Esempi: }\hyperref[HIV_test]{Diagnostic test: HIV \faShare}}
 
 
-Il fatto seguente si chiama \emph{Teorema (o regola) di Bayes}: per ogni coppia di eventi $A$ e $B$ di probabilit\`a $\neq0$ 
+Il fatto seguente si chiama \emph{Teorema (o regola) di Bayes}.
+È immediato da verificare
+\begin{fact}
+Per ogni coppia di eventi $A$ e $B$ di probabilit\`a $\neq0$ 
 
 \ceq{\hfill \Pr(A|B)}{=}{\frac{\Pr(B|A)\cdot \Pr(A)}{\Pr(B)\vphantom{\Big[}}.}
+\end{fact}
 
-In molte applicazioni $\Pr(B)$ viene calcolato usanto il teorema delle probabilità totali. La regola diventa
+In molte applicazioni $\Pr(B)$ viene calcolato usanto il \hyperref[TeoremaProbabilitaTotali]{teorema delle probabilità totali \faShare.} La regola diventa
 
-\ceq{}{=}{\frac{\Pr(B|A)\cdot \Pr(A)}{\Pr(B|A)\Pr(A)+\Pr(B|\neg A)\Pr(\neg A)\vphantom{\Big[}}.}
+\ceq{\hfill\Pr(A|B)}{=}{\frac{\Pr(B|A)\cdot \Pr(A)}{\Pr(B|A)\Pr(A)+\Pr(B|\neg A)\Pr(\neg A)\vphantom{\Big[}}.}
 
 
 
@@ -1105,6 +1161,93 @@ Sia $s$ è il valore osservato di $S$ e assumiamo che questa probabilità venga 
 Ora possiamo calcolare $\alpha$ dato $\epsilon$. E viceversa possiamo calcolare $\epsilon$ dato $\alpha$. 
 
 Se in un esperimento misuriamo $\bar x$, diremo che $\mu=\bar x\pm\epsilon$ con confidenza $1-\alpha$, o che $(\bar x-\epsilon,\bar x+\epsilon)$ è un intervallo di confidenza di livello $1-\alpha$.
+é ignoto. 
+
+%%%%%%%%%%%%
+%%%%%%%%%%%%
+%%%%%%%%%%%%
+%%%%%%%%%%%%
+\hfill\rlap{.}\clearpage\section{Regressione lineare semplice}
+\label{regressione_lineare}
+
+\def\medrel#1{\parbox[t]{5ex}{$\displaystyle\hfil #1$}}
+\def\ceq#1#2#3{\parbox{25ex}{$\displaystyle #1$}\medrel{#2}$\displaystyle  #3$}
+
+
+In un esperimento misuriamo coppie di valori $(x_i,y_i)$ per $i=1,\dots,n$.
+
+Per esempio: (tempo, spazio), (temperatura, volume), ecc.
+
+In teoria questi valori dovrebbero essere correlati linearmente: 
+
+\ceq{\hfill y_i}{=}{\beta_0+\beta_1 x_i}
+
+Però la misura delle $y$ è soggetta ad errori e la vera relazione tra le misure è
+
+\ceq{\hfill y_i}{=}{\beta_0+\beta_1 x_i+e_i}
+
+dove $e_i$ sono degli errori (ignoti).
+
+Le $x_i$ si chiamano \emph{predittori.}
+
+Le $y_i$ si chiamano \emph{risposte.}
+
+Non esiste un metodo ovvio per inferire i parametri $\beta_0$ e $\beta_1$ dai dati $(x_i,y_i)$. 
+La scelta comune è di cercare quei parametri $\beta_0$ e $\beta_1$ che minimizzano le grandezze $e_i$. 
+Però  generalmente non è possibile minimizzare contemporaneamente tutti gli errori. 
+Dobbiamo quindi aggregare gli errori in un unico numero che rappresenti l'errore totale.
+La funzione anche aggrega gli errori si chiama \emph{cost function.}
+Ci sono ininite possibililà. 
+Per esempio, due ragionevoli cost function sono
+
+\ceq{\textrm{1.}\hfill\sum_{i=1}^n |e_i|}
+{=}
+{\sum_{i=1}^n |y_i-\beta_0-\beta_1 x_i|}
+
+\ceq{\textrm{2.}\hfill\sum_{i=1}^n (e_i)^2}
+{=}
+{\sum_{i=1}^n (y_i-\beta_0-\beta_1 x_i)^2}
+
+Generalmente si opta per seconda scelta perché è un'espressione più semplice da trattare in maniera analitica. Quando i calcoli andavano fatti a mano questa era una scelta obbligata e l'abitudine si è consolidata negli anni. Inoltre, l'analisi statistica che faremo più sotto è notevolmente semplificata nel secondo caso.
+
+
+Terminologia: spesso si scrive \emph{RSS\/} (residual sum of squares) per il numero
+
+\ceq{\hfill\sum_{{i=1}}^n e_i^2}
+{=}
+{\sum_{i=1}^n (y_i-\beta_0-\beta_1 x_i)^2}
+ 
+%%%%%%%%%%%%
+%%%%%%%%%%%%
+%%%%%%%%%%%%
+%%%%%%%%%%%%
+\hfill\rlap{.}\clearpage\section{Regressione lineare semplice (2)}
+\label{regressione_lineare2}
+
+Calcoliamo le derivate del RSS rispetto a $\beta_0$ e $\beta_1$
+
+\ceq{\hfill\frac{\partial}{\partial\beta_0}\sum_{i=1}^n (y_i-\beta_0-\beta_1 x_i)^2}
+{=}
+{-2\sum_{i=1}^n y_i-\beta_0-\beta_1 x_i}
+
+\ceq{\hfill\frac{\partial}{\partial\beta_1}\sum_{i=1}^n (y_i-\beta_0-\beta_1 x_i)^2}
+{=}
+{-2\sum_{i=1}^n x_iy_i-x_i\beta_0-\beta_1 x_i^2}
+
+
+Queste derivate si annullano per quei $\beta_0$ e $\beta_1$ che risolvono il sistema
+
+\ceq{\hfill\beta_0n+\beta_1 \sum_{i=1}^n x_i}
+{=}
+{\sum_{i=1}^n y_i}
+\\
+\smash{\quad$\left\{\rule{0ex}{8ex}\right.$}
+\\
+\ceq{\hfill\beta_0\sum_{i=1}^n x_i+\beta_1 \sum_{i=1}^n x_i^2}
+{=}
+{\sum_{i=1}^n x_iy_i}
+
+
 
 
 \chapter{Esempi ed esercizi}
@@ -1119,13 +1262,11 @@ Se in un esperimento misuriamo $\bar x$, diremo che $\mu=\bar x\pm\epsilon$ con 
 \subsection{Dado con quattro facce}
 \label{tetraedro}
 
-Cosideriamo un dado con $4$ faccie (un tetraedro regolare) le faccie sono etichettate con le lettere $A, C, G, T$. 
+Cosideriamo un dado con $4$ faccie (un tetraedro regolare) le faccie sono etichettate con le lettere $a, c, g, t$. 
 
-Come spazio campionario è naturale usare l'insieme $\Omega=\{A,C,G,T\}$ la misura di probabilità $\Pr:\P(\Omega)\to\RR$ è univocamente determinata dalle condizioni
+Come spazio campionario è naturale usare l'insieme $\Omega=\{a, c, g, t\}$ la misura di probabilità $\Pr:\P(\Omega)\to\RR$ è univocamente determinata dalle condizioni
 
-$\Pr(\{A\})=\Pr(\{C\})=\Pr(\{G\})=\Pr(\{T\})=1/4$
-
-N.B. In futuro abbrevieremo $\Pr(\{A\})$ con $\Pr(A)$, ecc.
+$\Pr(\{a\})=\Pr(\{c\})=\Pr(\{g\})=\Pr(\{t\})=1/4$
 
 La misura su un qualsiasi altro evento $E\subseteq\Omega$ è determinata dalla condizione 
 
@@ -1154,17 +1295,29 @@ L'evento \textit{Esce almeno una volta $T$\/} corrisponde all'evento $\{TC, CT, 
 \label{urna_3_colori}
 
 Estraimo una biglia da urna che contiene $16$ biglie che differiscono solo nel colore.
-
 Le biglie sono $8$ rosse, $6$ blu, $2$ nere.
+L'esperimento consiste nell'estrarre una biglia ed osservarne il colore.
 
-Esistono due scelte naturali per lo spazio di probabilità. Posto $\Omega=\{r,b,n\}$ stipuliamo che
+Vediamo due scelte naturali per modellare questo esperimento. 
+Posto $\Omega=\{r,b,n\}$ stipuliamo che
 
-\ceq{\hfill\Pr(r)}{=}{1/2}\ceq{\hfill\Pr(b)}{=}{3/8}\ceq{\hfill\Pr(n)}{=}{1/8}
+\ceq{\hfill\Pr(r)}{=}{1/2}
 
-Oppure $\Omega=\{1,\dots,16\}$ e posto $B=\{1,\dots,8\}$, $R=\{9,\dots,14\}$, $N=\{15,16\}$ stipuliamo che 
+\ceq{\hfill\Pr(b)}{=}{3/8}
 
+\ceq{\hfill\Pr(n)}{=}{1/8}
+
+In alternativa definiamo $\Omega=\{1,\dots,16\}$ e 
+stipuliamo che 
 
 \ceq{\hfill\Pr(i)}{=}{1/16}\hfil per ogni $i=1,\dots,16$.
+
+\ceq{\hfill R}{=}{\{1,\dots,8\}}
+
+\ceq{\hfill B}{=}{\{9,\dots,14\}}
+
+\ceq{\hfill N}{=}{\{15,16\}}
+
 
 In questo modo diamo una misura di probabilità a molti eventi che non sono in realtà osservabili. 
 
@@ -1188,7 +1341,7 @@ $Z$ colore della biglia\hfill variabile qualitativa
 
 Se l'urna contiene un piccolo numero di biglie $X$ ed $Y$ sono variabili discrete.
 
-L'urna potrebbe contenere un umero così grande di biglie d rendere più semplice immaginarsi che ce ne siano in numero infinito. In questo caso potrebbe essere ragionevole considerare $X$ ed $Y$ come variabili continue. Ma non sempre. Se per esempio le misure non hanno grossa precisione potrebbe convenire interpretarle come variabili discrete.
+L'urna potrebbe contenere un umero così grande di biglie da rendere più semplice immaginarsi che ce ne siano in numero infinito. In questo caso potrebbe essere ragionevole considerare $X$ ed $Y$ come variabili continue. Ma non sempre. Se per esempio le misure non hanno grossa precisione potrebbe convenire interpretarle come variabili discrete.
 
 %%%%%%%%%%%%
 %%%%%%%%%%%%
@@ -1245,14 +1398,14 @@ $E(X)\medrel{=}E(X|M)\cdot\Pr(M)+ E(X|F)\cdot\Pr(F)\medrel{=}3.5\cdot\dfrac12 + 
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 \hfill\rlap{.}\clearpage
-\hfill\textbf{{\color{brown}\hyperref[TeoremaProbabilitaTotali]{Pobabilità totali} \faShare} (richiede \hyperref[ValoreAtteso]{valore atteso \faShare})}
+\hfill\textbf{{\color{brown}\hyperref[TeoremaProbabilitaTotali]{Pobabilità totali} \faShare}}
 \subsection{Urna con due tipi di dadi}
 \label{dadi_diversi}
 
-Un urna contiene dadi a 6 facce e dadi a 4 facce nella proporzione del $30\%$ e $70\%$.
+Un urna contiene dadi a 6 facce e dadi a 4 facce nelle proporzioni di $1/3$ e $2/3$.
 Tutti i dadi sono equilibrati.
 Estraiamo un dado dall'urna, lo lanciamo, ed osserviamo il risultato.
-Qual'è la probabilità di ottenere un numero tra 1 e 4?
+Qual'è la probabilità di ottenere un numero tra 1 e 3?
 
 \begin{soluzione}
 Sia $C$ l'evento estrarre il dado a $6$ faccie (cubico). 
@@ -1277,22 +1430,24 @@ Sappiamo che
 
 La consegna è calcolare
 
-\qquad$\displaystyle\Pr\bigg(\bigcup_{i=1}^4E_i\bigg)$.
+\qquad$\displaystyle\Pr\bigg(\bigcup_{i=1}^3E_i\bigg)$.
 
 Applichiamo il Teorema delle Probabilità Totali
 
-\qquad$\displaystyle\Pr\bigg(\bigcup_{i=1}^4E_i\bigg)\quad=\quad
-\Pr\bigg(\bigcup_{i=1}^4E_i\ \Big|\ C\bigg)\cdot\Pr\big(C\big)\ +\ 
-\Pr\bigg(\bigcup_{i=1}^4E_i\ \Big|\ T\bigg)\cdot\Pr\big(T\big)
+\qquad$\displaystyle\Pr\bigg(\bigcup_{i=1}^3E_i\bigg)\quad=\quad
+\Pr\bigg(\bigcup_{i=1}^3E_i\ \Big|\ C\bigg)\cdot\Pr\big(C\big)\ +\ 
+\Pr\bigg(\bigcup_{i=1}^3E_i\ \Big|\ T\bigg)\cdot\Pr\big(T\big)
 $.
 
-\qquad$\displaystyle\phantom{\Pr\bigg(\bigcup_{i=1}^4E_i\bigg)}\quad=\quad
-\dfrac16\cdot\dfrac13\ +\ 
-1\cdot\dfrac23
+Tenendo conto che gli eventi $E_i$ sono mutualmente esclusivi, otteniamo
+
+\qquad$\displaystyle\phantom{\Pr\bigg(\bigcup_{i=1}^3E_i\bigg)}\quad=\quad
+3\cdot\dfrac16\cdot\dfrac13\ +\ 
+3\cdot\frac14\cdot\dfrac23
 $.
 
-\qquad$\displaystyle\phantom{\Pr\bigg(\bigcup_{i=1}^4E_i\bigg)}\quad=\quad
-\dfrac{13}{18}
+\qquad$\displaystyle\phantom{\Pr\bigg(\bigcup_{i=1}^3E_i\bigg)}\quad=\quad
+\dfrac{2}{3}
 $.
 \end{soluzione}
 
@@ -1366,7 +1521,7 @@ $q_{bb}\ =\ p_{bb}^2+p_{bb}p_{ab} +\dfrac{1}{4}\,p^2_{ab}\,$;
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\hfill\textbf{Digressione (continuazione dl paragrafo~\ref{HW_totali1})}\subsection{Equilibrio di Hardy-Weinberg (2)}
+\hfill\rlap{.}\clearpage\hfill\textbf{Digressione (continuazione del paragrafo~\ref{HW_totali1})}\subsection{Equilibrio di Hardy-Weinberg (2)}
 
 \def\ceq#1#2#3{\parbox{12ex}{$\displaystyle #1$}\medrel{#2}$\displaystyle  #3$}
 
@@ -1483,22 +1638,30 @@ $\displaystyle\hphantom{\Pr(R | T_+)}\medrel{=}\frac{\Pr(R)\cdot \Pr(T_+|R)}{\Pr
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\section{Indipendenza}
+\hfill\rlap{.}\clearpage\hfill
+\textbf{{\color{brown}\hyperref[indipendenza]{Indipendenza stocastica} \faShare} (richiede nozione di \hyperref[Bernoulli]{v.a.\@ di Bernoulli \faShare})}
+\section{Indipendenza}
 \label{esercizio_indipendenza}
 
-Lanciamo una moneta $2n$ volte. Modelliamo l'esperimento con una sequenza $X_0,\dots,X_{2n-1}$ di variabili di Bernoulli. N.B.\@ cominciamo ad enumerare da $0$. Dire quali delle seguenti coppie di variabili aleatorie $X$, $Y$ sono indipendenti.\medskip
+Siano $X_1,X_2,X_3$ v.a.i.\@ di Bernoulli. Dire quali delle seguenti coppie $X$, $Y$ sono v.a.\@ indipendenti.\medskip
+
+\def\medrel#1{\parbox[t]{6ex}{$\displaystyle\hfil #1$}}
+\def\ceq#1#2#3{\parbox[t]{15ex}{$\displaystyle #1$}\medrel{#2}$\displaystyle  #3$}
 
 \begin{itemize}
-\item[1.] $\displaystyle X=\sum_{i=0}^{n-1}X_i$\qquad $\displaystyle Y=\sum_{i=n}^{2n-1}X_i$.
+\item[1.] \ceq{ X=X_1+X_2}{~}{ Y=X_2+X_3}
 
+\item[2.] \ceq{ X=|X_1-X_2|}{~}{ Y=|X_2-X_3|}
 
-\item[2.] $\displaystyle X=\sum_{i=0}^{n-1}X_{2i}$\qquad $\displaystyle Y=\sum_{i=0}^{n} X_{2i-1}$.\bigskip
+\item[3.] \ceq{ X=|X_1-X_2|}{~}{ Y=X_2}
 
-\item[3.] $X= \#\big\{i<n\ |\ X_{2i}\neq X_{2i+1}\big\}$;\\
-$Y= \#\big\{i<n\ |\ X_{2i+1}\neq X_{2i}\big\}$.\bigskip
+\item[4.] \ceq{ X=X_1X_2}{~}{ Y=|X_2-X_3|}
 
-\item[4.] $X=0$ se $X_0\neq X_1$ altrimenti $=1$. \\
-$Y=0$ se $X_1\neq X_2$, altrimenti $=1$.
+\item[5.] \ceq{ X=X_1X_2}{~}{ Y=X_2X_3}
+
+\item[6.] \ceq{ X=|X_1-X_2|}{~}{ Y=X_1+X_3}
+
+\item[7.] \ceq{ X=|X_1-X_2|}{~}{ Y=X_1+X_2+X_3}
 
 \end{itemize}
 
@@ -1771,7 +1934,7 @@ Se per entrambi i casi prendiamo la stessa regione di rifiuto misurata in punteg
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 \hfill\rlap{.}\clearpage\
-\subsection{Prevalenza mancinismo 1 (domanda in formato esame)}
+\subsection{Prevalenza mancinismo 1}
 
 Il $10\%$ è delle persone sono mancine. Ci chiediamo se la caratteristica sia ereditaria. Eseguiamo il seguente esperimento. Selezioniamo un campione di $1000$ persone con almeno un genitore mancino e misuriamo la frequenza di mancini. Concludiamo che la caratteristica \`e ereditaria se pi\`u di $115$ individui sono mancini.
 
