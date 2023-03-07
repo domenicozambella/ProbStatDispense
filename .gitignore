@@ -11,6 +11,7 @@
 *.cb
 *.cb2
 *.xopp
+*.ipynb
 aux/*
 !aux/*.pdf
 materiale/

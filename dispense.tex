@@ -148,18 +148,6 @@ diagrams={>=latex}
 \declaretheorem[style=mystyle,sibling=theorem]%
 {lemma,proposition,fact,corollary,definition,remark,example,claim,question}
 
-\let\proof\relax
-\declaretheoremstyle[
-  spaceabove=6pt, 
-  spacebelow=6pt, 
-  headfont=\normalfont\itshape, 
-  bodyfont = \normalfont,
-  postheadspace=1em, 
-  qed=\qedsymbol, 
-  headpunct={.}]
-{myproof} 
-\declaretheorem[style=myproof, unnumbered]{proof}
-
 
 \declaretheoremstyle[
   bodyfont=\normalfont, 
@@ -185,11 +173,11 @@ diagrams={>=latex}
 
 \let\proof\relax
 \declaretheoremstyle[
+  postheadspace = \newline, 
   spaceabove=6pt, 
   spacebelow=6pt, 
   headfont=\normalfont\itshape, 
   bodyfont = \normalfont,
-  postheadspace=1em, 
   qed=\qedsymbol, 
   headpunct={.}]
 {myproof} 
@@ -246,6 +234,7 @@ diagrams={>=latex}
 \tableofcontents
 
 \chapter{Teoria (il minimo sindacale)} 
+\pagestyle{empty}
 \raggedbottom
 
 Per esempi ed esercizi seguire i \hyperref[ch2]{link \faShare}
@@ -253,7 +242,7 @@ Per esempi ed esercizi seguire i \hyperref[ch2]{link \faShare}
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\section{Spazio di probabilità}
+\clearpage\section{Spazio di probabilità}
 
 {\color{brown}Esempi: \hyperref[tetraedro]{Dado a $4$ facce \faShare}
 \\
@@ -316,7 +305,7 @@ Per ragioni tecniche, (3$'$) non è una conseguenza degli assiomi (1)-(3) e dev
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\section{Variabili aleatorie}
+\clearpage\section{Variabili aleatorie}
 
 {\color{brown}Esempi: \hyperref[Urna_biglie_diverse]{Urna con biglie di dimensioni diverse \faShare}}
 
@@ -328,7 +317,7 @@ Se $R$ è un insieme numerico (un sottoinsieme di $\NN$, $\ZZ$, $\QQ$, $\RR$, $\
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\section{Distribuzione di probabilità discrete e continue}
+\clearpage\section{Distribuzione di probabilità discrete e continue}
 
 Dato $x\in R$ e $A\subseteq R$ scriveremo
 
@@ -373,7 +362,7 @@ Intuitivamente $f(x)$ è la probabilità che $X\in[x,x+{\rm d}x]$.
 %%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\section{Funzione quantile}
+\clearpage\section{Funzione quantile}
 
 La \emph{mediana\/} (o il \emph{valore mediano}) di una variabile aleatoria $X$ è quel valore $x$ tale che $Pr(X\le x)=1/2$.
 
@@ -393,7 +382,7 @@ In questo caso prendiamo il limite inferiore di questi $x$.
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\section{Probabilità condizionata}
+\clearpage\section{Probabilità condizionata}
 
 
 Dato $A, \Phi\subseteq\Omega$ tali che $\Pr(\Phi)\neq 0$ definiamo 
@@ -405,7 +394,7 @@ Questo si legge \emph{probabilità di $A$ dato $\Phi$}. Si verifica facilmente c
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\section{Teorema delle Probabilità Totali}
+\clearpage\section{Teorema delle Probabilità Totali}
 \label{TeoremaProbabilitaTotali}
 
 
@@ -452,7 +441,7 @@ Il teorema seguente si chiama \emph{Teorema delle Probabilità Totali.}
 %%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\section{Indipendenza stocastica}
+\clearpage\section{Indipendenza stocastica}
 \label{indipendenza}
 
 
@@ -485,7 +474,7 @@ Nel caso di variabili aleatorie continue la condizione diventa
 %%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\section{Valore atteso}
+\clearpage\section{Valore atteso}
 \label{ValoreAtteso}
 
 Il \emph{valore atteso\/} o \emph{media (di popolazione)\/} (in inglese \emph{expected value}, \emph{population mean}, più raramente, \emph{average\/}) di una variabile aleatoria numerica discreta $X\in R$ è
@@ -505,7 +494,7 @@ When $X$ is a continuous r.v.\@ the expected value is computed by an integral
 %%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\section{Valore atteso della somma e prodotto di v.a.}
+\clearpage\section{Valore atteso della somma e prodotto di v.a.}
 \label{ValoreAttesoSommaProdotto}
 
 Se $X$ is una v.a.\@ numerica e $c$ una costante scriviamo $cX$ per la v.a.\@ che mappa $\omega\mapsto c\cdot X(\omega)$.
@@ -556,7 +545,7 @@ Le due proprietà qui sopra congiunte si chiamano \emph{linearità}, ovvero i te
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\section{Variabili aleatorie di Bernoulli}
+\clearpage\section{Variabili aleatorie di Bernoulli}
 \label{Bernoulli}
 
 Una variabile aleatoria $X:\Omega\to R$ si dice di \emph{Bernoulli\/} se $R=\{0,1\}$, che spesso si abbrevia scrivendo \emph{$X\in\{0,1\}$}.
@@ -578,12 +567,14 @@ Per dire che $X$ è una variabile aleatoria di Bernoulli con probabilità di suc
 %%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\section{Binomial random variables}
+\clearpage\section{Binomial random variables}
 \label{Binomial_rv}
 
 \def\ceq#1#2#3{\parbox{25ex}{$\displaystyle #1$}\medrel{#2}$\displaystyle  #3$}
 
-{\color{brown}Esempi: \hyperref[estrazione_biglie_ripetuta]{Estrazione ripetuta \faShare}}
+{\color{brown}Esempi: \hyperref[estrazione_biglie_ripetuta]{Estrazione ripetuta \faShare}
+\\
+\hphantom{Esempi: }\hyperref[esame_a_scelte_multiple]{Multiple choice quiz \faShare}}
 
 We say that $X$ is a \emph{binomial\/} r.v.\@ with parameters $n$ and $p$, for short $X\sim B(n,p)$, if
 
@@ -593,7 +584,7 @@ where the $X_i$ are independent Bernoulli random variables with success probabil
 
 We may also say that $X$ has a \emph{binomial distribution\/} with parameters $n$ and $p$. In fact binomial random variables are characterized by their distribution which is not difficult to compute
 
-\ceq{\hfill P(X=k)}{=}{{n\choose k}p^k(1-p)^{n-k}}\hfill \href{http://homepage.divms.uiowa.edu/~mbognar/applets/bin.html}{il grafico \faShare}
+\ceq{\hfill P(X=k)}{=}{{n\choose k}p^k(1-p)^{n-k}}%\hfill \href{http://homepage.divms.uiowa.edu/~mbognar/applets/bin.html}{il grafico \faShare}
 
 The cumulative distribution function is
 
@@ -605,7 +596,7 @@ The cumulative distribution function is
 %%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\section{Valore atteso di variabili binomiali}
+\clearpage\section{Valore atteso di variabili binomiali}
 \label{ValoreAtteso}
 
 Sia $X\sim B(1,p)$  dalla definizione di valore atteso
@@ -635,7 +626,7 @@ $\displaystyle\sum^n_{i=1}\E(X_i)$
 %%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%
 
-\hfill\rlap{.}\clearpage\section{Teorema delle Probabilità Totali per la media}
+\clearpage\section{Teorema delle Probabilità Totali per la media}
 \label{TeoremaProbabilitaTotaliMedia}
 
 {\color{brown}Esempi: \hyperref[Neonati_totali]{Peso neonati \faShare}}
@@ -655,7 +646,7 @@ La verifica è immediata.
 %%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\section{Varianza}
+\clearpage\section{Varianza}
 \label{Varianza}
 
 La \emph{varianza\/} di una variabile aleatoria numerica discreta $X$ a valori in $R$ è
@@ -694,7 +685,7 @@ La lettera $\sigma$ viene usata quando è chiaro a quale variabile ci si riferis
 %%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\section{Disequazione di Chebyshev}
+\clearpage\section{Disequazione di Chebyshev}
 \label{Varianza}
 
 Enunciamo senza dimostrazione un caso particolare di famoso teorema.
@@ -706,7 +697,7 @@ Enunciamo senza dimostrazione un caso particolare di famoso teorema.
   Allora per ogni $k\in\mathds{R}^+$
 
 
-\ceq{\hfill\Pr\Big(\big|X-\mu|\le k\sigma\Big)}{\le}{1 - \frac1{k^2}}
+\ceq{\hfill\Pr\Big(\big|X-\mu|\le k\sigma\Big)}{\ge}{1 - \frac1{k^2}}
 \end{theorem}
 
 Vediamo un caso numerico ($k=2$)
@@ -715,13 +706,13 @@ Vediamo un caso numerico ($k=2$)
 
 Ovvero gran parte della massa di probabilità è concentrata in un intorno di $\mu$ di raggio $\sigma$. Quindi più piccola è $\sigma$ più concentrata è a distribuzione di $X$.
 
-Per alcune particolari v.a.\@ valgono anche proprietà ancora più forti. (Per esempio, se $X$ ha distribuzione normale possiamo scrivere $95\%$ invece che $75\%$.)
+Per alcune particolari v.a.\@ valgono disuguaglianze ancora più forti. (Per esempio, se $X$ ha distribuzione normale possiamo scrivere $95\%$ invece che $75\%$.)
 
 %%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\section{Varianza della somma di v.a.}
+\clearpage\section{Varianza della somma di v.a.}
 \label{Covarianza}
 
 
@@ -742,7 +733,7 @@ Notare che per \hyperref[ValoreAttesoSommaProdotto]{quando visto in \faShare} se
 %%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\section{Varianza di un multiplo di una v.a.}
+\clearpage\section{Varianza di un multiplo di una v.a.}
 \label{VarianzaMultiplo}
 
 
@@ -758,7 +749,7 @@ L'uguaglianza è immediata da verificare usando la definizione di varianza e la
 %%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\section{Varianza di variabili binomiali}
+\clearpage\section{Varianza di variabili binomiali}
 \label{VarianzaBinomiali}
 
 Sia $X\sim B(1,p)$  dalla definizione di varianza (e ricordando che $E(X)=p$)
@@ -798,7 +789,7 @@ $\displaystyle\sum^n_{i=1}\Var(X_i)$
 %%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\section{Standardizzazione}
+\clearpage\section{Standardizzazione}
 
 Sia $X$ una v.a.\@ con media $\mu$ e deviazione standard $\sigma$. La variabile aleatoria $Z$ così definita
 
@@ -813,7 +804,7 @@ si dice ottenuta da $X$ per \emph{standardizzazione}. La variabile $Z$ ha media 
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\section{Regola di Bayes}
+\clearpage\section{Regola di Bayes}
 \label{RegolaBayes}
 
 
@@ -846,7 +837,7 @@ In molte applicazioni $\Pr(B)$ viene calcolato usanto il \hyperref[TeoremaProbab
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\section{Diagnostic tests}
+\clearpage\section{Diagnostic tests}
 
 
 {\color{brown}Esempi:}  \hyperref[HIV_test]{HIV test (regola di Bayes) \faShare}
@@ -881,7 +872,7 @@ Tipicamente la specificità e la sensitività del test sono note. I poteri predi
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\section{Test d'ipotesi}
+\clearpage\section{Test d'ipotesi}
 \label{test_ipotesi}
 
 Esempi: \hyperref[Bernoulli_test]{Test binomiale (il più elementare test di ipotesi) \faShare}
@@ -909,7 +900,7 @@ Introduciamo la terminologia dei test d'ipotesi basandoci sulla notazione usata 
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\section{Test d'ipotesi (tavola riassuntiva)}
+\clearpage\section{Test d'ipotesi (tavola riassuntiva)}
 \setlength{\fboxsep}{1ex}
 
 In questa tavola contrapponiamo la terminologia usata nei \emph{test statistici\/}  a quella dei \textit{test diagnostici}. Molto comuni sono anche i simboli \emph{$\alpha$\/} e \emph{$\beta$\/}.\bigskip   
@@ -946,11 +937,27 @@ N.B. È vacile progettare un test che minimizza una tra $\Pr(T_+|H_0)$ o $\Pr(T_
 
 
 
+%%%%%%%%%%%%
+%%%%%%%%%%%%
+%%%%%%%%%%%%
+\clearpage\section{Campioni e statistiche}
+
+Un campione $\{X_1,\dots,X_n\}$ è un insieme di v.a.\@ indipendenti e identicamente distribuite. Il numero $n$ si chiama \emph{rango\/} (o \emph{dimensione\/}) del campione. 
+
+Una \emph{statistica\/} è una variabile aleatoria a valori in $\RR$ ottenuta come funzione delle variabili aleatorie di un campione. Una statistica che ha come valore atteso un certo parametro di una distribuzione (vedremo solo $\mu$ e $\sigma$) si chiama uno  \emph{stimatore\/} di quel parametro.
+
+Gli esempi più noti sono $\bar X$, la \emph{media campionaria\/} ed $S$, la \emph{deviazione standard campionaria\/} 
+
+\ceq{\hfill \emph{$\bar X$}}{=}{\frac1n\sum_{i=1}^n X_i}
+
+\ceq{\hfill  \emph{$S$}}{=}{\sqrt{\frac1{n-1}\sum_{i=1}^n (X_i-\bar X)^2}}
+
+Questi sono stimatori rispettivamente del valore atteso e della deviazione standard (di popolazione).
 
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\section{Il p-valore}
+\clearpage\section{Il p-valore}
 \label{pvalore}
 
 
@@ -981,26 +988,10 @@ Quando possibile si effettua una trasformazione di coordinate in modo tale da av
 Comunque, quando $H_A$ indica che il test è ad una coda, quindi il p-valore si riduce a $\Pr\big(W\le w\big)$ o $\Pr\big(W\ge w\big)$ a seconda se si tratta della coda superiore o i quella inferiore.
 
 
-
-%%%%%%%%%%%%
-%%%%%%%%%%%%
-%%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\section{Campioni e statistiche}
-
-Un campione $\{X_1,\dots,X_n\}$ è un insieme di v.a.\@ indipendenti e identicamente distribuite. Il numero $n$ si chiama \emph{rango\/} (o \emph{dimensione\/}) del campione. 
-
-Una \emph{statistica\/} è una variabile aleatoria a valori in $\RR$ ottenuta come funzione delle variabili aleatorie di un campione. Una statistica che ha come valore atteso un certo parametro di una distribuzione (vedremo solo $\mu$ e $\sigma$) si chiama uno  \emph{stimatore\/} di quel parametro.
-
-Gli esempi più noti sono $\bar X$, la \emph{media campionaria\/} ed $S$, lo \emph{stimatore della deviazione standard\/} 
-
-\ceq{\hfill \emph{$\bar X$}}{=}{\frac1n\sum_{i=1}^n X_i}
-
-\ceq{\hfill  \emph{$S$}}{=}{\sqrt{\frac1{n-1}\sum_{i=1}^n (X_i-\bar X)^2}}
-
 % %%%%%%%%%%%%
 % %%%%%%%%%%%%
 % %%%%%%%%%%%%
-% \hfill\rlap{.}\clearpage\section{Stimare la media di una variabile di Bernoulli}
+% \clearpage\section{Stimare la media di una variabile di Bernoulli}
 % 
 % \def\ceq#1#2#3{\parbox{25ex}{$\displaystyle #1$}\medrel{#2}$\displaystyle  #3$}
 % 
@@ -1026,7 +1017,7 @@ Gli esempi più noti sono $\bar X$, la \emph{media campionaria\/} ed $S$, lo \em
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\section{La distribuzione normale}
+\clearpage\section{La distribuzione normale}
 \label{distribuzione normale}
 
 Esempi: \hyperref[Z-test]{$Z$-test \faShare}
@@ -1035,7 +1026,7 @@ Diremo che la v.a.\@ $X$ a valori reali ha   \emph{distribuzione normale standar
 
 \bigskip
 
-\ceq{\hfill\Pr(X\le x)}{=}{\frac 1 {\sqrt{2\pi}} \int_{-\infty}^x e^{-t^2/2} \, {\rm d}t}\hfill \href{http://homepage.divms.uiowa.edu/~mbognar/applets/normal.html}{il grafico di $\displaystyle\frac 1 {\sqrt{2\pi}} e^{-t^2/2}$ \faShare}
+\ceq{\hfill\Pr(X\le x)}{=}{\frac 1 {\sqrt{2\pi}} \int_{-\infty}^x e^{-t^2/2} \, {\rm d}t}%\hfill \href{http://homepage.divms.uiowa.edu/~mbognar/applets/normal.html}{il grafico di $\displaystyle\frac 1 {\sqrt{2\pi}} e^{-t^2/2}$ \faShare}
 
 \bigskip
 
@@ -1060,7 +1051,7 @@ La deviazione standard di $\bar X$ si chiama \emph{errore standard\/} \`e quindi
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\section{The Central Limit Theorem}
+\clearpage\section{The Central Limit Theorem}
 \label{CLT}
 
 Let $X_1,\dots, X_n$ be a random sample (i.e.\@ independent and identically distributed random variables) from \textit{any\/} distribution with mean $\mu$ and variance $\sigma^2$.
@@ -1076,7 +1067,7 @@ has \textit{approximately\/} distribution $N(0,1)$.
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\section{La distribuzione t di Student}
+\clearpage\section{La distribuzione t di Student}
 \label{tStudent}
 
 Diremo che la v.a.\@ $X$ a valori reali ha \emph{distribuzione t di Student\/} con \emph{$\nu=n-1$ gradi di libertà\/} abbreviato con $X\sim t(\nu)$, se
@@ -1091,7 +1082,7 @@ dove $C_n$ è un opportuna costante che dipende da $n$.
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\section{La distribuzione t di Student}
+\clearpage\section{La distribuzione t di Student}
 \label{tStudent}
 
 Esempi: \hyperref[T-test]{$T$-test \faShare}
@@ -1112,7 +1103,7 @@ Allora $T=\dfrac{\bar {X}-\mu_0}{S/\sqrt{n}}$ ha distribuzione $t(n-1)$.
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\section{Intervallo di confidenza, varianza nota}
+\clearpage\section{Intervallo di confidenza, varianza nota}
 \label{IC_varianza_nota}
 
 Esempio: \hyperref[ICTesempio1]{\faShare}
@@ -1141,7 +1132,7 @@ N.B. L'intervallo \`e la variabile alearoria, $\mu$ è un numero fissato, purch�
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\section{Intervallo di confidenza, varianza ignota}
+\clearpage\section{Intervallo di confidenza, varianza ignota}
 \label{IC_varianza_ignota}
 
 Esempio: \hyperref[ICTesempio1]{\faShare}
@@ -1167,7 +1158,7 @@ Se in un esperimento misuriamo $\bar x$, diremo che $\mu=\bar x\pm\epsilon$ con 
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\section{Regressione lineare semplice}
+\clearpage\section{Regressione lineare semplice}
 \label{regressione_lineare}
 
 \def\medrel#1{\parbox[t]{5ex}{$\displaystyle\hfil #1$}}
@@ -1221,7 +1212,7 @@ Terminologia: spesso si scrive \emph{RSS\/} (residual sum of squares) per il num
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\section{Regressione lineare semplice (2)}
+\clearpage\section{Regressione lineare semplice (2)}
 \label{regressione_lineare2}
 
 Calcoliamo le derivate del RSS rispetto a $\beta_0$ e $\beta_1$
@@ -1251,13 +1242,14 @@ Queste derivate si annullano per quei $\beta_0$ e $\beta_1$ che risolvono il sis
 
 
 \chapter{Esempi ed esercizi}
+\pagestyle{empty}
 \label{ch2}
 
 
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\section{Spazio di probabilità}
+\clearpage\section{Spazio di probabilità}
 
 \subsection{Dado con quattro facce}
 \label{tetraedro}
@@ -1274,7 +1266,7 @@ $\Pr(E_1\cup E_2)=\Pr(E_1)+\Pr(E_2)$ per ogni $E_1,E_2\in\P(\Omega)$ disgiunti.
 
 
 
-\hfill\rlap{.}\clearpage\hfill\textbf{Spazio di probabilità}
+\clearpage\hfill\textbf{Spazio di probabilità}
 \subsection{Doppio lancio della monetina}
 \label{doppo_lancio_moneta}
 
@@ -1290,7 +1282,7 @@ L'evento \textit{Esce almeno una volta $T$\/} corrisponde all'evento $\{TC, CT, 
 
 
 
-\hfill\rlap{.}\clearpage\hfill\textbf{Spazio di probabilità}
+\clearpage\hfill\textbf{Spazio di probabilità}
 \subsection{Urna con bigle di 3 colori}
 \label{urna_3_colori}
 
@@ -1326,7 +1318,7 @@ In questo modo diamo una misura di probabilità a molti eventi che non sono in r
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\section{Variabili aleatorie}
+\clearpage\section{Variabili aleatorie}
 
 \subsection{Urna con biglie di dimensioni diverse}
 \label{Urna_biglie_diverse}
@@ -1346,7 +1338,7 @@ L'urna potrebbe contenere un umero così grande di biglie da rendere più sempli
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\section{Pobabilità totali}
+\clearpage\section{Pobabilità totali}
 
 
 \hfill\textbf{{\color{brown}\hyperref[TeoremaProbabilitaTotali]{Pobabilità totali} \faShare}}
@@ -1377,7 +1369,7 @@ $P(A)=P(A|F)P(F)+P(A|M)P(M)=0.05\cdot0.4+0.03\cdot0.6=0.038=3.8\%$
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
-\hfill\rlap{.}\clearpage
+\clearpage
 \hfill\textbf{{\color{brown}\hyperref[TeoremaProbabilitaTotaliMedia]{Pobabilità totali} \faShare} (richiede \hyperref[ValoreAtteso]{valore atteso \faShare})}
 \subsection{Peso neonati}
 \label{Neonati_totali}
@@ -1397,7 +1389,7 @@ $E(X)\medrel{=}E(X|M)\cdot\Pr(M)+ E(X|F)\cdot\Pr(F)\medrel{=}3.5\cdot\dfrac12 + 
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
-\hfill\rlap{.}\clearpage
+\clearpage
 \hfill\textbf{{\color{brown}\hyperref[TeoremaProbabilitaTotali]{Pobabilità totali} \faShare}}
 \subsection{Urna con due tipi di dadi}
 \label{dadi_diversi}
@@ -1459,7 +1451,7 @@ Quindi $C=\{c\}\times\{1,\dots,6\}$, \ $T=\{t\}\times\{1,\dots,6\}$, ed $E_i=\{c
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
-\hfill\rlap{.}\clearpage
+\clearpage
 \hfill\textbf{{\color{brown}\hyperref[TeoremaProbabilitaTotali]{Pobabilità totali} \faShare} (richiede nozione di \hyperref[indipendenza]{indipendenza \faShare})}
 
 \subsection{Modello di Hardy-Weinberg (1)}
@@ -1521,7 +1513,7 @@ $q_{bb}\ =\ p_{bb}^2+p_{bb}p_{ab} +\dfrac{1}{4}\,p^2_{ab}\,$;
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\hfill\textbf{Digressione (continuazione del paragrafo~\ref{HW_totali1})}\subsection{Equilibrio di Hardy-Weinberg (2)}
+\clearpage\hfill\textbf{Digressione (continuazione del paragrafo~\ref{HW_totali1})}\subsection{Equilibrio di Hardy-Weinberg (2)}
 
 \def\ceq#1#2#3{\parbox{12ex}{$\displaystyle #1$}\medrel{#2}$\displaystyle  #3$}
 
@@ -1553,7 +1545,7 @@ Quindi $q_a=p_a$ e diconseguenza $q_{aa}$, $q_{bb}$, e $q_{ab}$ sono le proporzi
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\section{Regola di Bayes}
+\clearpage\section{Regola di Bayes}
 \label{Bayes}
 \hfill\textbf{{\color{brown}\hyperref[RegolaBayes]{Regola di Bayes} \faShare}}
 \subsection{Fumatori e non fumatori}
@@ -1577,7 +1569,7 @@ $\Pr(A|F)=\dfrac{\Pr(F|A)\cdot \Pr(A)}{\Pr(F)}=\dfrac{0.2\cdot0.02}{0.1}=0.04$\h
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\hfill
+\clearpage\hfill
 \hfill\textbf{{\color{brown}\hyperref[RegolaBayes]{Regola di Bayes} \faShare}}
 \subsection{Hemophilia gene carrier }
 \label{Hemophilia}
@@ -1607,7 +1599,7 @@ $\phantom{\Pr(C|S_{na})}\ =\ \dfrac{1/4}{1/4+1/2}\ =\ 1/3$
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\hfill
+\clearpage\hfill
 \textbf{{\color{brown}\hyperref[RegolaBayes]{Regola di Bayes} \faShare}}
 \subsection{Rain forcasts}
 \label{rain_desert}
@@ -1638,7 +1630,7 @@ $\displaystyle\hphantom{\Pr(R | T_+)}\medrel{=}\frac{\Pr(R)\cdot \Pr(T_+|R)}{\Pr
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\hfill
+\clearpage\hfill
 \textbf{{\color{brown}\hyperref[indipendenza]{Indipendenza stocastica} \faShare} (richiede nozione di \hyperref[Bernoulli]{v.a.\@ di Bernoulli \faShare})}
 \section{Indipendenza}
 \label{esercizio_indipendenza}
@@ -1646,7 +1638,7 @@ $\displaystyle\hphantom{\Pr(R | T_+)}\medrel{=}\frac{\Pr(R)\cdot \Pr(T_+|R)}{\Pr
 Siano $X_1,X_2,X_3$ v.a.i.\@ di Bernoulli. Dire quali delle seguenti coppie $X$, $Y$ sono v.a.\@ indipendenti.\medskip
 
 \def\medrel#1{\parbox[t]{6ex}{$\displaystyle\hfil #1$}}
-\def\ceq#1#2#3{\parbox[t]{15ex}{$\displaystyle #1$}\medrel{#2}$\displaystyle  #3$}
+\def\ceq#1#2#3{\parbox[t]{16ex}{$\displaystyle #1$}\medrel{#2}$\displaystyle  #3$}
 
 \begin{itemize}
 \item[1.] \ceq{ X=X_1+X_2}{~}{ Y=X_2+X_3}
@@ -1663,6 +1655,10 @@ Siano $X_1,X_2,X_3$ v.a.i.\@ di Bernoulli. Dire quali delle seguenti coppie $X$,
 
 \item[7.] \ceq{ X=|X_1-X_2|}{~}{ Y=X_1+X_2+X_3}
 
+\item[8.] \ceq{ X=(X_1-X_2)^2}{~}{ Y=X_2+X_3}
+
+\item[9.] \ceq{ X=X_1-X_2}{~}{ Y=(X_2+X_3)^2}
+
 \end{itemize}
 
 
@@ -1670,29 +1666,51 @@ Siano $X_1,X_2,X_3$ v.a.i.\@ di Bernoulli. Dire quali delle seguenti coppie $X$,
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\section{Distribuzione binomiale}
+\clearpage\section{Distribuzione binomiale}
 \hfill\textbf{{\color{brown}\hyperref[Binomial_rv]{Binomail random variables} \faShare}}
 \subsection{Estrazione ripetuta}
 \label{estrazione_biglie_ripetuta}
 
 Abbiamo un urna con $36$ biglie $21$ biglie rosse e $15$ blu. Estraiamo una biglia, ne annotiamo il colore e la reintroduiamo nell'urna (\emph{reimbussolamento\/} in inglese \emph{replacement\/}) per $n=7$ volte.
 
-Qual è la probabilità di estrarre esattamente $k=3$ biglie rosse? Chiamiamo $X$ la v.a.\@ che conta il numero di biglie rosse estratte. Allora $X\sim B(6,p)$ con $p=21/36=7/12$. 
+Qual è la probabilità di estrarre esattamente $k=3$ biglie rosse? 
+
+\begin{soluzione}
+Chiamiamo $X$ la v.a.\@ che conta il numero di biglie rosse estratte. Allora $X\sim B(6,p)$ con $p=21/36=7/12$. 
 
 \ceq{\hfill\Pr(X=k)}{=}{{n\choose k}p^k(1-p)^{n-k}}
 
 \ceq{}{=}{{7\choose 3}\bigg(\dfrac{7}{12}\bigg)^{\!3}\bigg(\dfrac{5}{12}\bigg)^{\!4}}
 \medrel{=}$\dfrac{7!}{3!\cdot4!}\cdot\dfrac{7^3\cdot5^4}{12^7}$
 \medrel{=}$20.94\%$
-
-
-
+\end{soluzione}
 
 
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\section{Diagnostic test: HIV}
+\clearpage
+\hfill\textbf{{\color{brown}\hyperref[Binomial_rv]{Binomail random variables} \faShare}}
+\subsection{Multiple choice quiz}
+\label{esame_a_scelte_multiple}
+Suppose that you take a 10-question multiple-choice quiz by randomly guessing. Each question has 4 possible answers and only 1 is correct. What is the probability that answering at random you correctly guess at least 4 answers?
+
+
+\begin{soluzione}
+
+Let $X\sim{\rm B}(10,1/4)$.
+
+\ceq{\hfill P(X\ge4)}{=}{1-P(X\le3)}
+
+\ceq{}{=}{1-\sum_{k=0}^3{10\choose k}\bigg(\dfrac14\bigg)^{k}\bigg(\dfrac34\bigg)^{10-k}}
+
+\ceq{}{=}{1-\bigg(\dfrac34\bigg)^{10}+\bigg(\dfrac14\bigg)\bigg(\dfrac34\bigg)^{9}+45\bigg(\dfrac14\bigg)^2\bigg(\dfrac34\bigg)^{8}+120\bigg(\dfrac14\bigg)^3\bigg(\dfrac34\bigg)^{7}}
+\end{soluzione}
+
+%%%%%%%%%%%%
+%%%%%%%%%%%%
+%%%%%%%%%%%%
+\clearpage\section{Diagnostic test: HIV}
 \hfill\textbf{{\color{brown}\hyperref[RegolaBayes]{Regola di Bayes} \faShare}}
 \label{HIV_test}
 
@@ -1733,47 +1751,61 @@ Suppose that the test was taken in South Africa where the prevalence is estimate
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\section{Test Binomiale}
+\clearpage\section{Test Binomiale}
 \hfill\textbf{{\color{brown}\hyperref[test_ipotesi]{Test di ipotesi \faShare}}}
 
 \def\medrel#1{\parbox[t]{6ex}{$\displaystyle\hfil #1$}}
-\def\ceq#1#2#3{\parbox[t]{15ex}{$\displaystyle #1$}\medrel{#2}$\displaystyle  #3$}
+\def\ceq#1#2#3{\parbox[t]{18ex}{$\displaystyle #1$}\medrel{#2}$\displaystyle  #3$}
 
 Nella pratica questo test è spesso sostituito da un test sulle proporzioni (uno $Z$-test o, a volte, un $\chi^2$-test). In questa versione il test è computazionalmente più pesante ma concettualmente più semplice.
 
 \subsection{Test a una coda}\label{Bernoulli_test}
 
-Un'urna contiene monete equilibrate e monete difettose. Le monete equilibrate hanno probabilità di successo $p=1/2$ le monete difettose hanno probabilità di successo ignota $p>1/2$. Non conosciamo la frazione di monete difettose. Questi dati vengono riassunti scrivendo
+Un'urna contiene monete equilibrate e monete difettose. 
+Le monete equilibrate hanno probabilità di successo $p=1/2$ le monete difettose hanno probabilità di successo $p=3/4$. 
+Questi dati vengono riassunti scrivendo
 
 $H_0:$\kern3.5ex $p=1/2$
 
-$H_A:$\kern3ex $p>1/2$
+$H_A:$\kern3ex $p=3/4$
  
-Estraiamo una moneta dall'urna e, per decidere tra equilibrata o difettosa, facciamo il seguente test: la lanciamo $n$ volte e se il numero dei successi è $\ \ge k$ la dichiariamo difettosa. Stiamo descivendo una famiglia di test, uno per ogni scelta dei parametri $n$ e $k$. Vogliamo vedere come variano gli errori del I e del II tipo al variare di questi parametri. 
+Estraiamo una moneta dall'urna e, per decidere tra equilibrata o difettosa, facciamo il seguente test: la lanciamo $n$ volte e se il numero dei successi è $\ \ge n/2 + k$ la dichiariamo difettosa.
+Stiamo descivendo una famiglia di test, uno per ogni scelta dei parametri $n$ e $k$. 
+Vogliamo vedere come variano gli errori del I e del II tipo al variare di questi parametri. 
 
-Il test è una variabile aleatoria $X$ a valori in $\{0,\dots,n\}$. Lo spazio campionario $\Omega$ è diviso in due parti: $H_A$ e $H_0$.  L'insieme $H_A$ contiene quegli $\omega$ che corrispondono a $n$ lanci fatti con una moneta difettosa mentre $H_0$ contiene quegli $\omega$ che corrispondono a lanci con una moneta equilibrata. 
+Il test è una variabile aleatoria $X$ a valori in $\{0,\dots,n\}$.
+Lo spazio campionario $\Omega$ è diviso in due parti: $H_A$ e $H_0$.  L'insieme $H_A$ contiene quegli $\omega$ che corrispondono a $n$ lanci fatti con una moneta difettosa mentre $H_0$ contiene quegli $\omega$ che corrispondono a lanci con una moneta equilibrata.
+Non è possibile conoscere la distribuzione di $X$ non conoscendo la proporzione di monete difettose $\Pr(H_A)=1-\Pr(H_0)$.
+Conosciamo solo le distribuzioni $\Pr(X{=}i\mathbin|H_0)$ e  $\Pr(X{=}i\mathbin|H_A)$.
+Queste sono rispettivamente ${\rm B}(n,1/2)$ e  ${\rm B}(n,3/4)$.
+Conoscendo $\Pr(H_A)$ potremmo ricavarci $\Pr(X=i)$ col teorema delle probabilità totali
 
-Condizionando a $H_0$ otteniamo $X\sim {\rm B}(n,1/2)$. Condizionando a $H_A$ otteniamo $X\sim {\rm B}(n,p)$ con $p>1/2$ ignota.
+\ceq{\hfill \Pr(X=i)}{=}{\Pr(H_A)\Pr(X{=}i\mathbin|H_A)\ +\ \Pr(H_0)\Pr(X{=}i\mathbin|H_0)}
+
+Per il momento lavoriamo senza assumere $\Pr(H_A)$ nota.
 
 
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\hfill\textbf{Test Binomiale}\subsection{Test a una coda, errore I tipo}
+\clearpage\hfill\textbf{Test Binomiale}\subsection{Test a una coda, errore I tipo}
 
-Indichiamo con $T_+$ l'evento $\{\omega\in\Omega: X(\omega)\ge k\}$, ovvero il risultato del test positivo. N.B. dipende da $n$ e da $k$.
-si
+Indichiamo con $T_k$ l'evento $X(\omega)\ge n/2+k$, ovvero il risultato del test positivo. 
+N.B. stiamo immaginando (per semplicità) che sia $n$ fissato.  
+Diciamo $n=20$. 
+Quindi l'evento \textit{test positivo} dipende solo da $k$.
+Per il momento $k$ lo lasciamo inteterminato per poterne scegliere quello ottimale.
 
-Per quanto osservato sulla distribuzione di $X$, possiamo calcolare la specificità del test (probabilità di falsi positivi)
+Per quanto osservato sulla distribuzione di $X$, possiamo calcolare la specificità del test (probabilità di falsi positivi, probabilità di errori del I tipo)
 
 
-\ceq{\hfill \Pr(T_+\mathrel|H_0)}{=}{\Pr(X\ge k\mathrel|H_0)}
+\ceq{\hfill \Pr(T_{k}\mathrel|H_0)}{=}{\Pr(X\ge k\mathrel|H_0)}
 
 \ceq{}{=}{\sum^n_{i=k} {n\choose i}\bigg(\frac12\bigg)^i\bigg(1-\frac12\bigg)^{n-i}}
 \medrel{=}$\displaystyle\frac1{2^n}\sum^n_{i=k} {n\choose i}$
 
 
-Per concretezza, fissiamo $n=20$, $k=13$ quindi {\color{red}\boldmath\ $T_+=\{13,\dots,20\}$} è la regione di rifiuto. Otteniamo %$\Pr(T_+|\neg D) = \py{sum(y[y.index<=k]}$
+Per concretezza fissiamo anche $k=3$ quindi {\color{red}\boldmath\ $T_{+k}=\{13,\dots,20\}$} è la regione di rifiuto.  %$\Pr(T_+|\neg D) = \py{sum(y[y.index<=k]}$
 
 
 \hfil\includegraphics[width=0.9\textwidth]{figure/B-test_01.pdf}
@@ -1783,19 +1815,16 @@ Per concretezza, fissiamo $n=20$, $k=13$ quindi {\color{red}\boldmath\ $T_+=\{13
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\hfill\textbf{Test Binomiale}\subsection{Test a una coda, errore II tipo}
+\clearpage\hfill\textbf{Test Binomiale}\subsection{Test a una coda, errore II tipo}
 
 La probabilità dei falsi negativi può essere espressa in funzione di $p$ (abbiamo solo assunto che $p>1/2$)
 
 
-\ceq{\hfill \Pr(T_-\mathrel|H_A)}{=}{\Pr(X< k\mathrel|H_A)\quad=\quad\sum^{k-1}_{i=1} {n\choose i}p^i(1-p)^{n-i}}
+\ceq{\hfill \Pr(\neg T_{+k}\mathrel|H_A)}{=}{\Pr(X< k\mathrel|H_A)\quad=\quad\sum^{k-1}_{i=1} {n\choose i}p^i(1-p)^{n-i}}
 
-Se segliamo come prima $n=20$, $k=13$ abbiamo {\color{blue}\boldmath\ $T_-=\{0,\dots,12\}$} è la \emph{zona di NON rifiuto}.
-Ora, per semplificare la discussione supponiamo di conoscere non solo il tipo ma anche la gravità del difetto. Quindi l'ipotesi alternativa diventa
-
-$H_{3/4}:$\kern3ex $p=3/4$
-
-Rappresentiamo la distribuzione di $X$ nel caso in cui vale $H_{3/4}$. Per confronto lo accostiamo al grafico del paragrafo precedente. 
+Consideriamo come prima $k=3$ .
+Abbiamo {\color{blue}\boldmath\ $\neg T_{+k}=\{0,\dots,12\}$} è la \emph{zona di NON rifiuto}.
+Rappresentiamo la distribuzione di $X$ nel caso in cui vale $H_{A}$. Per confronto lo accostiamo al grafico del paragrafo precedente. 
 
 
 \hfil\includegraphics[width=0.9\textwidth]{figure/B-test_02.pdf}
@@ -1808,24 +1837,28 @@ Rappresentiamo la distribuzione di $X$ nel caso in cui vale $H_{3/4}$. Per confr
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\hfill\textbf{Test Binomiale}\subsection{Effect size: \boldmath{$\delta$}}
+\clearpage\hfill\textbf{Test Binomiale}\subsection{Effect size: \boldmath{$\delta$}}
 
 
-Cosa possiamo dire sul caso generale $H_A:$ $p>1/2$~?
-
-Al crescere di $p$ la distribuzione si sposta verso destra quindi la probabilità di errori del II tipo diminuisce. Di converso, se $p$ si avvicina a $1/2$  la probabilità d'errore aumenta. Al limite quando $p\approx 1/2$ avremo $\alpha+\beta\approx 1$. Dobbiamo quindi fissare il minima differenza $\delta$ che riteniamo significativa e calcolare $\beta$ a paritire da quello.
-
+Cosa possiamo dire se l'ipotesi alternativa fosse stata $H_A:$ $p>1/2$~?
 
 \hfil\includegraphics[width=0.9\textwidth]{figure/B-test_02.pdf}
 
 \hfil\includegraphics[width=0.9\textwidth]{figure/B-test_01.pdf}
 
+Al crescere di $p$ la distribuzione si sposta verso destra quindi la probabilità di errori del II tipo diminuisce. 
+Di converso, se $p$ si sposta verso sinistra e si avvicina a $1/2$  la probabilità d'errore del II tipo aumenta. Al limite quando $p\approx 1/2$ avremo $\alpha+\beta\approx 1$. 
+Dobbiamo quindi fissare il minima differenza $\delta$ che riteniamo significativa e prendere come ipotesi alternativa  $H_A:$ $p\ge1/2+\delta$.
+Per calcolare $\beta$ abbiamo comunque bisogno di un preciso valore di $p$.
+Scegliamo quindi il più sfavorevole $H_A:$ $p=1/2+\delta$.
+
+
 
 
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\hfill\textbf{Test Binomiale}\subsection{Test a due code}
+\clearpage\hfill\textbf{Test Binomiale}\subsection{Test a due code}
 
 Nell'esempio precedente avevamo un'informazione certa sul tipo di difetto delle monete: sapevamo che $p>1/2$. Proviamo a fare senza, avremo quindi
 
@@ -1833,13 +1866,17 @@ $H_0:$\kern3.5ex $p=1/2$
 
 $H_A:$\kern3ex $p\neq1/2$
 
-Verifichiamo prima che  \textbf{la zona di rifiuto dei paragrafi precedenti NON è adatta\/} alla nuova situazione. L'analisi di $\Pr(T_+|H_0)$ rimane invariata (inaftti l'insieme $H_0$ non è cambiato).
+Verifichiamo prima che  \textbf{la zona di rifiuto dei paragrafi precedenti NON è adatta\/} alla nuova situazione. 
+Il grafici che descrive $\Pr(T_{+3}|H_0)$ rimane invariato (perché l'insieme $H_0$ non è cambiato).
+Le cose cambiano drammaticamente se vale $H_A$.
 
-Per semplificare la discussione dell'errore del II tipo supponiamo per il momento che 
+Per semplificare la discussione dell'errore del II tipo fissiamo $\delta=1/4$ e ci mettiamo nel caso più sfavorevole (il più vicino possibile ad $H_0$)
 
 $H_A:$\kern3ex $p=3/4$\quad o\quad $p=1/4$ 
 
-Possiamo immaginare $H_A=H_{{1/4}}\cup H_{{3/4}}$. Se sostituiamo $H_A$ con $H_{{3/4}}$ il grafico rimane come quello già discusso. Ora però dobbiamo considerare il caso il cui la moneta appartenga all'insieme $H_{{1/4}}$
+Possiamo immaginare $H_A=H_{{1/4}}\cup H_{{3/4}}$. 
+Se sostituiamo $H_A$ con $H_{{3/4}}$ il grafico rimane come quello già discusso. 
+Ora però dobbiamo considerare il caso il cui la moneta appartenga all'insieme $H_{{1/4}}$
 
 \hfil\includegraphics[width=0.9\textwidth]{figure/B-test_02.pdf}
 
@@ -1849,9 +1886,10 @@ Possiamo immaginare $H_A=H_{{1/4}}\cup H_{{3/4}}$. Se sostituiamo $H_A$ con $H_{
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\hfill\textbf{Test Binomiale}\subsection{Test a due code, errori I e II tipo}
+\clearpage\hfill\textbf{Test Binomiale}\subsection{Test a due code, errori I e II tipo}
 
-Per riparare il problema discusso al paragrafo precedente. prendiamo come zona di rifiuto $T_+=\{0,\dots,7=n-k\}\cup \{k=13,\dots,20=n\}$
+Per riparare il problema discusso al paragrafo precedente. 
+Prendiamo come nuova zona di rifiuto {\color{red}\boldmath $T_{\pm k}\ = \ \{0,\dots,7=n-k\}\cup \{k=13,\dots,20=n\}$}
 
 \hfil\includegraphics[width=0.9\textwidth]{figure/B-test_04.pdf}
 
@@ -1865,12 +1903,12 @@ Per riparare il problema discusso al paragrafo precedente. prendiamo come zona d
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\hfill\textbf{Test Binomiale}
+\clearpage\hfill\textbf{Test Binomiale}
 \subsection{Test a due code, con campione più ampio}
 
-Supponiamo di raddoppiare la dimensione del campione ($n=40$). Aggiustiamo la zona di rifiuto allo stesso modo ($k=26$): 
+Supponiamo di raddoppiare la dimensione del campione ($n=40$). Aggiustiamo la zona di rifiuto allo stesso modo ($k=6$): 
 
-\hfil$T_+=\{0,\dots,14=n-k\}\cup \{k=26,\dots,40=n\}$
+\hfil$T_{\pm6}=\{0,\dots,14=n/2-k\}\cup \{k+n/6=26,\dots,40\}$
 
 Entrambi gli errori diminuiscono.
 
@@ -1887,7 +1925,7 @@ Entrambi gli errori diminuiscono.
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\hfill\textbf{Test Binomiale}
+\clearpage\hfill\textbf{Test Binomiale}
 \subsection{Standardizzazione (1)}
 
 Il confronto tra i test con $n=20, 40$ non é immediato (vedi la trasformazione della zona di rifiuto). Per facilitare il confronto tipicamente la variabile viene standardizzata. 
@@ -1909,7 +1947,7 @@ Gli esempi considerati (con $n=20,40$ e $k=13,26$) diventano:
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\hfill\textbf{Test Binomiale}
+\clearpage\hfill\textbf{Test Binomiale}
 \subsection{Standardizzazione (2)}
 
 Si noti che le regioni di rifiuto non sono le stesse. In effetti
@@ -1933,7 +1971,7 @@ Se per entrambi i casi prendiamo la stessa regione di rifiuto misurata in punteg
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\
+\clearpage\
 \subsection{Prevalenza mancinismo 1}
 
 Il $10\%$ è delle persone sono mancine. Ci chiediamo se la caratteristica sia ereditaria. Eseguiamo il seguente esperimento. Selezioniamo un campione di $1000$ persone con almeno un genitore mancino e misuriamo la frequenza di mancini. Concludiamo che la caratteristica \`e ereditaria se pi\`u di $115$ individui sono mancini.
@@ -2000,7 +2038,7 @@ Si assumano noti i valori delle seguenti funzioni
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\
+\clearpage\
 \subsection{Prevalenza mancinismo 2 (domanda in formato esame)}
 
 Il $10\%$ è delle persone sono mancine. Ci chiediamo se la caratteristica sia ereditaria. Eseguiamo il seguente esperimento. Selezioniamo un campione di $1000$ persone con almeno un genitore mancino e misuriamo la frequenza di mancini. Otteniamo $112$ mancini. 
@@ -2061,7 +2099,7 @@ Si assumano noti i valori delle seguenti funzioni
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\
+\clearpage\
 \section{Z-test}
 \label{Z-test}
 \hfill\textbf{{\color{brown}\hyperref[distribuzione normale]{La distribuzione normale \faShare}}}
@@ -2094,7 +2132,7 @@ Se $H_A$ è vera, $\bar X\sim N\bigg(\mu,\dfrac{\sigma^2}{n}\bigg)$ per qualche 
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\subsection{Una coda, errore I e II tipo}
+\clearpage\subsection{Una coda, errore I e II tipo}
 
 
 Qui rappresentiamo gli errori del I e II tipo per campioni di dimensione $n=20$ e $n= 40$ e con un $x_\alpha$ scelto in moto tale da avere $\alpha=5\%$. Per gli errori del II tipo prendiamo $\delta=5$.
@@ -2112,7 +2150,7 @@ Qui rappresentiamo gli errori del I e II tipo per campioni di dimensione $n=20$ 
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\subsection{Esempio di domanda in formato esame}
+\clearpage\subsection{Esempio di domanda in formato esame}
 
 (Ripetuto da sopra.) Si sospetta che una certa terapia faccia aumentare la pressione diastolica. Nella popolazione generale la pressione diastolica ha distribuzione $N(\mu_0,\sigma^2)$ con $\mu_0=75$ e $\sigma=5.5$. Assumiamo che tra i pazienti in terapia la pressione diastolica sia distribuita normalmente con media ignota $\mu$ e con la stessa deviazione standard della popolazione generale. 
 
@@ -2169,7 +2207,7 @@ Si assumano noti i valori delle seguenti funzioni
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\
+\clearpage\
 \subsection{Prevalenza mancinismo 3 (domanda in formato esame)}
 \label{mancini3}
 \hfill\textbf{{\color{brown}\hyperref[CLT]{Il teorema del limite centrale \faShare}}}
@@ -2233,7 +2271,7 @@ Si assumano noti i valori delle seguenti funzioni
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\subsection{Una coda, p-valore}
+\clearpage\subsection{Una coda, p-valore}
 \hfill\textbf{{\color{brown}\hyperref[pvalore]{Il p-valore \faShare}}}
 
 (Continua l'esempio pressione diastolica.) Supponiamo di ottenere $\bar x=78.0$ da un campione di dimensione $n=20$. Il p-valore di questa misura è $\Pr(\bar X\ge 78)=1-\Pr(\bar X\le 78)$.
@@ -2249,7 +2287,7 @@ Nel caso di un test a due code, se $H_A$ fosse stata $\mu_0\neq\mu$, il p-valore
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\subsection{Esempio di domanda in formato esame}
+\clearpage\subsection{Esempio di domanda in formato esame}
 
 (Ripetuto da sopra.) Si sospetta che una certa terapia faccia aumentare la pressione diastolica. Nella popolazione generale la pressione diastolica ha distribuzione $N(\mu_0,\sigma^2)$ con $\mu_0=75$ e $\sigma=5.5$. Assumiamo che tra i pazienti in terapia la pressione diastolica sia distribuita normalmente con media ignota $\mu$ e con la stessa deviazione standard della popolazione generale.  
 
@@ -2304,7 +2342,7 @@ Si assumano noti i valori delle seguenti funzioni
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\subsection{Crescita media}
+\clearpage\subsection{Crescita media}
 
 In condizioni ottimali l'incremento di una certa cultura in una fissata unità di tempo ha media $\mu_0=3.1$ e deviazione standard $\sigma=1.2$. Vogliamo progettare un test per decidere se la crecita di una data cultura sia sub-ottimale. Assumiamo che la distribuzione sia normale e che in condizioni sub-ottimali la deviazione standard sia la stessa. (Queste assunzioni sono abbastanza irragionevoli, ma portiamo pazienza.)
 
@@ -2330,7 +2368,7 @@ Quindi  $\beta=${\tt\ pnorm(2.17,2.6,0.4)\,=\,0.14}.
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\
+\clearpage\
 \subsection{Mean weight (domanda in formato esame)}
 
 Boys of a certain age are known to have a mean weight of $85$ pounds and standard deviation $10.6$ pounds. A complaint is made that the boys living in a municipal children's home are overfed. As one bit of evidence, $25$ boys (of the same age) are weighed and found to have a mean weight of $88.94$ pounds. Assume the same standard deviation as in the general the population (the unrealistic part of this example).
@@ -2393,7 +2431,7 @@ Si assumano noti i valori delle seguenti funzioni
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\
+\clearpage\
 \section{T-test}
 \label{T-test}
 \hfill\textbf{{\color{brown}\hyperref[tStudent]{La distribuzione t di Student \faShare}}}
@@ -2438,7 +2476,7 @@ Quindi possiamo affermare con un livello di confidenza $\ge 90\%$ che il voto me
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\
+\clearpage\
 \subsection{Due popolazioni}
 Si sospetta che un certo medicinale modifichi la pressione diastolica.  Prendiamo due gruppi di $n_x=6$ e $n_y=5$ persone. Al primo gruppo somministriamo il medicinale al secondo un placebo. Assumiamo che in entrambi i casi la pressione diastolica sia distribuita normalmente con la stessa deviazione standard (ignota). Nel primo gruppo otteniamo i valori $x_1,\dots,x_6=62,92,75,68,83,95$ nel secondo gruppo $y_1,\dots,y_5=60,95,76,69,89$.
 
@@ -2478,7 +2516,7 @@ t.test(x, y, alternative='two', var.equal = TRUE)}
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\
+\clearpage\
 \subsection{Dati accoppiati}
 
 Si sospetta che un certo medicinale modifichi la pressione diastolica.  Prendiamo un gruppo di $n=6$ persone. Somministriamo ad ogni individuo prima un placebo e successivamente il medicinale. Assumiamo che in entrambi i casi la pressione diastolica sia distribuita normalmente. Con il placebo otteniamo i valori $x_1,\dots,x_6=62,92,75,68,83,95$ con il medicinale otteniamo i valori $y_1,\dots,y_6=60,95,76,69,89,90$.
@@ -2517,7 +2555,7 @@ t.test(x, y, alternative='two', paired=TRUE)}
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
-\hfill\rlap{.}\clearpage\
+\clearpage\
 \section{Intervallo di confidenza}
 \label{ICTesempio1}
 \hfill\textbf{{\color{brown}\hyperref[IC_varianza_ignota]{Intervallo di confidenza: normale con varianza ignota \faShare}}}
@@ -2556,7 +2594,7 @@ Ad un gruppo di persone vengono misurati 100 diversi parametri fisiologici (che 
 
 Risposta:\kern3ex $1-(0.98)^{100}=87\%$
 
-\hfill\rlap{.}\clearpage\
+\clearpage\
 \begin{comment}
 \section{Inferenza Bayesiana}
 
