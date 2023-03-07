@@ -909,26 +909,26 @@ In questa tavola contrapponiamo la terminologia usata nei \emph{test statistici\
 \noindent\kern0ex\fbox{\parbox[t]{38ex}{%
 \emph{$T_+\cap H_0$} \textit{falso positivo}\hfill \emph{errore I tipo\/}\\
 
-\emph{$\Pr(T_+|H_0)=\emph{$\alpha$}$}\hfill \emph{significatività\/}
+\emph{$\Pr(T_+|H_0)=\emph{$\alpha$}$} \textit{significatività\/}
 }}
 \kern1ex
 \fbox{\parbox[t]{41ex}{%
-\emph{$T_+\cap H_A$} \textit{corretto positivo}\\
+\emph{$T_+\cap H_0$} \textit{corretto positivo}\\
 
-\emph{$\Pr(T_+|H_A)=1{-}\emph{$\beta$}$} \textit{sensibilità}\hfill \emph{potenza\/}
+\emph{$\Pr(T_+|H_0)=1{-}\emph{$\beta$}$} \textit{sensibilità}\hfill \emph{potenza\/}
 }}
 
 
 \noindent\kern0ex\fbox{\parbox[t]{38ex}{%
-\emph{$T_-\cap H_0$} \ \textit{corretto negativo}\\
+\emph{$T_-\cap H_A$} \ \textit{corretto negativo}\\
 
-\emph{$\Pr(T_-|H_0)=1{-}\emph{$\alpha$}$} \textit{sepecificità}
+\emph{$\Pr(T_-|H_A)=1{-}\emph{$\alpha$}$} \textit{sepecificità}
 }}
 \kern1ex
 \fbox{\parbox[t]{41ex}{%
-\emph{$T_-\cap H_A$} \ \textit{falso negativo}\hfill \emph{errore II tipo\/}\\
+\emph{$T_-\cap H_0$} \ \textit{falso negativo}\hfill \emph{errore II tipo\/}\\
 
-\emph{$\Pr(T_-|H_A)=\emph{$\beta$}$}
+\emph{$\Pr(T_-|H_0)=\emph{$\beta$}$}
 }}
 
 
@@ -942,7 +942,7 @@ N.B. È vacile progettare un test che minimizza una tra $\Pr(T_+|H_0)$ o $\Pr(T_
 %%%%%%%%%%%%
 \clearpage\section{Campioni e statistiche}
 
-Un campione $\{X_1,\dots,X_n\}$ è un insieme di v.a.\@ indipendenti e identicamente distribuite. Il numero $n$ si chiama \emph{rango\/} (o \emph{dimensione\/}) del campione. 
+Un campione $\{X_1,\dots,X_n\}$ è un insieme di v.a.\@ indipendenti e identicamente distribuite (v.a.i.i.d.). Il numero $n$ si chiama \emph{rango\/} (o \emph{dimensione\/}) del campione. 
 
 Una \emph{statistica\/} è una variabile aleatoria a valori in $\RR$ ottenuta come funzione delle variabili aleatorie di un campione. Una statistica che ha come valore atteso un certo parametro di una distribuzione (vedremo solo $\mu$ e $\sigma$) si chiama uno  \emph{stimatore\/} di quel parametro.
 
