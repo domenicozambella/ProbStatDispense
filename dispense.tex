@@ -225,6 +225,10 @@ diagrams={>=latex}
 
 \scalebox{0.95}{\url{https://github.com/domenicozambella/ProbStatDispense/raw/main/PDF/dispense.pdf}}
 
+Questi appunti contengono errori e refusi, quindi correzioni e commenti sono graditi
+
+\scalebox{0.95}{\url{mailto:domenico.zambella@unito.it}}
+
 % \begin{flushright}\normalfont\itshape
 % La matematica è di fondamentale importanza in ogni ambito scientifico.\\
 % I matematici, d'altro canto, sono assolutamente inutili.\\
@@ -1041,7 +1045,7 @@ Diremo che la v.a.\@ $Z$ a valori reali ha \emph{distribuzione normale standard\
 
 \bigskip
 
-\ceq{\hfill\Pr(Z\le z)}{=}{\frac 1 {\sqrt{2\pi}} \int_{-\infty}^z e^{-x^2/2} \, {\rm d}t}%\hfill \href{http://homepage.divms.uiowa.edu/~mbognar/applets/normal.html}{il grafico di $\displaystyle\frac 1 {\sqrt{2\pi}} e^{-t^2/2}$ \faShare}
+\ceq{\hfill\Pr(Z\le z)}{=}{\frac 1 {\sqrt{2\pi}} \int_{-\infty}^z e^{-x^2/2} \, {\rm d}x}%\hfill \href{http://homepage.divms.uiowa.edu/~mbognar/applets/normal.html}{il grafico di $\displaystyle\frac 1 {\sqrt{2\pi}} e^{-t^2/2}$ \faShare}
 
 \bigskip
 
@@ -1193,7 +1197,7 @@ Non esiste un metodo ovvio per inferire i parametri $\beta_0$ e $\beta_1$ dai da
 La scelta comune è di cercare quei parametri $\beta_0$ e $\beta_1$ che minimizzano le grandezze $e_i$. 
 Però  generalmente non è possibile minimizzare contemporaneamente tutti gli errori. 
 Dobbiamo quindi aggregare gli errori in un unico numero che rappresenti l'errore totale.
-La funzione anche aggrega gli errori si chiama \emph{cost function.}
+La funzione che aggrega gli errori si chiama \emph{cost function.}
 Ci sono ininite possibililà. 
 Per esempio, due ragionevoli cost function sono
 
@@ -1244,8 +1248,58 @@ Queste derivate si annullano per quei $\beta_0$ e $\beta_1$ che risolvono il sis
 {=}
 {\sum_{i=1}^n x_iy_i}
 
+dividendo entrambe le equazioni per $n$ ed usando le seguenti abbreviazioni
+
+$\displaystyle\bar x\ =\ \frac1n\sum_{i=1}^n x_i$
+\hfill
+$\displaystyle\bar y\ =\ \frac1n\sum_{i=1}^n y_i$
+\hfill
+$\displaystyle\overline{x^2}\ =\ \frac1n\sum_{i=1}^n x_i^2$
+\hfill
+$\displaystyle\overline{xy}\ =\ \frac1n\sum_{i=1}^n x_iy_i$
+
+riscriviamo il sistemain forma abbreviata
+
+\ceq{\hfill\beta_0+\beta_1\bar x}
+{=}
+{\bar y}
+\vskip-.7\baselineskip
+\smash{\quad$\left\{\rule{0ex}{5ex}\right.$}
+\vskip-.7\baselineskip
+\ceq{\hfill\beta_0\bar x+\beta_1 \overline{x^2}}
+{=}
+{\overline{xy}}
+
+Le soluzioni sono facili da calcolare
+
+\ceq{\hfill\beta_0}
+{=}
+{\bar y-\beta_1\bar x}
+\vskip-.6\baselineskip
+\smash{\quad$\left\{\rule{0ex}{5ex}\right.$}
+\vskip-.6\baselineskip
+\ceq{\hfill\beta_1}
+{=}
+{\frac{\bar y\cdot\bar x-\overline{xy}}{\overline{x^2}-\bar x^2}}
 
 
+%%%%%%%%%%%%
+%%%%%%%%%%%%
+%%%%%%%%%%%%
+%%%%%%%%%%%%
+\clearpage\section{Regressione lineare semplice (3) inferenza statistica}
+\label{regressione_lineare3}
+
+ \ceq{\hfill B_0}
+ {=}
+ {\bar Y-B_1\bar X}
+ \vskip-.5\baselineskip
+ \smash{\quad$\left\{\rule{0ex}{7ex}\right.$}
+ \vskip-.5\baselineskip
+ \ceq{\hfill B_1}
+ {=}
+ {\frac{\bar Y\cdot\bar X-\overline{xY}}{\overline{X^2}-\bar X^2}}
+ 
 
 \chapter{Esempi ed esercizi}
 \pagestyle{empty}
