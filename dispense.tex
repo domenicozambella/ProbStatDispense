@@ -1041,7 +1041,7 @@ Se il test è a due code abbiamo
 
 Esempi: \hyperref[Z-test]{$Z$-test \faShare}
 
-Diremo che la v.a.\@ $Z$ a valori reali ha \emph{distribuzione normale standard\/} abbreviato con $Z\sim N(0,1)$, se
+Diremo che la v.a.\@ $Z$ a valori reali ha \emph{distribuzione normale standard\/} abbreviato con $Z\sim {\rm N}(0,1)$, se
 
 \bigskip
 
@@ -1049,7 +1049,7 @@ Diremo che la v.a.\@ $Z$ a valori reali ha \emph{distribuzione normale standard\
 
 \bigskip
 
-Più in generale $X$ ha \emph{distribuzione normale\/} con media $\mu$ e varianza $\sigma^2$, abbreviato con $X\sim N(\mu,\sigma^2)$, se
+Più in generale $X$ ha \emph{distribuzione normale\/} con media $\mu$ e varianza $\sigma^2$, abbreviato con $X\sim {\rm N}(\mu,\sigma^2)$, se
 
 \medskip
 
@@ -1057,7 +1057,14 @@ Più in generale $X$ ha \emph{distribuzione normale\/} con media $\mu$ e varianz
 
 \bigskip
 
-Importante proprietà: se $X_1,\dots,X_n$ sono variabili aleatorie indipendenti con distribuzione $N(\mu,\sigma^2)$ allora la variabile media compionaria
+Importante proprietà:
+
+\begin{theorem}
+  La somma di v.a.i.\@  con distribuzione ${\rm N}(\mu,\sigma^2)$ è ancora una v.a.\@ con distribuzione ${\rm N}(\mu,\sigma^2)$.
+\end{theorem}
+
+
+Una conseguenza importante è che se $X_1,\dots,X_n$ sono v.a.i.\@  con distribuzione ${\rm N}(\mu,\sigma^2)$ allora la v.a.\@ media compionaria
 
 \ceq{\hfill \emph{$\bar X$}}{=}{\frac1n\sum_{i=1}^n X_i}
 
@@ -1073,13 +1080,20 @@ La deviazione standard di $\bar X$ si chiama \emph{errore standard\/} \`e quindi
 \clearpage\section{The Central Limit Theorem}
 \label{CLT}
 
-Let $X_1,\dots, X_n$ be a random sample (i.e.\@ independent and identically distributed random variables) from \textit{any\/} distribution with mean $\mu$ and variance $\sigma^2$.
+Let $X_1,\dots, X_n,\dots$ be independent and identically distributed r.v.\@ with mean $\mu$ and variance $\sigma^2$.
 
-Then $\bar X$ has mean $\E(\bar X)=\mu$ and variance $\Var(\bar X)=\sigma^2/n$. Moreover, if the sample size $n$ is \textit{sufficiently large\/} then 
+\ceq{\hfill \bar X_n}{=}{\frac1n\sum_{i=1}^n X_i}
 
-\ceq{\hfill \emph{$Z$}}{=}{\frac{\bar X - \mu}{\sigma/\sqrt{n}}}
+We know that $\E(\bar X_n)=\mu$ and $\Var(\bar X)=\sigma^2/n$. 
+Let 
 
-has \textit{approximately\/} distribution $N(0,1)$.
+\ceq{\hfill Z_n}{=}{\frac{\bar X_n - \mu}{\sigma/\sqrt{n}}}
+
+Moreover, if the sample size $n$ is \textit{sufficiently large\/} then 
+
+\ceq{\hfill \lim_{n\to\infty}Z_n}{\sim}{{\rm N}(0,1)}
+
+In words, when $n$ is \textit{sufficiently large\/} $Z_n$ has \textit{approximately\/} distribution ${\rm N}(0,1)$.
 
 
 
@@ -1118,7 +1132,7 @@ Allora $T=\dfrac{\bar {X}-\mu_0}{S/\sqrt{n}}$ ha distribuzione $T(n-1)$.
 
 Esempio: \hyperref[ICTesempio1]{\faShare}
 
-Consideriamo v.a.\@ $X\sim N(\mu,\sigma^2)$ con $\sigma$ nota e $\mu$ ignota.  Sia $\bar X$ la media campionaria. Fissiamo un $\epsilon>0$ e calcoliamo la probabilità che $\bar X$ sia a distanza inferiore a $\epsilon$ da $\mu$
+Consideriamo v.a.\@ $X\sim {\rm N}(\mu,\sigma^2)$ con $\sigma$ nota e $\mu$ ignota.  Sia $\bar X$ la media campionaria. Fissiamo un $\epsilon>0$ e calcoliamo la probabilità che $\bar X$ sia a distanza inferiore a $\epsilon$ da $\mu$
 
 \ceq{\hfill\Pr(\mu-\epsilon<\bar X<\mu+\epsilon)}{=}{\Pr(-\epsilon<\bar X-\mu<\epsilon)}
 
@@ -1147,7 +1161,7 @@ N.B. L'intervallo \`e la variabile alearoria, $\mu$ è un numero fissato, purch�
 
 Esempio: \hyperref[ICTesempio1]{\faShare}
 
-Consideriamo v.a.\@ $X\sim N(\mu,\sigma^2)$ con $\sigma$ e $\mu$ ignote.  Sia $\bar X$ la media campionaria  ed $S$ lo stimatore della deviazione standard. Fissiamo un $\epsilon>0$ e calcoliamo la probabilità che $\bar X$ sia a distanza inferiore a $\epsilon$ da $\mu$
+Consideriamo v.a.\@ $X\sim {\rm N}(\mu,\sigma^2)$ con $\sigma$ e $\mu$ ignote.  Sia $\bar X$ la media campionaria  ed $S$ lo stimatore della deviazione standard. Fissiamo un $\epsilon>0$ e calcoliamo la probabilità che $\bar X$ sia a distanza inferiore a $\epsilon$ da $\mu$
 
 \ceq{\hfill\Pr(\mu-\epsilon<\bar X<\mu+\epsilon)}{=}{\Pr(-\epsilon<\bar X-\mu<\epsilon)}
 
@@ -1290,17 +1304,76 @@ Le soluzioni sono facili da calcolare
 \clearpage\section{Regressione lineare semplice (3) inferenza statistica}
 \label{regressione_lineare3}
 
+Immaginiamo che gli errori $e_i$ siano il risultato di variabili aleatorie $E_i$.
+Per semplificare, i predittori li immaginiamo come deterministici (le conclusioni valgono più in generale).
+Le risposte saranno comunque delle variabili aleatorie
+
+\ceq{\hfill Y_i}{=}{\beta_0+\beta_1x_i+E_i}
+
+Le formule ricavate nel paragrafo precedente le immaginiamo come degli stimatori dei parametri $\beta_0,\beta_1$
+
  \ceq{\hfill B_0}
  {=}
- {\bar Y-B_1\bar X}
- \vskip-.5\baselineskip
- \smash{\quad$\left\{\rule{0ex}{7ex}\right.$}
- \vskip-.5\baselineskip
+ {\bar Y-B_1\bar x}
+ \vskip-.6\baselineskip
+ \smash{\quad$\left\{\rule{0ex}{6ex}\right.$}
+ \vskip-.6\baselineskip
  \ceq{\hfill B_1}
  {=}
- {\frac{\bar Y\cdot\bar X-\overline{xY}}{\overline{X^2}-\bar X^2}}
+ {\frac{\bar Y\cdot\bar x-\overline{xY}}{\overline{x^2}-\bar x^2}}
  
+Vorremmo sapere la distribuzione di $B_0,B_1$ per poter calcolare significatività della stima di  $\beta_0,\beta_1$.
+Dobbiamo fare altre ipotesi semplificatrici.
+Assumiamo che gli errori $E_i$ siano v.a.i.i.d.\@ di tipo ${\rm N}(0,\sigma^2)$.
 
+Si verifica che (approssimativamente) $B_0,B_1\sim T(n-2)$.
+Le rispettive deviazioni standard $s_0,s_1$ si stimano con le formule
+
+\ceq{\hfill s^2_0}{=}{\frac{n}{ n - 2}\sum_{i=1}^n (e_i)^2}
+
+\ceq{\hfill s^2_1}{=}{\frac{s^2_0}{\displaystyle\sum_{i=1}^n (x_i-\bar x)^2}}
+
+dove $e_i$ e $\bar x$ sono definiti come nel paragrafo precedente.
+
+Un test di ipetesi frequentemente fatto in questo contesto è $H_0:\beta_1=0$, $H_A:\beta_1\neq0$.
+Si noti $\beta_1=0$ essenzialmente dice che le risposte non dipendono dai predittori.
+
+%%%%%%%%%%%%
+%%%%%%%%%%%%
+%%%%%%%%%%%%
+%%%%%%%%%%%%
+\clearpage\section{Regressione multipla}
+\label{regressione_lineare4}
+
+Molto spesso le risposte dipendono da più di un predittore.
+Il modello quindi è
+
+\ceq{1.\hfill y_i}{=}{\beta_0+\beta_1 x_i+\beta_2 z_i+e_i}
+
+Più in generale potermmo avere $k$ predittori diversi.
+Per chiarezza discutiamo il caso $k=2$.
+I parametri $\beta_0,\beta_1,\beta_2$ si stimano minimizzando la cost function
+
+\ceq{\hfill\sum_{i=1}^n (e_i)^2}
+{=}
+{\sum_{i=1}^n (y_i-\beta_0-\beta_1 x_i-\beta_2 z_i)^2}
+
+in modo del tutto analogo al caso $k=1$.
+
+Questa soluzione permette anche di trattare il caso non lineare.
+Supponiamo di voler modellare una dipendenza quadratica (per esempio, il predittore è il tempo e la risposta lo spazio di un moto rettilineo con accelerazione costante).
+Possiamo continuare ad usare il modello (1) con $z_i=(x_i)^2$.
+
+
+
+%*******************************************************
+%*******************************************************
+%*******************************************************
+%*******************************************************
+%*******************************************************
+%*******************************************************
+%*******************************************************
+%*******************************************************
 \chapter{Esempi ed esercizi}
 \pagestyle{empty}
 \label{ch2}
@@ -2091,18 +2164,18 @@ $\alpha =$ {\tt pbinom}$(x,n,p_0)$.
 \hfill 
 {\tt qbinom($\alpha$,n,p)=x},  dove $P(X\le x)=\alpha$ per $X\sim B(n,p)$
 
-{\tt pnorm(z)}=$P(Z\le z)$, per $Z\sim N(0,1)$
+{\tt pnorm(z)}=$P(Z\le z)$, per $Z\sim {\rm N}(0,1)$
 \hfill 
-{\tt qnorm($\alpha$)=z},  dove $P(Z\le z)=\alpha$ per $Z\sim N(0,1)$
+{\tt qnorm($\alpha$)=z},  dove $P(Z\le z)=\alpha$ per $Z\sim {\rm N}(0,1)$
 
 {\tt pt(t,$\nu$)} = $P(T\le t)$ per $T\sim t(\nu)$
 \hfill
 {\tt qt($\alpha$,$\nu$)=t}, dove $P(T\le t)=\alpha$ per $T\sim t(\nu)$
 
-{\tt pchisq(q,k)} = $P(Q\le q)$, per $Q\sim \chi^2_k$
-\hfill
-{\tt qchisq($\alpha$,k)=q},  dove $P(Q\le q)=\alpha$ per $Q\sim \chi^2_k$
-\par
+% {\tt pchisq(q,k)} = $P(Q\le q)$, per $Q\sim \chi^2_k$
+% \hfill
+% {\tt qchisq($\alpha$,k)=q},  dove $P(Q\le q)=\alpha$ per $Q\sim \chi^2_k$
+% \par
 }
 
 %%%%%%%%%%%%
@@ -2157,18 +2230,18 @@ $\alpha=0.01$\hfil
 \hfill 
 {\tt qbinom($\alpha$,n,p)=x},  dove $P(X\le x)=\alpha$ per $X\sim B(n,p)$
 
-{\tt pnorm(z)}=$P(Z\le z)$, per $Z\sim N(0,1)$
+{\tt pnorm(z)}=$P(Z\le z)$, per $Z\sim {\rm N}(0,1)$
 \hfill 
-{\tt qnorm($\alpha$)=z},  dove $P(Z\le z)=\alpha$ per $Z\sim N(0,1)$
+{\tt qnorm($\alpha$)=z},  dove $P(Z\le z)=\alpha$ per $Z\sim {\rm N}(0,1)$
 
 {\tt pt(t,$\nu$)} = $P(T\le t)$ per $T\sim t(\nu)$
 \hfill
 {\tt qt($\alpha$,$\nu$)=t}, dove $P(T\le t)=\alpha$ per $T\sim t(\nu)$
 
-{\tt pchisq(q,k)} = $P(Q\le q)$, per $Q\sim \chi^2_k$
-\hfill
-{\tt qchisq($\alpha$,k)=q},  dove $P(Q\le q)=\alpha$ per $Q\sim \chi^2_k$
-\par
+% {\tt pchisq(q,k)} = $P(Q\le q)$, per $Q\sim \chi^2_k$
+% \hfill
+% {\tt qchisq($\alpha$,k)=q},  dove $P(Q\le q)=\alpha$ per $Q\sim \chi^2_k$
+% \par
 }
 
 %%%%%%%%%%%%
@@ -2219,18 +2292,18 @@ p-valore$\ =\ \Pr\big(X\ge x\ \mathbin\big|\ p=p_0\big)$, dove $X\sim{\rm B}(n,p
 \hfill 
 {\tt qbinom($\alpha$,n,p)=x},  dove $P(X\le x)=\alpha$ per $X\sim B(n,p)$
 
-{\tt pnorm(z)}=$P(Z\le z)$, per $Z\sim N(0,1)$
+{\tt pnorm(z)}=$P(Z\le z)$, per $Z\sim {\rm N}(0,1)$
 \hfill 
-{\tt qnorm($\alpha$)=z},  dove $P(Z\le z)=\alpha$ per $Z\sim N(0,1)$
+{\tt qnorm($\alpha$)=z},  dove $P(Z\le z)=\alpha$ per $Z\sim {\rm N}(0,1)$
 
 {\tt pt(t,$\nu$)} = $P(T\le t)$ per $T\sim t(\nu)$
 \hfill
 {\tt qt($\alpha$,$\nu$)=t}, dove $P(T\le t)=\alpha$ per $T\sim t(\nu)$
 
-{\tt pchisq(q,k)} = $P(Q\le q)$, per $Q\sim \chi^2_k$
-\hfill
-{\tt qchisq($\alpha$,k)=q},  dove $P(Q\le q)=\alpha$ per $Q\sim \chi^2_k$
-\par
+% {\tt pchisq(q,k)} = $P(Q\le q)$, per $Q\sim \chi^2_k$
+% \hfill
+% {\tt qchisq($\alpha$,k)=q},  dove $P(Q\le q)=\alpha$ per $Q\sim \chi^2_k$
+% \par
 }
 
 
@@ -2242,7 +2315,7 @@ p-valore$\ =\ \Pr\big(X\ge x\ \mathbin\big|\ p=p_0\big)$, dove $X\sim{\rm B}(n,p
 \section{Z-test}
 \label{Z-test}
 \subsection{Test a una coda}
-Si sospetta che una certa terapia faccia aumentare la pressione diastolica. Nella popolazione generale la pressione diastolica ha distribuzione $N(\mu_0,\sigma^2)$ con $\mu_0=75$ e $\sigma=9.5$. 
+Si sospetta che una certa terapia faccia aumentare la pressione diastolica. Nella popolazione generale la pressione diastolica ha distribuzione ${\rm N}(\mu_0,\sigma^2)$ con $\mu_0=75$ e $\sigma=9.5$. 
 
 Assumiamo che tra i pazienti in terapia la pressione diastolica sia distribuita normalmente con media ignota $\mu$ e con la stessa deviazione standard della popolazione generale. Vogliamo testare le seguenti ipotesi:
 
@@ -2291,7 +2364,7 @@ Qui rappresentiamo gli errori del I e II tipo per campioni di dimensione $n=20$ 
 \clearpage\subsection{Pressione diastolica (esercizio formato esame)}
 \label{Pressione diastolica esercizio 1}
 
-(Testo ripetuto da sopra~\ref{Z-test}.) Si sospetta che una certa terapia faccia aumentare la pressione diastolica. Nella popolazione generale la pressione diastolica ha distribuzione $N(\mu_0,\sigma^2)$ con $\mu_0=75$ e $\sigma=5.5$. Assumiamo che tra i pazienti in terapia la pressione diastolica sia distribuita normalmente con media ignota $\mu$ e con la stessa deviazione standard della popolazione generale. 
+(Testo ripetuto da sopra~\ref{Z-test}.) Si sospetta che una certa terapia faccia aumentare la pressione diastolica. Nella popolazione generale la pressione diastolica ha distribuzione ${\rm N}(\mu_0,\sigma^2)$ con $\mu_0=75$ e $\sigma=5.5$. Assumiamo che tra i pazienti in terapia la pressione diastolica sia distribuita normalmente con media ignota $\mu$ e con la stessa deviazione standard della popolazione generale. 
 
 Un esperimento consiste nel misurare il valor medio della pressione diastolica di un campione di $n=64$ pazienti in terapia.
 
@@ -2314,15 +2387,15 @@ Si risponda assumendo note le funzioni in calce.
 \item[3.] Z-test a una coda (coda superiore)
 \item[4.] $x_\alpha$ è tale che \medskip
 
-$\alpha\ =\ \Pr\big(Y\ge x_\alpha\ \mathbin\big|\ \mu=\mu_0\big)\ =\ \Pr(X\ge x_\alpha)$, dove $X\sim N(\mu_0,\sigma^2/n)$ \medskip
+$\alpha\ =\ \Pr\big(Y\ge x_\alpha\ \mathbin\big|\ \mu=\mu_0\big)\ =\ \Pr(X\ge x_\alpha)$, dove $X\sim {\rm N}(\mu_0,\sigma^2/n)$ \medskip
 
-$\phantom{\alpha\ }\ =1-\Pr\bigg(Z\le \dfrac{x_\alpha-\mu_0}{\sigma/\sqrt n}\bigg)$, dove $Z\sim N(0,1)$.
+$\phantom{\alpha\ }\ =1-\Pr\bigg(Z\le \dfrac{x_\alpha-\mu_0}{\sigma/\sqrt n}\bigg)$, dove $Z\sim {\rm N}(0,1)$.
 
 \hfill $x_\alpha\ =\ \dfrac{\sigma}{\sqrt n}\,{\tt qnorm}(1-\alpha)-\mu_0$.
 
 \item[5.] La potenza del test è $1-\beta$ dove\medskip
 
-$\beta\ =\ \Pr(Y\le x_\alpha\ |\ \mu=\mu_0+\delta)\ =\ \Pr(X\le x_\alpha)$, dove $\bar X\sim N(\mu_0+\delta,\sigma^2/n)$\medskip
+$\beta\ =\ \Pr(Y\le x_\alpha\ |\ \mu=\mu_0+\delta)\ =\ \Pr(X\le x_\alpha)$, dove $\bar X\sim {\rm N}(\mu_0+\delta,\sigma^2/n)$\medskip
 
 
 $\phantom{\beta\ }=\ \Pr\bigg(Z\le  \dfrac{x_\alpha-\mu_0-\delta}{\sigma/\sqrt n}\bigg)$
@@ -2339,9 +2412,9 @@ $\phantom{\beta\ }=\ \Pr\bigg(Z\le  \dfrac{x_\alpha-\mu_0-\delta}{\sigma/\sqrt n
 \hfill 
 {\tt qbinom($\alpha$,n,p)=x},  dove $P(X\le x)=\alpha$ per $X\sim B(n,p)$
 
-{\tt pnorm(z)}=$P(Z\le z)$, per $Z\sim N(0,1)$
+{\tt pnorm(z)}=$P(Z\le z)$, per $Z\sim {\rm N}(0,1)$
 \hfill 
-{\tt qnorm($\alpha$)=z},  dove $P(Z\le z)=\alpha$ per $Z\sim N(0,1)$
+{\tt qnorm($\alpha$)=z},  dove $P(Z\le z)=\alpha$ per $Z\sim {\rm N}(0,1)$
 
 {\tt pt(t,$\nu$)} = $P(T\le t)$ per $T\sim t(\nu)$
 \hfill
@@ -2404,9 +2477,9 @@ Si assumano noti i valori delle seguenti funzioni
 \hfill 
 {\tt qbinom($\alpha$,n,p)=x},  dove $P(X\le x)=\alpha$ per $X\sim B(n,p)$
 
-{\tt pnorm(z)}=$P(Z\le z)$, per $Z\sim N(0,1)$
+{\tt pnorm(z)}=$P(Z\le z)$, per $Z\sim {\rm N}(0,1)$
 \hfill 
-{\tt qnorm($\alpha$)=z},  dove $P(Z\le z)=\alpha$ per $Z\sim N(0,1)$
+{\tt qnorm($\alpha$)=z},  dove $P(Z\le z)=\alpha$ per $Z\sim {\rm N}(0,1)$
 
 {\tt pt(t,$\nu$)} = $P(T\le t)$ per $T\sim t(\nu)$
 \hfill
@@ -2460,9 +2533,9 @@ Si risponda assumendo note le funzioni in calce.
 \begin{itemize}
 \item[6.] 
 
-p-valore$\ =\ \Pr\big(Y\ge \bar x\ \mathbin\big|\ \mu=\mu_0\big)\ =\ \Pr(X\ge\bar x)$, dove $X\sim N(\mu_0,\sigma^2/n)$\medskip\smallskip
+p-valore$\ =\ \Pr\big(Y\ge \bar x\ \mathbin\big|\ \mu=\mu_0\big)\ =\ \Pr(X\ge\bar x)$, dove $X\sim {\rm N}(\mu_0,\sigma^2/n)$\medskip\smallskip
 
-\phantom{p-valore}$\ =\ 1-\Pr\bigg(Z\le \dfrac{\bar x-\mu_0}{\sigma/\sqrt n}\bigg)$, dove $Z\sim N(0,1)$\medskip
+\phantom{p-valore}$\ =\ 1-\Pr\bigg(Z\le \dfrac{\bar x-\mu_0}{\sigma/\sqrt n}\bigg)$, dove $Z\sim {\rm N}(0,1)$\medskip
 
 \phantom{p-valore}$\ =\ 1- {\tt pnorm}\bigg(\dfrac{\bar x-\mu_0}{\sigma/\sqrt n}\bigg)$.
 
@@ -2476,18 +2549,18 @@ p-valore$\ =\ \Pr\big(Y\ge \bar x\ \mathbin\big|\ \mu=\mu_0\big)\ =\ \Pr(X\ge\ba
 \hfill 
 {\tt qbinom($\alpha$,n,p)=x},  dove $P(X\le x)=\alpha$ per $X\sim B(n,p)$
 
-{\tt pnorm(z)}=$P(Z\le z)$, per $Z\sim N(0,1)$
+{\tt pnorm(z)}=$P(Z\le z)$, per $Z\sim {\rm N}(0,1)$
 \hfill 
-{\tt qnorm($\alpha$)=z},  dove $P(Z\le z)=\alpha$ per $Z\sim N(0,1)$
+{\tt qnorm($\alpha$)=z},  dove $P(Z\le z)=\alpha$ per $Z\sim {\rm N}(0,1)$
 
 {\tt pt(t,$\nu$)} = $P(T\le t)$ per $T\sim t(\nu)$
 \hfill
 {\tt qt($\alpha$,$\nu$)=t}, dove $P(T\le t)=\alpha$ per $T\sim t(\nu)$
 
-{\tt pchisq(q,k)} = $P(Q\le q)$, per $Q\sim \chi^2_k$
-\hfill
-{\tt qchisq($\alpha$,k)=q},  dove $P(Q\le q)=\alpha$ per $Q\sim \chi^2_k$
-\par
+% {\tt pchisq(q,k)} = $P(Q\le q)$, per $Q\sim \chi^2_k$
+% \hfill
+% {\tt qchisq($\alpha$,k)=q},  dove $P(Q\le q)=\alpha$ per $Q\sim \chi^2_k$
+% \par
 }
 
 %%%%%%%%%%%%
@@ -2504,15 +2577,15 @@ Domande:
 \item[2] Dato $x_\alpha$ come sopra. Qual'è la probabilità di un errore del II tipo se l'effect size è $\delta=0.5$~?
 \end{itemize}
 
-Risposte:
+\textbf{Risposte}
 
-\begin{itemize}
-\item[1] Vogliamo $1\%=\Pr(\bar X\le x_\alpha)$ con $\bar X\sim N(\mu_0,\sigma/\sqrt{n})$.\\
-Quindi $x_\alpha=${\tt\ qnorm(0.01,3.1,0.4)\,=\,2.17}
-\item[2] $\beta=\Pr(\bar X\le x_\alpha)$ con $\bar X\sim N(\mu_0-\delta,\sigma/\sqrt{n})$.\\
-Quindi  $\beta=${\tt\ pnorm(2.17,2.6,0.4)\,=\,0.14}.
+% \begin{itemize}
+% \item[1] Vogliamo $1\%=\Pr(\bar X\le x_\alpha)$ con $\bar X\sim {\rm N}(\mu_0,\sigma/\sqrt{n})$.\\
+% Quindi $x_\alpha=${\tt\ qnorm(0.01,3.1,0.4)\,=\,2.17}
+% \item[2] $\beta=\Pr(\bar X\le x_\alpha)$ con $\bar X\sim {\rm N}(\mu_0-\delta,\sigma/\sqrt{n})$.\\
+% Quindi  $\beta=${\tt\ pnorm(2.17,2.6,0.4)\,=\,0.14}.
 
-\end{itemize}
+% \end{itemize}
 
 
 
@@ -2535,46 +2608,43 @@ Boys of a certain age are known to have a mean weight of $85$ pounds and standar
 \item[3.] Che test possiamo fare?
 
 \item[4.] Qual'è il p-valore ottenuto dai dati?
-
-\item[5.] Possiamo rigettare l'ipotesi nulla con una significatività del $\alpha=5\%$~?
 \end{itemize}
 
-\textbf{Risposte} Definiamo:\\
-$\mu_0=85$\\
-$\sigma=10.6$\\
-$n=25$\\
+Si assumano noti i valori delle funzioni in calce
+
+\textbf{Risposte}\quad Definiamo:\quad
+$\mu_0=85$\quad
+$\sigma=10.6$\quad
+$n=25$\quad
 $\bar x=88.94$
 \begin{itemize}
 \item[1.] $\mu=\mu_0$.
 \item[2.] $\mu>\mu_0$ 
 \item[3.] Z-test una coda (superiore)
-\item[4.] il p-valore è {\tt 1-pnorm(z)} dove $z=\dfrac{\bar x-\mu_0}{\sigma/\sqrt{n}}$.\hfill {\tt (0.03)}
-
-Lo stesso risultato si ottienre con {\tt 1-pnorm($\bar x,\mu_0,\sigma/\sqrt{n}$)}, ma non è tra le possibilità elencate in calce.
-\item[5.] si, perché  p-valore $<\alpha$.
+\item[4.] il p-valore è {\tt 1-pnorm(z)} dove $z=\dfrac{\bar x-\mu_0}{\sigma/\sqrt{n}}$.
 \end{itemize}
 
+\vfill
 \parskip1ex
 {\hrulefill\scriptsize
 
-Si assumano noti i valori delle seguenti funzioni
 
 {\tt pbinom(x,n,p)}=$P(X\le x)$, per $X\sim B(n,p)$
 \hfill 
 {\tt qbinom($\alpha$,n,p)=x},  dove $P(X\le x)=\alpha$ per $X\sim B(n,p)$
 
-{\tt pnorm(z)}=$P(Z\le z)$, per $Z\sim N(0,1)$
+{\tt pnorm(z)}=$P(Z\le z)$, per $Z\sim {\rm N}(0,1)$
 \hfill 
-{\tt qnorm($\alpha$)=z},  dove $P(Z\le z)=\alpha$ per $Z\sim N(0,1)$
+{\tt qnorm($\alpha$)=z},  dove $P(Z\le z)=\alpha$ per $Z\sim {\rm N}(0,1)$
 
 {\tt pt(t,$\nu$)} = $P(T\le t)$ per $T\sim t(\nu)$
 \hfill
 {\tt qt($\alpha$,$\nu$)=t}, dove $P(T\le t)=\alpha$ per $T\sim t(\nu)$
 
-{\tt pchisq(q,k)} = $P(Q\le q)$, per $Q\sim \chi^2_k$
-\hfill
-{\tt qchisq($\alpha$,k)=q},  dove $P(Q\le q)=\alpha$ per $Q\sim \chi^2_k$
-\par
+% {\tt pchisq(q,k)} = $P(Q\le q)$, per $Q\sim \chi^2_k$
+% \hfill
+% {\tt qchisq($\alpha$,k)=q},  dove $P(Q\le q)=\alpha$ per $Q\sim \chi^2_k$
+% \par
 }
 
 
@@ -2618,8 +2688,7 @@ In R la funzione il risultato si ottiene direttamente con
 
 {\tt 
 x = c(62,92,75,68,83,95)\\
-t.test(x, alternative='greater', mu=70)}
-
+t.test(x, alternative='greater', mu=70)} 
 Quindi possiamo affermare con un livello di confidenza $\ge 90\%$ che il voto medio della classe in un ipotetico esame sarà del $>70$.  
 \end{itemize}
 
@@ -2732,11 +2801,12 @@ N.B. Se la deviazione standard della popolazione fosse stata nota, diciamo $\sig
 
 \ceq{\hfill\epsilon}{=}{\dfrac{z\,\sigma}{\sqrt{6}}}\hfill {\tt (16.35)}
 
-
+\begin{comment}
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
-%%%%%%\clearpage\section{Esercizi vari}
+%%%%%%
+\clearpage\section{Esercizi vari}
 \subsection{Placebo}
 
 
@@ -2744,6 +2814,10 @@ Ad un gruppo di persone vengono misurati 100 diversi parametri fisiologici (che 
 
 
 Risposta:\kern3ex $1-(0.98)^{100}=87\%$
+
+  
+\end{comment}
+
 
 \clearpage\
 \begin{comment}
