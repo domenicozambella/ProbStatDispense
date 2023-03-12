@@ -1219,7 +1219,7 @@ Per esempio, due ragionevoli cost function sono
 {=}
 {\sum_{i=1}^n |y_i-\beta_0-\beta_1 x_i|}
 
-\ceq{\textrm{2.}\hfill\sum_{i=1}^n (e_i)^2}
+\ceq{\textrm{2.}\hfill\sum_{i=1}^n e_i^2}
 {=}
 {\sum_{i=1}^n (y_i-\beta_0-\beta_1 x_i)^2}
 
@@ -1272,7 +1272,7 @@ $\displaystyle\overline{x^2}\ =\ \frac1n\sum_{i=1}^n x_i^2$
 \hfill
 $\displaystyle\overline{xy}\ =\ \frac1n\sum_{i=1}^n x_iy_i$
 
-riscriviamo il sistemain forma abbreviata
+riscriviamo il sistema in forma abbreviata
 
 \ceq{\hfill\beta_0+\beta_1\bar x}
 {=}
@@ -1329,7 +1329,7 @@ Assumiamo che gli errori $E_i$ siano v.a.i.i.d.\@ di tipo ${\rm N}(0,\sigma^2)$.
 Si verifica che (approssimativamente) $B_0,B_1\sim T(n-2)$.
 Le rispettive deviazioni standard $s_0,s_1$ si stimano con le formule
 
-\ceq{\hfill s^2_0}{=}{\frac{n}{ n - 2}\sum_{i=1}^n (e_i)^2}
+\ceq{\hfill s^2_0}{=}{\frac{n}{ n - 2}\sum_{i=1}^n e_i^2}
 
 \ceq{\hfill s^2_1}{=}{\frac{s^2_0}{\displaystyle\sum_{i=1}^n (x_i-\bar x)^2}}
 
@@ -1346,21 +1346,20 @@ Si noti $\beta_1=0$ essenzialmente dice che le risposte non dipendono dai predit
 \label{regressione_lineare4}
 
 Molto spesso le risposte dipendono da più di un predittore.
-Il modello quindi è
+Con due predittori il modello è quindi
 
 \ceq{1.\hfill y_i}{=}{\beta_0+\beta_1 x_i+\beta_2 z_i+e_i}
 
-Più in generale potermmo avere $k$ predittori diversi.
-Per chiarezza discutiamo il caso $k=2$.
+Più in generale potermmo avere $k$ predittori diversi ma per chiarezza discutiamo il caso $k=2$.
 I parametri $\beta_0,\beta_1,\beta_2$ si stimano minimizzando la cost function
 
-\ceq{\hfill\sum_{i=1}^n (e_i)^2}
+\ceq{\hfill\sum_{i=1}^n e_i^2}
 {=}
 {\sum_{i=1}^n (y_i-\beta_0-\beta_1 x_i-\beta_2 z_i)^2}
 
 in modo del tutto analogo al caso $k=1$.
 
-Questa soluzione permette anche di trattare il caso non lineare.
+Questa soluzione permette anche di trattare il caso di dipendenza non lineare.
 Supponiamo di voler modellare una dipendenza quadratica (per esempio, il predittore è il tempo e la risposta lo spazio di un moto rettilineo con accelerazione costante).
 Possiamo continuare ad usare il modello (1) con $z_i=(x_i)^2$.
 
