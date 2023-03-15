@@ -188,7 +188,7 @@ diagrams={>=latex}
 
 
 
-\pagestyle{empty}
+\pagestyle{plain}
 
 \definecolor{violet}{RGB}{115, 0, 205}
 \definecolor{brown}{RGB}{150, 50, 10}
@@ -238,7 +238,7 @@ Questi appunti contengono errori e refusi, quindi correzioni e commenti sono gra
 \tableofcontents
 
 \chapter{Teoria (il minimo sindacale)} 
-\pagestyle{empty}
+\pagestyle{plain}
 \raggedbottom
 
 Per esempi ed esercizi seguire i \hyperref[ch2]{link \faShare}
@@ -1150,7 +1150,7 @@ Se in un esperimento misuriamo $\bar x$, diremo che $\mu=\bar x\pm\epsilon$ con 
 
 L'interpretazione \`e la sequente: se ripetiamo l'esperimento, con probabilità $1-\alpha$ ritroveremo un intervallo che contiene $\mu$.
 
-N.B. L'intervallo \`e la variabile alearoria, $\mu$ è un numero fissato, purché ignoto. 
+N.B. L'intervallo \`e alearorio, $\mu$ è un numero fissato, anche se ignoto. 
 
 %%%%%%%%%%%%
 %%%%%%%%%%%%
@@ -1294,7 +1294,7 @@ Le soluzioni sono facili da calcolare
 \vskip-.6\baselineskip
 \ceq{\hfill\beta_1}
 {=}
-{\frac{\bar y\cdot\bar x-\overline{xy}}{\overline{x^2}-\bar x^2}}
+{\frac{\overline{xy}-\bar y\cdot\bar x}{\overline{x^2}-\bar x^2}}
 
 
 %%%%%%%%%%%%
@@ -1374,7 +1374,7 @@ Possiamo continuare ad usare il modello (1) con $z_i=(x_i)^2$.
 %*******************************************************
 %*******************************************************
 \chapter{Esempi ed esercizi}
-\pagestyle{empty}
+\pagestyle{plain}
 \label{ch2}
 
 
@@ -1931,10 +1931,10 @@ Per il momento $k$ lo lasciamo inteterminato per poterne scegliere quello ottima
 Per quanto osservato sulla distribuzione di $X$, possiamo calcolare la specificità del test (probabilità di falsi positivi, probabilità di errori del I tipo)
 
 
-\ceq{\hfill \Pr(T_{k}\mathrel|H_0)}{=}{\Pr(X\ge k\mathrel|H_0)}
+\ceq{\hfill \Pr(T_{k}\mathrel|H_0)}{=}{\Pr(X\ge n/2+k\mathrel|H_0)}
 
-\ceq{}{=}{\sum^n_{i=k} {n\choose i}\bigg(\frac12\bigg)^i\bigg(1-\frac12\bigg)^{n-i}}
-\medrel{=}$\displaystyle\frac1{2^n}\sum^n_{i=k} {n\choose i}$
+\ceq{}{=}{\sum^n_{i=n/2+k} {n\choose i}\bigg(\frac12\bigg)^i\bigg(1-\frac12\bigg)^{n-i}}
+\medrel{=}$\displaystyle\frac1{2^n}\sum^n_{i=n/2+k} {n\choose i}$
 
 
 Per concretezza fissiamo anche $k=3$ quindi {\color{red}\boldmath\ $T_{+k}=\{13,\dots,20\}$} è la regione di rifiuto.  %$\Pr(T_+|\neg D) = \py{sum(y[y.index<=k]}$
@@ -1952,7 +1952,7 @@ Per concretezza fissiamo anche $k=3$ quindi {\color{red}\boldmath\ $T_{+k}=\{13,
 La probabilità dei falsi negativi può essere espressa in funzione di $p$ (abbiamo solo assunto che $p>1/2$)
 
 
-\ceq{\hfill \Pr(\neg T_{+k}\mathrel|H_A)}{=}{\Pr(X< k\mathrel|H_A)\quad=\quad\sum^{k-1}_{i=1} {n\choose i}p^i(1-p)^{n-i}}
+\ceq{\hfill \Pr(\neg T_{+k}\mathrel|H_A)}{=}{\Pr(X< k\mathrel|H_A)\quad=\quad\sum^{n/2+k-1}_{i=0} {n\choose i}p^i(1-p)^{n-i}}
 
 Consideriamo come prima $k=3$.
 Abbiamo {\color{blue}\boldmath\ $\neg T_{+k}=\{0,\dots,12\}$} è la zona di \emph{NON rifiuto.}
@@ -2363,7 +2363,8 @@ Qui rappresentiamo gli errori del I e II tipo per campioni di dimensione $n=20$ 
 \clearpage\subsection{Pressione diastolica (esercizio formato esame)}
 \label{Pressione diastolica esercizio 1}
 
-(Testo ripetuto da sopra~\ref{Z-test}.) Si sospetta che una certa terapia faccia aumentare la pressione diastolica. Nella popolazione generale la pressione diastolica ha distribuzione ${\rm N}(\mu_0,\sigma^2)$ con $\mu_0=75$ e $\sigma=5.5$. Assumiamo che tra i pazienti in terapia la pressione diastolica sia distribuita normalmente con media ignota $\mu$ e con la stessa deviazione standard della popolazione generale. 
+(Testo ripetuto da sopra~\ref{Z-test}.) 
+Si sospetta che una certa terapia faccia aumentare la pressione diastolica. Nella popolazione generale la pressione diastolica ha distribuzione ${\rm N}(\mu_0,\sigma^2)$ con $\mu_0=75$ e $\sigma=5.5$. Assumiamo che tra i pazienti in terapia la pressione diastolica sia distribuita normalmente con media ignota $\mu$ e con la stessa deviazione standard della popolazione generale. 
 
 Un esperimento consiste nel misurare il valor medio della pressione diastolica di un campione di $n=64$ pazienti in terapia.
 
@@ -2378,7 +2379,7 @@ Un esperimento consiste nel misurare il valor medio della pressione diastolica d
 \end{itemize}
 Si risponda assumendo note le funzioni in calce.
 
-\textbf{Risposte}\  Definiamo\ $\mu_0=75$,\quad $\sigma=5.5$,\quad, $n=64$,\quad $\delta=2$. Sia $Y$ la v.a. che da il valor medio della pressione diastolica del campione.
+\textbf{Risposte}\  Definiamo\ $\mu_0=75$,\quad $\sigma=5.5$,\quad, $n=64$,\quad $\delta=2$. Sia $\bar X$ la v.a. che ritorna il valor medio della pressione diastolica del campione.
 
 \begin{itemize}
 \item[1.] $H_0$: $\mu=\mu_0$ dove $\mu$ è pressione diastolica delle persone in terapia 
@@ -2386,9 +2387,11 @@ Si risponda assumendo note le funzioni in calce.
 \item[3.] Z-test a una coda (coda superiore)
 \item[4.] $x_\alpha$ è tale che \medskip
 
-$\alpha\ =\ \Pr\big(Y\ge x_\alpha\ \mathbin\big|\ \mu=\mu_0\big)\ =\ \Pr(X\ge x_\alpha)$, dove $X\sim {\rm N}(\mu_0,\sigma^2/n)$ \medskip
+$\alpha\ =\ \Pr\big(\bar X\ge x_\alpha\ \mathbin\big|\ \mu=\mu_0\big)\ =\ \Pr(Y\ge x_\alpha)$, dove $Y\sim {\rm N}(\mu_0,\sigma^2/n)$ \medskip
 
-$\phantom{\alpha\ }\ =1-\Pr\bigg(Z\le \dfrac{x_\alpha-\mu_0}{\sigma/\sqrt n}\bigg)$, dove $Z\sim {\rm N}(0,1)$.
+standardizzando otteniamo \medskip
+
+$\alpha\ =1-\Pr\bigg(Z\le \dfrac{x_\alpha-\mu_0}{\sigma/\sqrt n}\bigg)$, dove $Z\sim {\rm N}(0,1)$.
 
 \hfill $x_\alpha\ =\ \dfrac{\sigma}{\sqrt n}\,{\tt qnorm}(1-\alpha)-\mu_0$.
 
@@ -2396,8 +2399,9 @@ $\phantom{\alpha\ }\ =1-\Pr\bigg(Z\le \dfrac{x_\alpha-\mu_0}{\sigma/\sqrt n}\big
 
 $\beta\ =\ \Pr(Y\le x_\alpha\ |\ \mu=\mu_0+\delta)\ =\ \Pr(X\le x_\alpha)$, dove $\bar X\sim {\rm N}(\mu_0+\delta,\sigma^2/n)$\medskip
 
+standardizzando otteniamo \medskip
 
-$\phantom{\beta\ }=\ \Pr\bigg(Z\le  \dfrac{x_\alpha-\mu_0-\delta}{\sigma/\sqrt n}\bigg)$
+$\beta\ =\ \Pr\bigg(Z\le  \dfrac{x_\alpha-\mu_0-\delta}{\sigma/\sqrt n}\bigg)$
 
 \hfill$\beta\ =\  {\tt pnorm}\bigg(\dfrac{x_\alpha-\mu_0-\delta}{\sigma/\sqrt n}\bigg)$
 
@@ -2419,10 +2423,6 @@ $\phantom{\beta\ }=\ \Pr\bigg(Z\le  \dfrac{x_\alpha-\mu_0-\delta}{\sigma/\sqrt n
 \hfill
 {\tt qt($\alpha$,$\nu$)=t}, dove $P(T\le t)=\alpha$ per $T\sim t(\nu)$
 
-{\tt pchisq(q,k)} = $P(Q\le q)$, per $Q\sim \chi^2_k$
-\hfill
-{\tt qchisq($\alpha$,k)=q},  dove $P(Q\le q)=\alpha$ per $Q\sim \chi^2_k$
-\par
 }
 
 
@@ -2673,23 +2673,22 @@ $\strut\phantom{s} = 13.17$
 
 \item[2.] $H_A$ \ $\mu>\mu_0$
 
-\item[3.] $T$-test due popolazioni (dati non accoppiati) coda superiore. 
+\item[3.] $T$-test coda superiore. 
 
 \item[4.] Il $t$-score è 
 $t = \dfrac{\bar x - \mu_0}{s/\sqrt{n}}=\dfrac{79.17-70}{13.17/\sqrt{6}} = 1.71$
 
-\item[5.] Il p-valore è $\Pr(T\ge t)$ dve $T\sim t(5)$. Ovvero {\tt pt($t$, $n-1$)}\hfill{\tt (0.074)}
-
-\vfill
-\hrulefill\hfill\hfill
-
-In R la funzione il risultato si ottiene direttamente con
-
-{\tt 
-x = c(62,92,75,68,83,95)\\
-t.test(x, alternative='greater', mu=70)} 
-Quindi possiamo affermare con un livello di confidenza $\ge 90\%$ che il voto medio della classe in un ipotetico esame sarà del $>70$.  
+\item[5.] Il p-valore è $\Pr(T\ge t)$ dve $T\sim t(5)$. Ovvero 1-{\tt pt($t$, $n-1$)}\hfill{\tt (0.074)}
 \end{itemize}
+% \vfill
+% \hrulefill\hfill\hfill
+
+% In R la funzione il risultato si ottiene direttamente con
+
+% {\tt 
+% x = c(62,92,75,68,83,95)\\
+% t.test(x, alternative='greater', mu=70)} 
+% Quindi possiamo affermare con un livello di confidenza $\ge 90\%$ che il voto medio della classe in un ipotetico esame sarà del $>70$.  
 
 
 %%%%%%%%%%%%
@@ -2720,17 +2719,33 @@ $\displaystyle s^2_y= \frac1{n_y-1}\sum^{n_y}_{i=1}(y_i-\bar y)^2$
 
 
 \item[4.] Il p-valore è $2\Pr(T\ge |t|)$ dove $T\sim t(n_x+n_y-2)$.\\ 
-Ovvero {\tt 2 * (1 - pt($|t|$, $n_x+n_y-2$))}
-
-\hrulefill\hfill\hfill
-
-In R la funzione il risultato si ottiene direttamente con
-
-{\tt 
-x = c(62,92,75,68,83,95)\\
-y = c(60,95,76,69,89)\\
-t.test(x, y, alternative='two', var.equal = TRUE)}
+Ovvero $2 {\tt  pt}(-|t|,\  n_x+n_y-2)$
 \end{itemize}
+
+
+\vfill
+\parskip1ex
+{\hrulefill\scriptsize
+
+
+{\tt pbinom(x,n,p)}=$P(X\le x)$, per $X\sim B(n,p)$
+\hfill 
+{\tt qbinom($\alpha$,n,p)=x},  dove $P(X\le x)=\alpha$ per $X\sim B(n,p)$
+
+{\tt pnorm(z)}=$P(Z\le z)$, per $Z\sim {\rm N}(0,1)$
+\hfill 
+{\tt qnorm($\alpha$)=z},  dove $P(Z\le z)=\alpha$ per $Z\sim {\rm N}(0,1)$
+
+{\tt pt(t,$\nu$)} = $P(T\le t)$ per $T\sim t(\nu)$
+\hfill
+{\tt qt($\alpha$,$\nu$)=t}, dove $P(T\le t)=\alpha$ per $T\sim t(\nu)$
+
+% {\tt pchisq(q,k)} = $P(Q\le q)$, per $Q\sim \chi^2_k$
+% \hfill
+% {\tt qchisq($\alpha$,k)=q},  dove $P(Q\le q)=\alpha$ per $Q\sim \chi^2_k$
+% \par
+}
+
 
 %%%%%%%%%%%%
 %%%%%%%%%%%%
@@ -2741,6 +2756,21 @@ t.test(x, y, alternative='two', var.equal = TRUE)}
 Si sospetta che un certo medicinale modifichi la pressione diastolica.  Prendiamo un gruppo di $n=6$ persone. Somministriamo ad ogni individuo prima un placebo e successivamente il medicinale. Assumiamo che in entrambi i casi la pressione diastolica sia distribuita normalmente. Con il placebo otteniamo i valori $x_1,\dots,x_6=62,92,75,68,83,95$ con il medicinale otteniamo i valori $y_1,\dots,y_6=60,95,76,69,89,90$.
 
 
+\textbf{Domande}
+
+\begin{itemize}
+  \item[1.] Qual è l'potesi nulla?
+  
+  \item[2.] Qual è l'potesi alternativa?
+  
+  \item[3.] Che test si applica?
+  
+  \item[4.] Qual'è il p-valore ottenuto dai dati?
+  \end{itemize}
+  
+  Si assumano noti i valori delle funzioni in calce
+  
+  \textbf{Risposte}
 
 \begin{itemize}
 \item[1.] $H_0$ \ $\mu = 0$\hfill la media delle differenze è $0$
@@ -2749,27 +2779,49 @@ Si sospetta che un certo medicinale modifichi la pressione diastolica.  Prendiam
 
 \item[3.] $T$-test per due campioni accoppiati a due code
 
-\item[3.] Il $t$-score è 
+\item[4.] Il $t$-score è 
 $t = \dfrac{\bar z}{s/\sqrt{n}}$ dove $z_i=x_i-y_i$ e
 
 $\displaystyle\bar z = \frac1{n}\sum^n_{i=1}z_i$
 
 $\displaystyle s^2= \frac1{n-1}\sum^n_{i=1}(z_i-\bar z)^2$
 
-\item[4.] Il p-valore è $2\Pr(T\ge |t|)$ dove $T\sim t(n-1)$.\\ 
-Ovvero {\tt 2 * (1 - pt($|t|$, $n-1$))}
-
-\hrulefill\hfill\hfill
-
-In R la funzione il risultato si ottiene direttamente con
-
-{\tt 
-x = c(62,92,75,68,83,95)\\
-y = c(60,95,76,69,89,90)\\
-t.test(x, y, alternative='two', paired=TRUE)}
+\item[4.] Il p-valore è $\Pr(|T|\ge |t|)$ dove $T\sim t(n-1)$.
+Ovvero $2\,{\tt pt}(-|t|, n-1)$
 \end{itemize}
 
+% \hrulefill\hfill\hfill
 
+% In R la funzione il risultato si ottiene direttamente con
+
+% {\tt 
+% x = c(62,92,75,68,83,95)\\
+% y = c(60,95,76,69,89,90)\\
+% t.test(x, y, alternative='two', paired=TRUE)}
+
+
+\vfill
+\parskip1ex
+{\hrulefill\scriptsize
+
+
+{\tt pbinom(x,n,p)}=$P(X\le x)$, per $X\sim B(n,p)$
+\hfill 
+{\tt qbinom($\alpha$,n,p)=x},  dove $P(X\le x)=\alpha$ per $X\sim B(n,p)$
+
+{\tt pnorm(z)}=$P(Z\le z)$, per $Z\sim {\rm N}(0,1)$
+\hfill 
+{\tt qnorm($\alpha$)=z},  dove $P(Z\le z)=\alpha$ per $Z\sim {\rm N}(0,1)$
+
+{\tt pt(t,$\nu$)} = $P(T\le t)$ per $T\sim t(\nu)$
+\hfill
+{\tt qt($\alpha$,$\nu$)=t}, dove $P(T\le t)=\alpha$ per $T\sim t(\nu)$
+
+% {\tt pchisq(q,k)} = $P(Q\le q)$, per $Q\sim \chi^2_k$
+% \hfill
+% {\tt qchisq($\alpha$,k)=q},  dove $P(Q\le q)=\alpha$ per $Q\sim \chi^2_k$
+% \par
+}
 
 %%%%%%%%%%%%
 %%%%%%%%%%%%
@@ -2792,15 +2844,60 @@ L'intervallo di confidenza è $\bar x\pm\epsilon$ dove $\epsilon$ è tale che
 
 \ceq{\hfill 0.95}{=}{\Pr\bigg(-\frac{\epsilon}{s/\sqrt{n}}<T<\frac{\epsilon}{s/\sqrt{n}}\bigg)}
 
-Sia $t\ =\ ${\tt -qt(0.025,5) $\simeq$ 2.57} allora 
 
-\ceq{\hfill\epsilon}{=}{\dfrac{t\,s}{\sqrt{6}}}\hfill {\tt (13.82)}
+\ceq{}{=}{1- 2\Pr\bigg(T<-\frac{\epsilon}{s/\sqrt{n}}\bigg)}
 
-N.B. Se la deviazione standard della popolazione fosse stata nota, diciamo $\sigma=13.17$ allora posto $z\ =\ ${\tt -qnorm(0.25) $\simeq$ 0.67} avremmo ottenuto
+ovvero
 
-\ceq{\hfill\epsilon}{=}{\dfrac{z\,\sigma}{\sqrt{6}}}\hfill {\tt (16.35)}
+\ceq{\hfill 0.025}{=}{\Pr\bigg(T<-\frac{\epsilon}{s/\sqrt{n}}\bigg)}
+
+quindi
+
+\ceq{\hfill\epsilon}{=}{-\dfrac{{\tt qt(0.025,5)\cdot s}}{\sqrt{6}}}
+
+N.B. Se la deviazione standard della popolazione fosse stata nota, diciamo $\sigma=13.17$ allora avremmo ottenuto
+
+\ceq{\hfill\epsilon}{=}{-\dfrac{{\tt qnorm(0.25)}\cdot\sigma }{\sqrt{6}}}
+
+
+
 
 \begin{comment}
+%%%%%%%%%%%%
+%%%%%%%%%%%%
+%%%%%%%%%%%%
+\clearpage\
+\section{Regressione lineare}
+\label{Regressione}
+
+Abbiamo i seguanti dati 
+
+$(x_i) = (1, 2, 3, 4, 5)$
+$(y_i) = (2, 5, 5, 8, 9)$
+
+$\bar x=\dfrac{15}{5}=3$
+
+$\bar y=\dfrac{30}{5}=6$
+
+$(x_iy_i) = (2, 10, 15, 36, 45)$
+
+$(x_i^2) = (1,  4,  9, 16, 25)$
+
+$\overline{xy}=\dfrac{108}{5}$
+
+$\overline{x^2}=\dfrac{55}{5}=11$
+
+
+$\beta_1=1.8$
+
+$\beta_0=0.6$
+
+$(e_i)=( -0.4,  0.8, -1,  1.2, -0.6)$
+
+$(e_i^2)=(0.16, 0.64, 1, 1.44, 0.36)$
+
+$s_0=\dfrac{5}{3}3.6=6$
+
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
@@ -2818,8 +2915,8 @@ Risposta:\kern3ex $1-(0.98)^{100}=87\%$
 \end{comment}
 
 
-\clearpage\
-\begin{comment}
+
+\begin{comment}\clearpage\
 \section{Inferenza Bayesiana}
 
 In un casinó si gioca a testa o croce ($1$ o $0$) con tre tipi di monete che hanno probabilità di successo $1/2$, $2/3$, e $1/3$. Il casinò sceglie la moneta e continua a giocare con la stessa moneta per tutto il giorno. Il giocatore non sa quale moneta sia scelta.
