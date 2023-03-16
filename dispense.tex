@@ -1176,7 +1176,6 @@ Sia $s$ è il valore osservato di $S$ e assumiamo che questa probabilità venga 
 Ora possiamo calcolare $\alpha$ dato $\epsilon$. E viceversa possiamo calcolare $\epsilon$ dato $\alpha$. 
 
 Se in un esperimento misuriamo $\bar x$, diremo che $\mu=\bar x\pm\epsilon$ con confidenza $1-\alpha$, o che $(\bar x-\epsilon,\bar x+\epsilon)$ è un intervallo di confidenza di livello $1-\alpha$.
-é ignoto. 
 
 %%%%%%%%%%%%
 %%%%%%%%%%%%
@@ -1304,6 +1303,8 @@ Le soluzioni sono facili da calcolare
 \clearpage\section{Regressione lineare semplice (3) inferenza statistica}
 \label{regressione_lineare3}
 
+Nell'a.a.2022/23 questo paragrafo non è programma d'esame.
+
 Immaginiamo che gli errori $e_i$ siano il risultato di variabili aleatorie $E_i$.
 Per semplificare, i predittori li immaginiamo come deterministici (le conclusioni valgono più in generale).
 Le risposte saranno comunque delle variabili aleatorie
@@ -1325,18 +1326,31 @@ Le formule ricavate nel paragrafo precedente le immaginiamo come degli stimatori
 Vorremmo sapere la distribuzione di $B_0,B_1$ per poter calcolare significatività della stima di  $\beta_0,\beta_1$.
 Dobbiamo fare altre ipotesi semplificatrici.
 Assumiamo che gli errori $E_i$ siano v.a.i.i.d.\@ di tipo ${\rm N}(0,\sigma^2)$.
+Si verifica che (approssimativamente) 
 
-Si verifica che (approssimativamente) $B_0,B_1\sim T(n-2)$.
-Le rispettive deviazioni standard $s_0,s_1$ si stimano con le formule
+\ceq{\hfill\frac{B_0-\beta_0}{S_0/\sqrt{n}}}{\sim}{{\rm T}(n-2)}
 
-\ceq{\hfill s^2_0}{=}{\frac{n}{ n - 2}\sum_{i=1}^n e_i^2}
 
-\ceq{\hfill s^2_1}{=}{\frac{s^2_0}{\displaystyle\sum_{i=1}^n (x_i-\bar x)^2}}
+\ceq{\hfill\frac{B_1-\beta_1}{S_1/\sqrt{n}}}{\sim}{{\rm T}(n-2)}
 
-dove $e_i$ e $\bar x$ sono definiti come nel paragrafo precedente.
+dove
 
-Un test di ipetesi frequentemente fatto in questo contesto è $H_0:\beta_1=0$, $H_A:\beta_1\neq0$.
+\ceq{\hfill S^2_0}{=}{\frac{n}{ n - 2}\sum_{i=1}^n E_i^2}
+
+\ceq{\hfill S^2_1}{=}{\frac{S^2_0}{n(\overline{x^2}-\bar x^2)}}
+
+Chiamiamo $b_0$ e $b_1$, $s_0$, $s_1$ valori osservati di queste v.a.\@ (quindi calcolati dai dati $(x_i,y_i)$ con le formule al paragrafo precedente). 
+
+Per avere raggio di un intervallo di confidenza $1-\alpha$ per $\beta_i$ possiamo usare la formula ricavata al paragrafo~\ref{IC_varianza_ignota} 
+
+\ceq{\hfill 1-\alpha}{=}{\Pr\bigg(-\frac{\epsilon}{s_i/\sqrt{n}}<T<\frac{\epsilon}{s_i/\sqrt{n}}\bigg)}\qquad per $i=0,1$.
+
+dove $T\sim T(n-2)$.
+
+Un test di ipotesi frequentemente fatto in questo contesto è $H_0:\beta_1=0$, $H_A:\beta_1\neq0$.
 Si noti $\beta_1=0$ essenzialmente dice che le risposte non dipendono dai predittori.
+Il p-valore si questo test si calcola $\Pr(|B_1|\ge |b_1|)=\Pr(|T|\ge |b_1\sqrt{n}/s_1)$ dove $T\sim T(n-2)$.
+
 
 %%%%%%%%%%%%
 %%%%%%%%%%%%
@@ -2345,7 +2359,7 @@ Se $H_A$ è vera, $\bar X\sim N\bigg(\mu,\dfrac{\sigma^2}{n}\bigg)$ per qualche 
 \clearpage\subsection{Una coda, errore I e II tipo}
 
 
-Qui rappresentiamo gli errori del I e II tipo per campioni di dimensione $n=20$ e $n= 40$ e con un $x_\alpha$ scelto in moto tale da avere $\alpha=5\%$. Per gli errori del II tipo prendiamo $\delta=5$.
+Qui rappresentiamo gli errori del I e II tipo per campioni di dimensione $n=20$ e $n= 40$ e con un $x_\alpha$ scelto in moto tale da avere $\alpha=5\%$. Per calcolare gli errori del II tipo prendiamo $\delta=5$.
 
 \hfil\includegraphics[width=0.8\textwidth]{figure/Z-test_01.pdf}
 
@@ -2374,7 +2388,7 @@ Un esperimento consiste nel misurare il valor medio della pressione diastolica d
 \item[1.] Qual è l'ipotesi nulla?
 \item[2.] Qual è l'ipotesi alternativa?
 \item[3.] Quale test dobbiamo usare?
-\item[4.] Qual è il valore di soglia $x_\alpha$ per rifiutare l'ipotesi nulla con una confidenza del $95\%$ (ovvero significatività del $5\%$)~?
+\item[4.] Rifiutiamo $H_0$ se la misura è superiore al valore di soglia $x_\alpha$. Quant'è $x_\alpha$ se vogliamo che la significatività sia  $\alpha=5\%$~?
 \item[5.] Dato il valore di soglia al punto precedente, qual è la potenza del test per un effect size $\delta=2$~? 
 \end{itemize}
 Si risponda assumendo note le funzioni in calce.
@@ -2397,13 +2411,71 @@ $\alpha\ =1-\Pr\bigg(Z\le \dfrac{x_\alpha-\mu_0}{\sigma/\sqrt n}\bigg)$, dove $Z
 
 \item[5.] La potenza del test è $1-\beta$ dove\medskip
 
-$\beta\ =\ \Pr(Y\le x_\alpha\ |\ \mu=\mu_0+\delta)\ =\ \Pr(X\le x_\alpha)$, dove $\bar X\sim {\rm N}(\mu_0+\delta,\sigma^2/n)$\medskip
+$\beta\ =\ \Pr(\bar X\le x_\alpha\ |\ \mu=\mu_0+\delta)\ =\ \Pr(Y\le x_\alpha)$, dove $Y\sim {\rm N}(\mu_0+\delta,\sigma^2/n)$\medskip
 
 standardizzando otteniamo \medskip
 
 $\beta\ =\ \Pr\bigg(Z\le  \dfrac{x_\alpha-\mu_0-\delta}{\sigma/\sqrt n}\bigg)$
 
 \hfill$\beta\ =\  {\tt pnorm}\bigg(\dfrac{x_\alpha-\mu_0-\delta}{\sigma/\sqrt n}\bigg)$
+
+\end{itemize}
+
+\vfill
+\parskip1ex
+{\hrulefill\scriptsize
+
+{\tt pbinom(x,n,p)}=$P(X\le x)$, per $X\sim B(n,p)$
+\hfill 
+{\tt qbinom($\alpha$,n,p)=x},  dove $P(X\le x)=\alpha$ per $X\sim B(n,p)$
+
+{\tt pnorm(z)}=$P(Z\le z)$, per $Z\sim {\rm N}(0,1)$
+\hfill 
+{\tt qnorm($\alpha$)=z},  dove $P(Z\le z)=\alpha$ per $Z\sim {\rm N}(0,1)$
+
+{\tt pt(t,$\nu$)} = $P(T\le t)$ per $T\sim t(\nu)$
+\hfill
+{\tt qt($\alpha$,$\nu$)=t}, dove $P(T\le t)=\alpha$ per $T\sim t(\nu)$
+
+}
+
+%%%%%%%%%%%%
+%%%%%%%%%%%%
+%%%%%%%%%%%%
+\clearpage\subsection{Pressione diastolica (due code)}
+\label{Pressione diastolica due code}
+
+(In corsivo le differenze dal testo precedente~\ref{Pressione diastolica esercizio 1}.) 
+Si sospetta che una certa terapia \textit{modifichi} la pressione diastolica. Nella popolazione generale la pressione diastolica ha distribuzione ${\rm N}(\mu_0,\sigma^2)$ con $\mu_0=75$ e $\sigma=5.5$. Assumiamo che tra i pazienti in terapia la pressione diastolica sia distribuita normalmente con media ignota $\mu$ e con la stessa deviazione standard della popolazione generale. 
+
+Un esperimento consiste nel misurare il valor medio della pressione diastolica di un campione di $n=64$ pazienti in terapia.
+
+\textbf{Domande}
+
+\begin{itemize}
+\item[1.] Qual è l'ipotesi nulla?
+\item[2.] Qual è l'ipotesi alternativa?
+\item[3.] Quale test dobbiamo usare?
+\item[4.] Rifiutiamo $H_0$ se misura \textit{differisce} da $\mu_0$ più del valore di soglia $x_\alpha$. Quant'è $x_\alpha$ se vogliamo che la significatività sia  $\alpha=5\%$~?
+\end{itemize}
+Si risponda assumendo note le funzioni in calce.
+
+\textbf{Risposte}\  Definiamo\ $\mu_0=75$,\quad $\sigma=5.5$,\quad, $n=64$,\quad $\delta=2$. Sia $\bar X$ la v.a. che ritorna il valor medio della pressione diastolica del campione.
+
+\begin{itemize}
+\item[1.] $H_0$: $\mu=\mu_0$ dove $\mu$ è pressione diastolica delle persone in terapia 
+\item[2.] $H_A$: $\mu\neq\mu_0$
+\item[3.] Z-test a due code
+\item[4.] $x_\alpha$ è tale che \medskip
+
+$\alpha\ =\ \Pr\big(|\bar X-\mu_0|\ge x_\alpha\ \mathbin\big|\ \mu=\mu_0\big)\ =\ \Pr(|Y-\mu_0|\ge x_\alpha)$, dove $Y\sim {\rm N}(\mu_0,\sigma^2/n)$ \medskip
+
+standardizzando otteniamo \medskip
+
+$\alpha\ =\Pr\bigg(|Z|\ge \dfrac{x_\alpha}{\sigma/\sqrt n}\bigg)=2\Pr\bigg(Z\ge \dfrac{x_\alpha}{\sigma/\sqrt n}\bigg)$, dove $Z\sim {\rm N}(0,1)$.
+
+\hfill $x_\alpha\ =\ \dfrac{\sigma}{\sqrt n}\,{\tt qnorm}(1-\alpha/2)$.
+
 
 \end{itemize}
 
@@ -2503,8 +2575,6 @@ Si assumano noti i valori delle seguenti funzioni
 (Continua l'esempio~\ref{Z-test}.) Supponiamo di ottenere $\bar x=78.0$ da un campione di dimensione $n=20$. Il p-valore di questa misura è $\Pr(\bar X\ge 78)=1-\Pr(\bar X\le 78)$.
 
 \hfil\includegraphics[width=0.8\textwidth]{figure/Z-test-p-val_01.pdf}
-
-Numericamente $\Pr(\bar X\le \bar x)$ si può calcolare usando la funzione {\tt pnorm(x,m,s)} Nel nostro caso i valori sono \ {\tt x}$\,=\bar x$,  \ {\tt m}$\,=\mu_0$, \ e  \ {\tt s}$\,=\sigma/\sqrt{n}$
 
 Nel caso di un test a due code, se $H_A$ fosse stata $\mu_0\neq\mu$, il p-valore diventa esattamente il doppio che per il test ad una coda (qui sotto differisce numericamente a causa degli arrotondamenti). 
 
@@ -2827,12 +2897,11 @@ Ovvero $2\,{\tt pt}(-|t|, n-1)$
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 \clearpage\
-\section{Intervallo di confidenza}
-\label{ICTesempio1}
 \hfill\textbf{{\color{brown}\hyperref[IC_varianza_ignota]{Intervallo di confidenza: normale con varianza ignota \faShare}}}
 
-
 \hfill\textbf{{\color{brown}\hyperref[IC_varianza_nota]{varianza nota \faShare}}}
+\section{Intervallo di confidenza}
+\label{ICTesempio1}
 
 Da una popolazione con distribuzione normale, media e varianza ignota, misuriamo i valori $x_1,\dots,x_6=62,92,75,68,83,95$. Si calcoli un intervallo di confidenza al $95\%$ per la media di popolazione.
 
@@ -2862,18 +2931,23 @@ N.B. Se la deviazione standard della popolazione fosse stata nota, diciamo $\sig
 
 
 
-\begin{comment}
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 \clearpage\
+\hfill\textbf{{\color{brown}\hyperref[regressione_lineare]{Regressione lineare \faShare}}}
 \section{Regressione lineare}
 \label{Regressione}
 
-Abbiamo i seguanti dati 
+
+Abbiamo le seguanti coppie di dati 
 
 $(x_i) = (1, 2, 3, 4, 5)$
 $(y_i) = (2, 5, 5, 8, 9)$
+
+Si calcoli un intervallo di confidenza al $95\%$ per i valori dell'intercetta $\beta_0$ e del cefficente angolare $\beta_1$ della retta interpolante.
+
+\textbf{Risposta}
 
 $\bar x=\dfrac{15}{5}=3$
 
@@ -2898,6 +2972,7 @@ $(e_i^2)=(0.16, 0.64, 1, 1.44, 0.36)$
 
 $s_0=\dfrac{5}{3}3.6=6$
 
+\begin{comment}
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
