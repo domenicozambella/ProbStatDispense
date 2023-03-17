@@ -1326,12 +1326,9 @@ Le formule ricavate nel paragrafo precedente le immaginiamo come degli stimatori
 Vorremmo sapere la distribuzione di $B_0,B_1$ per poter calcolare significatività della stima di  $\beta_0,\beta_1$.
 Dobbiamo fare altre ipotesi semplificatrici.
 Assumiamo che gli errori $E_i$ siano v.a.i.i.d.\@ di tipo ${\rm N}(0,\sigma^2)$.
-Si verifica che (approssimativamente) 
+Si verifica che (approssimativamente) per $i=0,1$
 
-\ceq{\hfill\frac{B_0-\beta_0}{S_0/\sqrt{n}}}{\sim}{{\rm T}(n-2)}
-
-
-\ceq{\hfill\frac{B_1-\beta_1}{S_1/\sqrt{n}}}{\sim}{{\rm T}(n-2)}
+\ceq{\hfill\frac{B_i-\beta_i}{S_i/\sqrt{n}}}{\sim}{{\rm T}(n-2)}
 
 dove
 
@@ -2460,7 +2457,7 @@ Un esperimento consiste nel misurare il valor medio della pressione diastolica d
 \end{itemize}
 Si risponda assumendo note le funzioni in calce.
 
-\textbf{Risposte}\  Definiamo\ $\mu_0=75$,\quad $\sigma=5.5$,\quad, $n=64$,\quad $\delta=2$. Sia $\bar X$ la v.a. che ritorna il valor medio della pressione diastolica del campione.
+\textbf{Risposte}\  Definiamo\ $\mu_0=75$,\quad $\sigma=5.5$,\quad, $n=64$,\quad $\delta=2$. Sia $\bar X$ la v.a.\@ che ritorna il valor medio della pressione diastolica del campione.
 
 \begin{itemize}
 \item[1.] $H_0$: $\mu=\mu_0$ dove $\mu$ è pressione diastolica delle persone in terapia 
@@ -2637,7 +2634,8 @@ p-valore$\ =\ \Pr\big(Y\ge \bar x\ \mathbin\big|\ \mu=\mu_0\big)\ =\ \Pr(X\ge\ba
 %%%%%%%%%%%%
 \clearpage\subsection{Crescita media}
 
-In condizioni ottimali l'incremento di una certa cultura in una fissata unità di tempo ha media $\mu_0=3.1$ e deviazione standard $\sigma=1.2$. Vogliamo progettare un test per decidere se la crecita di una data cultura sia sub-ottimale. Assumiamo che la distribuzione sia normale e che in condizioni sub-ottimali la deviazione standard sia la stessa. (Queste assunzioni sono abbastanza irragionevoli, ma portiamo pazienza.)
+In condizioni ottimali l'incremento di una certa cultura in una fissata unità di tempo ha media $\mu_0=3.1$ e deviazione standard $\sigma=1.2$.
+Vogliamo progettare un test per decidere se la crecita di una data cultura sia sub-ottimale. Assumiamo che la distribuzione sia normale e che in condizioni sub-ottimali la deviazione standard sia la stessa. 
 
 Domande:
 
@@ -2850,11 +2848,11 @@ Si sospetta che un certo medicinale modifichi la pressione diastolica.  Prendiam
 \item[3.] $T$-test per due campioni accoppiati a due code
 
 \item[4.] Il $t$-score è 
-$t = \dfrac{\bar z}{s/\sqrt{n}}$ dove $z_i=x_i-y_i$ e
+$t = \dfrac{\bar z}{s/\sqrt{n}}= -0.4264$ dove $z_i=x_i-y_i$ e
 
-$\displaystyle\bar z = \frac1{n}\sum^n_{i=1}z_i$
+$\displaystyle\bar z = \frac1{n}\sum^n_{i=1}z_i=\frac16\,(2-3-1-1-6+5)=-\frac46$
 
-$\displaystyle s^2= \frac1{n-1}\sum^n_{i=1}(z_i-\bar z)^2$
+$\displaystyle s^2= \frac1{n-1}\sum^n_{i=1}(z_i-\bar z)^2=14.67$
 
 \item[4.] Il p-valore è $\Pr(|T|\ge |t|)$ dove $T\sim t(n-1)$.
 Ovvero $2\,{\tt pt}(-|t|, n-1)$
@@ -2938,6 +2936,8 @@ N.B. Se la deviazione standard della popolazione fosse stata nota, diciamo $\sig
 \hfill\textbf{{\color{brown}\hyperref[regressione_lineare]{Regressione lineare \faShare}}}
 \section{Regressione lineare}
 \label{Regressione}
+
+Incompleto
 
 
 Abbiamo le seguanti coppie di dati 
