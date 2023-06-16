@@ -758,7 +758,7 @@ L'uguaglianza è immediata da verificare usando la definizione di varianza e la
 
 Sia $X\sim B(1,p)$  dalla definizione di varianza (e ricordando che $E(X)=p$)
 
-\ceq{\hfill\E(X)}{=}{\sum_{x\in\{0,1\}} (x-p)^2\cdot \Pr(X=x)}
+\ceq{\hfill\Var (X)}{=}{\sum_{x\in\{0,1\}} (x-p)^2\cdot \Pr(X=x)}
 
 \ceq{}{=}{(1-p)^2\cdot p + p^2 \cdot (1-p)}\medrel{=}$p\,(1-p)$
 
@@ -2495,6 +2495,23 @@ $\alpha\ =\Pr\bigg(|Z|\ge \dfrac{x_\alpha}{\sigma/\sqrt n}\bigg)=2\Pr\bigg(Z\ge 
 }
 
 
+%%%%%%%%%%%%
+%%%%%%%%%%%%
+%%%%%%%%%%%%
+\clearpage\subsection{Confezioni}
+
+Un certo processo produttivo confeziona scatole con biglie rosse e blue nella proporzione del $50\%$.
+
+Sappiamo però che il $10\%$ delle confezioni si discosta da questo obbiettivo per almeno il $5\%$
+ (con uguale probabilità per eccesso e per difetto)
+
+Per scartare le confezioni non conformi da ogni scatola vengono estratte 1000 biglie se la frazine di biglie rosse è $>55\%$ o $<45\%$ la confezione viene scartata.
+
+Qual è la probabilità che una scatola con esattamente $50\%$ di biglie rosse venga scartata?
+
+Qual è la probabilità che una scatola con più del $60\%$ di biglie rosse non venga scartata?
+
+Quante confezioni che si discostano per almeno il $5\%$ non vengono scartate.
 \begin{comment}
 %%%%%%%%%%%%
 %%%%%%%%%%%%
@@ -2937,8 +2954,7 @@ N.B. Se la deviazione standard della popolazione fosse stata nota, diciamo $\sig
 \section{Regressione lineare}
 \label{Regressione}
 
-Incompleto
-
+Incompleto 
 
 Abbiamo le seguanti coppie di dati 
 
