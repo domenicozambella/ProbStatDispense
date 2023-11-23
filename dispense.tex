@@ -719,18 +719,32 @@ Per alcune particolari v.a.\@ valgono disuguaglianze ancora più forti. (Per ese
 \clearpage\section{Varianza della somma di v.a.}
 \label{Covarianza}
 
+Calcoliamo la varianza della somma di due variabili aleatorie:
+
+\ceq{\hfill\Var(X+Y)}{=}{\E\big((X+Y)^2\big)-\E(X+Y)^2}
+
+
+\ceq{}{=}{\E\big(X^2+Y^2+2XY\big)-\big(\E(X)+\E(Y)\big)^2}
+
+\ceq{}{=}{\E(X^2)+\E(Y^2)+2\E(XY)-\big(\E(X)^2+\E(Y)^2 +2\E(X)\E(Y)\big)}
+
+Raccogliendo
+
+\ceq{}{=}{\Var(X^2)+\Var(Y)^2+2\big(\E(XY)-\E(X)\E(Y)\big)}
 
 Chiemeremo \emph{covarianza\/} di $X$ ed $Y$ la quantità
 
 \ceq{\hfill\emph{$\coVar(X,Y)$}}{=}{\E(XY)-\E(X)\E(Y)}
 
-Notare che per \hyperref[ValoreAttesoSommaProdotto]{quando visto in \faShare} se $X$ ed $Y$ sono indipendenti allora il termine $\coVar(X,Y)$ si annulla.
+Abbiamo quindi dimostrato il seguente teorema.
 
 \begin{theorem}
   \hfill
   \ceq{\hfill\Var(X+Y)}{=}{\Var(X)+\Var(Y)+2\,\coVar(X,Y)}
 \end{theorem}
 
+
+Notare che per \hyperref[ValoreAttesoSommaProdotto]{quando visto in \faShare} se $X$ ed $Y$ sono v.a.\@ indipendenti allora il termine $\coVar(X,Y)$ si annulla.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%
@@ -848,7 +862,7 @@ In molte applicazioni $\Pr(B)$ viene calcolato usanto il \hyperref[TeoremaProbab
 % \\
 % \hphantom{Esempi:}
 
-Let \emph{$T_+$\/} and \emph{$T_-$\/} be the events that the result of a diagnostic test
+Let \emph{$T$\/} and \emph{$\neg T$\/} be the events that the result of a diagnostic test
 is positive or negative respectively. Let \emph{$D$\/} be the event that the subject of the test has the disease. 
 
 Introduciamo un po di terminologia.
@@ -856,13 +870,13 @@ Introduciamo un po di terminologia.
 \begin{itemize}
 \item We call $\Pr(D)$ the \emph{prevalence\/} of the disease. Often it is difficult to estimate: it strongly depends on the risk category the subject belongs to.
 \item The \emph{sensitivity\/} is the probability that the test is
-positive given that the subject actually has the disease, $\Pr(T_+ | D)$
+positive given that the subject actually has the disease, $\Pr(T | D)$
 \item The \emph{specificity\/} is the probability that the test is
-negative given that the subject does not have the disease, $\Pr(T_- | \neg D)$
+negative given that the subject does not have the disease, $\Pr(\neg T | \neg D)$
 \item The \emph{positive predictive value\/} is the probability that the subject has the
-disease given that the test is positive, $\Pr(D | T_+)$
+disease given that the test is positive, $\Pr(D | T)$
 \item The \emph{negative predictive value\/} is the probability that the subject does not have
-the disease given that the test is negative, $\Pr(\neg D | T_-)$
+the disease given that the test is negative, $\Pr(\neg D | \neg T)$
 \end{itemize}
 
 
@@ -899,12 +913,12 @@ Introduciamo la terminologia dei test d'ipotesi basandoci sulla notazione usata 
 
 \item $H_A$ non è semplicemente la negazione di $H_0$. Alcune risulttati, se ritenuti impossibili, non occorrono né in $H_0$ né in $H_A$.
 
-\item L'espressione: \emph{$H_0$ può essere rifiutata\/} è sinonima di \textit{l'esito del test è positivo}. Noi denotiamo l'evento con \emph{$T_+$}.
+\item L'espressione: \emph{$H_0$ può essere rifiutata\/} è sinonima di \textit{l'esito del test è positivo}. Noi denotiamo l'evento con \emph{$T$}.
 
 
-\item L'espressione: \emph{$H_0$ NON può essere rifiutata\/} è sinonima di \textit{l'esito del test è negativo}. Noi denotiamo l'evento con \emph{$T_-$}.
+\item L'espressione: \emph{$H_0$ NON può essere rifiutata\/} è sinonima di \textit{l'esito del test è negativo}. Noi denotiamo l'evento con \emph{$\neg T$}.
 
-\item Nel progettare il test si decide come definire $T_+$ e $T_-$ a seconda di quanti falsi positivi/negativi si vuole o può tollerare (in base ai costi/rischi che questi due errori comportano). Ci si calcola quindi $\Pr(T_+|H_0)$ e $\Pr(T_-|H_A)$.
+\item Nel progettare il test si decide come definire $T$ e $\neg T$ a seconda di quanti falsi positivi/negativi si vuole o può tollerare (in base ai costi/rischi che questi due errori comportano). Ci si calcola quindi $\Pr(T|H_0)$ e $\Pr(\neg T|H_A)$.
 \end{itemize}
 
 
@@ -918,34 +932,34 @@ In questa tavola contrapponiamo la terminologia usata nei \emph{test statistici\
 
 
 \noindent\kern0ex\fbox{\parbox[t]{41ex}{%
-\emph{$T_+\cap H_0$} \textit{falso positivo}\hfill \emph{errore I tipo\/}\\
+\emph{$T\cap H_0$} \textit{falso positivo}\hfill \emph{errore I tipo\/}\\
 
-\emph{$\Pr(T_+|H_0)=\emph{$\alpha$}$} \textit{significatività\/}
+\emph{$\Pr(T|H_0)=\emph{$\alpha$}$} \textit{significatività\/}
 }}
 \kern1ex
 \fbox{\parbox[t]{42ex}{%
-\emph{$T_+\cap H_A$} \textit{corretto positivo}\\
+\emph{$T\cap H_A$} \textit{corretto positivo}\\
 
-\emph{$\Pr(T_+|H_A)=1{-}\emph{$\beta$}$} \textit{sensibilità}\hfill \emph{potenza\/}
+\emph{$\Pr(T|H_A)=1{-}\emph{$\beta$}$} \textit{sensibilità}\hfill \emph{potenza\/}
 }}
 
 
 \noindent\kern0ex\fbox{\parbox[t]{41ex}{%
-\emph{$T_-\cap H_0$} \ \textit{corretto negativo}\\
+\emph{$\neg T\cap H_0$} \ \textit{corretto negativo}\\
 
-\emph{$\Pr(T_-|H_0)=1{-}\emph{$\alpha$}$} \textit{sepecificità}
+\emph{$\Pr(\neg T|H_0)=1{-}\emph{$\alpha$}$} \textit{sepecificità}
 }}
 \kern1ex
 \fbox{\parbox[t]{42ex}{%
-\emph{$T_-\cap H_A$} \ \textit{falso negativo}\hfill \emph{errore II tipo\/}\\
+\emph{$\neg T\cap H_A$} \ \textit{falso negativo}\hfill \emph{errore II tipo\/}\\
 
-\emph{$\Pr(T_-|H_A)=\emph{$\beta$}$}
+\emph{$\Pr(\neg T|H_A)=\emph{$\beta$}$}
 }}
 
 
 \bigskip
-N.B. È vacile progettare un test che minimizza una tra $\Pr(T_+|H_0)$ e $\Pr(T_-|H_A)$. In un caso estremo: un test che a prescindere dai dati rifiuta sempre $H_0$ non fa errori del I tipo, $\Pr(T_-| H_0)=0$.
-Invece un test che non rifiuta mai $H_0$ non fa errori del II tipo,  $\Pr(T_+|H_0)=0$. La difficoltà nel progettare il test è trovare il giusto equilibrio tra i due errori.
+N.B. È vacile progettare un test che minimizza una tra $\Pr(T|H_0)$ e $\Pr(\neg T|H_A)$. In un caso estremo: un test che a prescindere dai dati rifiuta sempre $H_0$ non fa errori del I tipo, $\Pr(\neg T| H_0)=0$.
+Invece un test che non rifiuta mai $H_0$ non fa errori del II tipo,  $\Pr(T|H_0)=0$. La difficoltà nel progettare il test è trovare il giusto equilibrio tra i due errori.
 
 
 
@@ -1752,22 +1766,22 @@ Marie is getting married tomorrow at an outdoor ceremony in the desert. In recen
 
 $R$\hfill event: it rains on Marie’s wedding
 
-$T_+$\hfill event: the weatherman predicts rain
+$T$\hfill event: the weatherman predicts rain
 
 $\Pr(R) = 5/365$\hfill it rains 5 days out of the year
 
 $\Pr(\neg R) = 1-\Pr(R)= 360/365$
 
-$\Pr(T_+|R) = 0.9$\hfill when it rains, $90\%$ of the times rain is predicted
+$\Pr(T|R) = 0.9$\hfill when it rains, $90\%$ of the times rain is predicted
 
-$\Pr(T_+|\neg R) = 0.1$\hfill when it does not rain, $10\%$ of the times rain is predicted
+$\Pr(T|\neg R) = 0.1$\hfill when it does not rain, $10\%$ of the times rain is predicted
 
 \bigskip
 We want to know
 
-$\displaystyle \Pr(R\,| T_+)\medrel{=}\frac{\Pr(R)\cdot \Pr(T_+|R)}{\Pr(T_+)\vphantom{\Big[}}$
+$\displaystyle \Pr(R\,| T)\medrel{=}\frac{\Pr(R)\cdot \Pr(T|R)}{\Pr(T)\vphantom{\Big[}}$
 
-$\displaystyle\hphantom{\Pr(R | T_+)}\medrel{=}\frac{\Pr(R)\cdot \Pr(T_+|R)}{\Pr(T_+|R)\cdot \Pr(R)+ \Pr(T_+|\neg R)\cdot \Pr(\neg R)\vphantom{\Big[}}$
+$\displaystyle\hphantom{\Pr(R | T)}\medrel{=}\frac{\Pr(R)\cdot \Pr(T|R)}{\Pr(T|R)\cdot \Pr(R)+ \Pr(T|\neg R)\cdot \Pr(\neg R)\vphantom{\Big[}}$
 
 %%%%%%%%%%%%
 %%%%%%%%%%%%
@@ -1784,14 +1798,14 @@ Suppose that a subject, from a population with a {\color{violet} 0.1\% prevalenc
 of HIV, receives a positive test result. What is the probability
 that this subject has HIV?
 
-Mathematically, we want $\Pr(D | T_+)$ given the sensitivity, {\color{violet}$\Pr(T_+
-| D) = .997$}, the specificity, {\color{violet}$\Pr(T_- | \neg D) =.985$}, and the
+Mathematically, we want $\Pr(D | T)$ given the sensitivity, {\color{violet}$\Pr(T
+| D) = .997$}, the specificity, {\color{violet}$\Pr(\neg T | \neg D) =.985$}, and the
 prevalence {\color{violet}$\Pr(D) = .001$}
 
 \begin{eqnarray*}
-\Pr(D ~|T_+)& = &\frac{\Pr(T_+|D)\Pr(D)}{\Pr(T_+)\vphantom{\Big[}}\\ \\
-& = &\frac{\Pr(T_+|D)\Pr(D)}{\Pr(T_+|D)\ \Pr(D) + \Pr(T_+|\neg D)\ \Pr(\neg D)\vphantom{\Big[}}\\ \\
-& = & \frac{\Pr(T_+|D)\Pr(D)}{\Pr(T_+|D)\Pr(D) + \big[1-\Pr(T_-|\neg D)\big]\ \big[1 - \Pr(D)\big]\vphantom{\Big[}} \\ \\
+\Pr(D ~|T)& = &\frac{\Pr(T|D)\Pr(D)}{\Pr(T)\vphantom{\Big[}}\\ \\
+& = &\frac{\Pr(T|D)\Pr(D)}{\Pr(T|D)\ \Pr(D) + \Pr(T|\neg D)\ \Pr(\neg D)\vphantom{\Big[}}\\ \\
+& = & \frac{\Pr(T|D)\Pr(D)}{\Pr(T|D)\Pr(D) + \big[1-\Pr(\neg T|\neg D)\big]\ \big[1 - \Pr(D)\big]\vphantom{\Big[}} \\ \\
 %& = & \frac{.997\times .001}{.997 \times .001 + .015 \times .999}\\ \\
 & = & 0.062
 \end{eqnarray*}
@@ -1805,8 +1819,8 @@ somewhat modest specificity
 Suppose that the test was taken in South Africa where the prevalence is estimated to be around 20\%
 
 \begin{eqnarray*}
-\Pr(D ~|T_+)& = & 0.943\\
-& \hphantom{=} & \hphantom{\frac{\Pr(T_+|D)\Pr(D)}{\Pr(T_+|D)\Pr(D) + \big[1-\Pr(T_-|\neg D)\big]\ \big[1 - \Pr(D)\big]\vphantom{\Big[}}}
+\Pr(D ~|T)& = & 0.943\\
+& \hphantom{=} & \hphantom{\frac{\Pr(T|D)\Pr(D)}{\Pr(T|D)\Pr(D) + \big[1-\Pr(\neg T|\neg D)\big]\ \big[1 - \Pr(D)\big]\vphantom{\Big[}}}
 \end{eqnarray*}
 
 
@@ -1948,7 +1962,7 @@ Per quanto osservato sulla distribuzione di $X$, possiamo calcolare la specifici
 \medrel{=}$\displaystyle\frac1{2^n}\sum^n_{i=n/2+k} {n\choose i}$
 
 
-Per concretezza fissiamo anche $k=3$ quindi {\color{red}\boldmath\ $T_{+k}=\{13,\dots,20\}$} è la regione di rifiuto.  %$\Pr(T_+|\neg D) = \py{sum(y[y.index<=k]}$
+Per concretezza fissiamo anche $k=3$ quindi {\color{red}\boldmath\ $T_{+k}=\{13,\dots,20\}$} è la regione di rifiuto.  %$\Pr(T|\neg D) = \py{sum(y[y.index<=k]}$
 
 
 \hfil\includegraphics[width=0.9\textwidth]{figure/B-test_01.pdf}
@@ -2987,6 +3001,17 @@ $(e_i)=( -0.4,  0.8, -1,  1.2, -0.6)$
 $(e_i^2)=(0.16, 0.64, 1, 1.44, 0.36)$
 
 $s_0=\dfrac{5}{3}3.6=6$
+
+$s_1=\dfrac1{5(11-9)}s_0 = \dfrac25$
+
+$0.95=\Pr\Big(-\dfrac{\epsilon_0}{6/\sqrt{5}}\le T\le \dfrac{\epsilon_0}{6/\sqrt{5}}\Big)$
+
+$\epsilon_0=-\dfrac6{\sqrt{5}}{\tt qt}(0.025,3)$
+
+$0.95=\Pr\Big(-\dfrac{\epsilon_1}{2/5\sqrt{5}}\le T\le \dfrac{\epsilon_1}{2/5\sqrt{5}}\Big)$
+
+$\epsilon_1=-\dfrac2{5\sqrt{5}}{\tt qt}(0.025,3)$
+
 
 \begin{comment}
 %%%%%%%%%%%%
