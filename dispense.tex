@@ -1074,7 +1074,7 @@ Più in generale $X$ ha \emph{distribuzione normale\/} con media $\mu$ e varianz
 Importante proprietà:
 
 \begin{theorem}
-  La somma di v.a.i.\@  con distribuzione ${\rm N}(\mu,\sigma^2)$ è ancora una v.a.\@ con distribuzione ${\rm N}(\mu,\sigma^2)$.
+  La somma di v.a.i.\@  $X\sim{\rm N}(\mu_X,\sigma^2_X)$ e $Y\sim{\rm N}(\mu_Y,\sigma^2_Y)$ è una v.a.\@ $X+Y$ con distribuzione ${\rm N}(\mu_X+\mu_Y,\sigma^2_X+\sigma^2_Y)$.
 \end{theorem}
 
 
@@ -1317,8 +1317,6 @@ Le soluzioni sono facili da calcolare
 \clearpage\section{Regressione lineare semplice (3) inferenza statistica}
 \label{regressione_lineare3}
 
-Nell'a.a.2022/23 questo paragrafo non è programma d'esame.
-
 Immaginiamo che gli errori $e_i$ siano il risultato di variabili aleatorie $E_i$.
 Per semplificare, i predittori li immaginiamo come deterministici (le conclusioni valgono più in generale).
 Le risposte saranno comunque delle variabili aleatorie
@@ -1551,14 +1549,14 @@ $E(X)\medrel{=}E(X|M)\cdot\Pr(M)+ E(X|F)\cdot\Pr(F)\medrel{=}3.5\cdot\dfrac12 + 
 \subsection{Urna con due tipi di dadi}
 \label{dadi_diversi}
 
-Un urna contiene dadi a 6 facce e dadi a 4 facce nelle proporzioni di $1/3$ e $2/3$.
+Un'urna contiene dadi a 6 facce e dadi a 4 facce nelle proporzioni di $1/3$ e $2/3$.
 Tutti i dadi sono equilibrati.
 Estraiamo un dado dall'urna, lo lanciamo, ed osserviamo il risultato.
 Qual'è la probabilità di ottenere un numero tra 1 e 3?
 
 \begin{soluzione}
 Sia $C$ l'evento estrarre il dado a $6$ faccie (cubico). 
-Sia $T$ l'evento estrarre il dado a $4$ faccie (teraedrico). 
+Sia $T$ l'evento estrarre il dado a $4$ faccie (tetraedrico). 
 Sappiamo che 
 
 \qquad$\Pr\big(C\big)=1/3$ 
@@ -2968,12 +2966,10 @@ N.B. Se la deviazione standard della popolazione fosse stata nota, diciamo $\sig
 \section{Regressione lineare}
 \label{Regressione}
 
-Incompleto 
-
 Abbiamo le seguanti coppie di dati 
 
 $(x_i) = (1, 2, 3, 4, 5)$
-$(y_i) = (2, 5, 5, 8, 9)$
+$(y_i) = (3, 5, 5, 8, 9)$
 
 Si calcoli un intervallo di confidenza al $95\%$ per i valori dell'intercetta $\beta_0$ e del cefficente angolare $\beta_1$ della retta interpolante.
 
@@ -2983,18 +2979,17 @@ $\bar x=\dfrac{15}{5}=3$
 
 $\bar y=\dfrac{30}{5}=6$
 
-$(x_iy_i) = (2, 10, 15, 36, 45)$
+$(x_iy_i) = (3, 10, 15, 36, 45)$
 
 $(x_i^2) = (1,  4,  9, 16, 25)$
 
-$\overline{xy}=\dfrac{108}{5}$
+$\overline{xy}=\dfrac{105}{5}=21$
 
 $\overline{x^2}=\dfrac{55}{5}=11$
 
+$b_1=1.8$ (la stima di $\beta_1$)
 
-$\beta_1=1.8$
-
-$\beta_0=0.6$
+$b_0=0.6$ (la stima di $\beta_0$)
 
 $(e_i)=( -0.4,  0.8, -1,  1.2, -0.6)$
 
