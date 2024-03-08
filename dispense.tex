@@ -1074,7 +1074,7 @@ Più in generale $X$ ha \emph{distribuzione normale\/} con media $\mu$ e varianz
 Importante proprietà:
 
 \begin{theorem}
-  La somma di v.a.i.\@  $X\sim{\rm N}(\mu_X,\sigma^2_X)$ e $Y\sim{\rm N}(\mu_Y,\sigma^2_Y)$ è una v.a.\@ $X+Y$ con distribuzione ${\rm N}(\mu_X+\mu_Y,\sigma^2_X+\sigma^2_Y)$.
+  La somma di v.a.\@ indipendenti $X\sim{\rm N}(\mu_X,\sigma^2_X)$ e $Y\sim{\rm N}(\mu_Y,\sigma^2_Y)$ è una v.a.\@ $X+Y$ con distribuzione ${\rm N}(\mu_X+\mu_Y,\sigma^2_X+\sigma^2_Y)$.
 \end{theorem}
 
 
@@ -2129,7 +2129,7 @@ Se per entrambi i casi prendiamo la stessa regione di rifiuto misurata in punteg
 %%%%%%%%%%%%
 \clearpage\
 \hfill\textbf{{\color{brown}\hyperref[test_ipotesi]{Test di ipotesi \faShare}}}
-\subsection{Scatola di biglie colorate (esercizio in formato esame)}
+\subsection{Scatola di biglie colorate}
 \label{Scatola di biglie colorate}
 
 Un impianto di produzione di una fabblica riempie scatole con due tipi di biglie: rosse e blu.
@@ -2205,7 +2205,7 @@ $\alpha =$ {\tt pbinom}$(x,n,p_0)$.
 %%%%%%%%%%%%
 \clearpage\
 \hfill\textbf{{\color{brown}\hyperref[test_ipotesi]{Test di ipotesi \faShare}}}
-\subsection{Prevalenza mancinismo 1 (esercizio in formato esame)}
+\subsection{Prevalenza mancinismo 1}
 \label{Prevalenza mancinismo 1}
 
 Il $10\%$ è delle persone sono mancine. Ci chiediamo se la caratteristica sia ereditaria. Eseguiamo il seguente esperimento. Selezioniamo un campione di $1000$ persone con almeno un genitore mancino e misuriamo la frequenza di mancini. Concludiamo che la caratteristica \`e ereditaria se pi\`u di $115$ individui sono mancini.
@@ -2271,7 +2271,7 @@ $\alpha=0.01$\hfil
 %%%%%%%%%%%%
 \clearpage\
 \hfill\textbf{{\color{brown}\hyperref[test_ipotesi]{Test di ipotesi \faShare}} (richiede \hyperref[pvalore]{p-valore \faShare})} 
-\subsection{Prevalenza mancinismo 2 (esercizio in formato esame)}
+\subsection{Prevalenza mancinismo 2}
 \label{Prevalenza mancinismo 2}
 
 Il $10\%$ è delle persone sono mancine. Ci chiediamo se la caratteristica sia ereditaria. Eseguiamo il seguente esperimento. Selezioniamo un campione di $1000$ persone con almeno un genitore mancino e misuriamo la frequenza di mancini. Otteniamo $112$ mancini. 
@@ -2337,24 +2337,36 @@ p-valore$\ =\ \Pr\big(X\ge x\ \mathbin\big|\ p=p_0\big)$, dove $X\sim{\rm B}(n,p
 \section{Z-test}
 \label{Z-test}
 \subsection{Test a una coda}
-Si sospetta che una certa terapia faccia aumentare la pressione diastolica. Nella popolazione generale la pressione diastolica ha distribuzione ${\rm N}(\mu_0,\sigma^2)$ con $\mu_0=75$ e $\sigma=9.5$. 
+Abbiamo delle scatole contenenti biglie.
+Il peso delle bigle nelle scatole ha distribuzione approssimativamente  ${\rm N}(\mu_0,\sigma^2)$ con $\mu_0=75$g e $\sigma=9.5$g. 
 
-Assumiamo che tra i pazienti in terapia la pressione diastolica sia distribuita normalmente con media ignota $\mu$ e con la stessa deviazione standard della popolazione generale. Vogliamo testare le seguenti ipotesi:
+Però qualcuna di queste scatole è anomala, nelle scatole anomale il peso delle biglie ha distribuzione ${\rm N}(\mu,\sigma^2)$ con $\mu\ge\mu_0+\delta$. (N.B. assumiamo che la deviazione standard sia la stessa.)
+
+Vogliamo scartare le scatole anomale. 
+Progettiamo un test per le seguenti ipotesi:
 
 $H_0:$\kern3.5ex $\mu=\mu_0$
 
-$H_A:$\kern3ex $\mu>\mu_0$
+$H_A:$\kern3ex $\mu\ge\mu_0+\delta$
 
-Il test consiste nel misurare la pressione ad un campione di $n$ pazienti e di questi dati calcolare la media. Abbiamo quindi la seguente statistica
+Il test consiste nel prelevare da una scatola un campione di $n$ biglie e calcolare il peso medio di queste. 
+Rigettiamo l'ipotesi nulla se il peso medio delle biglie nel campione è maggiore di un valore di soglia $x_\alpha$ da decidere in base in base alle considerazioni che vedremo tra breve.
+
+Chiamiamo $X_i$ la v.a.\@ che dà il peso dell'$i$-esima biglia del campione.
+Il peso medio del campione è quindi la v.a.\@
+
 
 \ceq{\hfill \bar X}{=}{\frac1n\sum_{i=1}^nX_i}
 
-Dove $X_i$ è la v.a.\@ che dà la pressione dell'$i$-esimo paziente del campione. Rigetteremo $H_0$ se il
-valore ottenuto è suporiore ad un certo $x_\alpha$ che vogliamo fissare in modo che l'errore I tipo risulti uguale ad $\alpha$. Quindi $x_\alpha$ dev'essere tale che $x_\alpha$ tale che $\Pr(\bar X>x_\alpha)=\alpha$.
+Vogliamo fissare $x_\alpha$ in modo che l'errore I tipo risulti $\alpha$. 
+Quindi $x_\alpha$ dev'essere tale che $x_\alpha$ tale che $\Pr(\bar X>x_\alpha)=\alpha$.
 
-Se $H_0$ è vera, $\bar X\sim N\bigg(\mu_0,\dfrac{\sigma^2}{n}\bigg)$.
+Assumendo $H_0$ vera $\bar X\sim N\bigg(\mu_0,\dfrac{\sigma^2}{n}\bigg)$ ed è quindi possibile ricavare $x_\alpha$ usando la funzione quantile.
 
-Se $H_A$ è vera, $\bar X\sim N\bigg(\mu,\dfrac{\sigma^2}{n}\bigg)$ per qualche $\mu>\mu_0$.
+
+Ora, dopo aver fissato $x_\alpha$, possiamo chiederci qual è la probabilità di fare un errore del secondo tipo.
+Assumendo $H_A$ è vera (il caso più conservativo è $\mu=\mu_0+\delta$) abbiamo che $\bar X\sim N\bigg(\mu_0+\delta,\dfrac{\sigma^2}{n}\bigg)$. 
+La probabilità di un errore del II tipo è $\beta=\Pr(\bar X\le x_\alpha)$ che possiamo calcolare tramite la funzione di ripartizione.
 
 % Non è necessario, ma conviene sempre ridursi alla normale standard: $\dfrac{\bar X-\mu_0}{\sigma/\sqrt{n}}$ ha distribuzione normale standard $Z$.
 % 
@@ -2367,8 +2379,7 @@ Se $H_A$ è vera, $\bar X\sim N\bigg(\mu,\dfrac{\sigma^2}{n}\bigg)$ per qualche 
 %%%%%%%%%%%%
 \clearpage\subsection{Una coda, errore I e II tipo}
 
-
-Qui rappresentiamo gli errori del I e II tipo per campioni di dimensione $n=20$ e $n= 40$ e con un $x_\alpha$ scelto in moto tale da avere $\alpha=5\%$. Per calcolare gli errori del II tipo prendiamo $\delta=5$.
+Qui rappresentiamo gli errori del I e II tipo per campioni di dimensione $n=20$ e $n= 40$. Per calcolare gli errori del II tipo prendiamo $\delta=5$.
 
 \hfil\includegraphics[width=0.8\textwidth]{figure/Z-test_01.pdf}
 
@@ -2378,47 +2389,51 @@ Qui rappresentiamo gli errori del I e II tipo per campioni di dimensione $n=20$ 
 
 \hfil\includegraphics[width=0.8\textwidth]{figure/Z-test_04.pdf}
 
-
-
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
-\clearpage\subsection{Pressione diastolica (esercizio formato esame)}
-\label{Pressione diastolica esercizio 1}
+\clearpage\subsection{Esercizio: peso medio delle biglie}
+\label{Peso medio delle biglie: esercizio 1}
 
-(Testo ripetuto da sopra~\ref{Z-test}.) 
-Si sospetta che una certa terapia faccia aumentare la pressione diastolica. Nella popolazione generale la pressione diastolica ha distribuzione ${\rm N}(\mu_0,\sigma^2)$ con $\mu_0=75$ e $\sigma=5.5$. Assumiamo che tra i pazienti in terapia la pressione diastolica sia distribuita normalmente con media ignota $\mu$ e con la stessa deviazione standard della popolazione generale. 
+(Testo rielaborato da sopra~\ref{Z-test}.) 
+Abbiamo delle scatole contenenti biglie.
+Il peso delle bigle nelle scatole ha distribuzione approssimativamente  ${\rm N}(\mu_0,\sigma^2)$ con $\mu_0=75$g e $\sigma=9.5$g. 
 
-Un esperimento consiste nel misurare il valor medio della pressione diastolica di un campione di $n=64$ pazienti in terapia.
+Però qualcuna di queste scatole è anomala, nelle scatole anomale il peso delle biglie ha distribuzione  ${\rm N}(\mu,\sigma^2)$ con $\mu\ge\mu_0+\delta$ e $\delta=5$g.
 
-\textbf{Domande}
+Vogliamo progettare un test statistico per testare le seguenti ipotesi:
+
+$H_0:$\kern3.5ex $\mu=\mu_0$
+
+$H_A:$\kern3ex $\mu\ge\mu_0+\delta$
+
+It test consiste nel misurare il peso medio di un campione di $n=64$ biglie.
+Rifiutiamo $H_0$ se la misura è superiore al valore di soglia $x_\alpha$. 
 
 \begin{itemize}
-\item[1.] Qual è l'ipotesi nulla?
-\item[2.] Qual è l'ipotesi alternativa?
-\item[3.] Quale test dobbiamo usare?
-\item[4.] Rifiutiamo $H_0$ se la misura è superiore al valore di soglia $x_\alpha$. Quant'è $x_\alpha$ se vogliamo che la significatività sia  $\alpha=5\%$~?
-\item[5.] Dato il valore di soglia al punto precedente, qual è la potenza del test per un effect size $\delta=2$~? 
+\item[1.] Quant'è $x_\alpha$ se vogliamo che la significatività sia  $\alpha=5\%$~?
+
+\item[2.] Dato il valore di soglia al punto precedente, qual è la potenza del test? 
 \end{itemize}
+
 Si risponda assumendo note le funzioni in calce.
 
-\textbf{Risposte}\  Definiamo\ $\mu_0=75$,\quad $\sigma=5.5$,\quad, $n=64$,\quad $\delta=2$. Sia $\bar X$ la v.a. che ritorna il valor medio della pressione diastolica del campione.
+\textbf{Risposte}\ 
+ Sia $\bar X$ la v.a. che ritorna il valor medio della pressione diastolica del campione.
+
 
 \begin{itemize}
-\item[1.] $H_0$: $\mu=\mu_0$ dove $\mu$ è pressione diastolica delle persone in terapia 
-\item[2.] $H_A$: $\mu>\mu_0$
-\item[3.] Z-test a una coda (coda superiore)
-\item[4.] $x_\alpha$ è tale che \medskip
+  \item[1.] $x_\alpha$ è tale che \medskip
 
-$\alpha\ =\ \Pr\big(\bar X\ge x_\alpha\ \mathbin\big|\ \mu=\mu_0\big)\ =\ \Pr(Y\ge x_\alpha)$, dove $Y\sim {\rm N}(\mu_0,\sigma^2/n)$ \medskip
+  $\alpha\ =\ \Pr\big(\bar X\ge x_\alpha\ \mathbin\big|\ \mu=\mu_0\big)\ =\ \Pr(Y\ge x_\alpha)$, dove $Y\sim {\rm N}(\mu_0,\sigma^2/n)$ \medskip
 
-standardizzando otteniamo \medskip
+  standardizzando otteniamo \medskip
 
-$\alpha\ =1-\Pr\bigg(Z\le \dfrac{x_\alpha-\mu_0}{\sigma/\sqrt n}\bigg)$, dove $Z\sim {\rm N}(0,1)$.
+$\alpha\ = 1-\Pr\bigg(Z\le \dfrac{x_\alpha-\mu_0}{\sigma/\sqrt n}\bigg)$, dove $Z\sim {\rm N}(0,1)$.
 
 \hfill $x_\alpha\ =\ \dfrac{\sigma}{\sqrt n}\,{\tt qnorm}(1-\alpha)-\mu_0$.
 
-\item[5.] La potenza del test è $1-\beta$ dove\medskip
+\item[2.] La potenza del test è $1-\beta$ dove\medskip
 
 $\beta\ =\ \Pr(\bar X\le x_\alpha\ |\ \mu=\mu_0+\delta)\ =\ \Pr(Y\le x_\alpha)$, dove $Y\sim {\rm N}(\mu_0+\delta,\sigma^2/n)$\medskip
 
@@ -2451,31 +2466,30 @@ $\beta\ =\ \Pr\bigg(Z\le  \dfrac{x_\alpha-\mu_0-\delta}{\sigma/\sqrt n}\bigg)$
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
-\clearpage\subsection{Pressione diastolica (due code)}
-\label{Pressione diastolica due code}
+\clearpage\subsection{Test a due code}
 
-(In corsivo le differenze dal testo precedente~\ref{Pressione diastolica esercizio 1}.) 
-Si sospetta che una certa terapia \textit{modifichi} la pressione diastolica. Nella popolazione generale la pressione diastolica ha distribuzione ${\rm N}(\mu_0,\sigma^2)$ con $\mu_0=75$ e $\sigma=5.5$. Assumiamo che tra i pazienti in terapia la pressione diastolica sia distribuita normalmente con media ignota $\mu$ e con la stessa deviazione standard della popolazione generale. 
+(Variazione del testo precedente~\ref{Peso medio delle biglie: esercizio 1}.) 
+Abbiamo delle scatole contenenti biglie.
+Il peso delle bigle nelle scatole ha distribuzione approssimativamente  ${\rm N}(\mu_0,\sigma^2)$ con $\mu_0=75$g e $\sigma=9.5$g. 
 
-Un esperimento consiste nel misurare il valor medio della pressione diastolica di un campione di $n=64$ pazienti in terapia.
+Però qualcuna di queste scatole è anomala, nelle scatole anomale il peso delle biglie ha distribuzione  ${\rm N}(\mu,\sigma^2)$ con $|\mu-\mu_0|\ge\delta$ e $\delta=5$g.
 
-\textbf{Domande}
+Vogliamo progettare un test statistico per testare le seguenti ipotesi:
 
-\begin{itemize}
-\item[1.] Qual è l'ipotesi nulla?
-\item[2.] Qual è l'ipotesi alternativa?
-\item[3.] Quale test dobbiamo usare?
-\item[4.] Rifiutiamo $H_0$ se misura \textit{differisce} da $\mu_0$ più del valore di soglia $x_\alpha$. Quant'è $x_\alpha$ se vogliamo che la significatività sia  $\alpha=5\%$~?
-\end{itemize}
+$H_0:$\kern3.5ex $\mu=\mu_0$
+
+$H_A:$\kern3ex $|\mu-\mu_0|\ge\delta$
+
+It test consiste nel misurare il peso medio di un campione di $n=64$ biglie.
+Rifiutiamo $H_0$ se il peso medio differisce da $\mu_0$ più del valore di soglia $x_\alpha$.
+
+Quant'è $x_\alpha$ se vogliamo che la significatività sia  $\alpha=5\%$~?
+
 Si risponda assumendo note le funzioni in calce.
 
-\textbf{Risposte}\  Definiamo\ $\mu_0=75$,\quad $\sigma=5.5$,\quad, $n=64$,\quad $\delta=2$. Sia $\bar X$ la v.a.\@ che ritorna il valor medio della pressione diastolica del campione.
+\textbf{Risposta}\  Sia $\bar X$ la v.a.\@ che ritorna il peso medio delle biglie del campione.
 
-\begin{itemize}
-\item[1.] $H_0$: $\mu=\mu_0$ dove $\mu$ è pressione diastolica delle persone in terapia 
-\item[2.] $H_A$: $\mu\neq\mu_0$
-\item[3.] Z-test a due code
-\item[4.] $x_\alpha$ è tale che \medskip
+$x_\alpha$ è tale che \medskip
 
 $\alpha\ =\ \Pr\big(|\bar X-\mu_0|\ge x_\alpha\ \mathbin\big|\ \mu=\mu_0\big)\ =\ \Pr(|Y-\mu_0|\ge x_\alpha)$, dove $Y\sim {\rm N}(\mu_0,\sigma^2/n)$ \medskip
 
@@ -2485,8 +2499,6 @@ $\alpha\ =\Pr\bigg(|Z|\ge \dfrac{x_\alpha}{\sigma/\sqrt n}\bigg)=2\Pr\bigg(Z\ge 
 
 \hfill $x_\alpha\ =\ \dfrac{\sigma}{\sqrt n}\,{\tt qnorm}(1-\alpha/2)$.
 
-
-\end{itemize}
 
 \vfill
 \parskip1ex
@@ -2510,7 +2522,7 @@ $\alpha\ =\Pr\bigg(|Z|\ge \dfrac{x_\alpha}{\sigma/\sqrt n}\bigg)=2\Pr\bigg(Z\ge 
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
-\clearpage\subsection{Confezioni}
+\clearpage\subsection{Confezioni (da riscrivere)}
 
 Un certo processo produttivo confeziona scatole con biglie rosse e blue nella proporzione del $50\%$.
 
@@ -2597,7 +2609,7 @@ Si assumano noti i valori delle seguenti funzioni
 %%%%%%%%%%%%
 \clearpage
 \hfill\textbf{{\color{brown}\hyperref[pvalore]{Il p-valore \faShare}}}
-\subsection{Una coda, p-valore}
+\subsection{Una coda, p-valore (da riscrivere)}
 (Continua l'esempio~\ref{Z-test}.) Supponiamo di ottenere $\bar x=78.0$ da un campione di dimensione $n=20$. Il p-valore di questa misura è $\Pr(\bar X\ge 78)=1-\Pr(\bar X\le 78)$.
 
 \hfil\includegraphics[width=0.8\textwidth]{figure/Z-test-p-val_01.pdf}
@@ -2610,10 +2622,10 @@ Nel caso di un test a due code, se $H_A$ fosse stata $\mu_0\neq\mu$, il p-valore
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
-\clearpage\subsection{Pressione diastolica cont. (esercizio formato esame)}
+\clearpage\subsection{Pressione diastolica cont. (da riscrivere)}
 \label{Pressione diastolica esercizio 2}
 
-Continua da~\ref{Pressione diastolica esercizio 1}
+Continua da~\ref{Peso medio delle biglie: esercizio 1}
 
 \textbf{Domande}
 
@@ -2661,7 +2673,7 @@ p-valore$\ =\ \Pr\big(Y\ge \bar x\ \mathbin\big|\ \mu=\mu_0\big)\ =\ \Pr(X\ge\ba
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 %%%%%%%%%%%%
-\clearpage\subsection{Crescita media}
+\clearpage\subsection{Crescita media (da riscrivere)}
 
 In condizioni ottimali l'incremento di una certa cultura in una fissata unità di tempo ha media $\mu_0=3.1$ e deviazione standard $\sigma=1.2$.
 Vogliamo progettare un test per decidere se la crecita di una data cultura sia sub-ottimale. Assumiamo che la distribuzione sia normale e che in condizioni sub-ottimali la deviazione standard sia la stessa. 
@@ -2689,7 +2701,7 @@ Domande:
 %%%%%%%%%%%%
 %%%%%%%%%%%%
 \clearpage\
-\subsection{Mean weight (domanda in formato esame)}
+\subsection{Mean weight (da riscrivere)}
 
 Boys of a certain age are known to have a mean weight of $85$ pounds and standard deviation $10.6$ pounds. A complaint is made that the boys living in a municipal children's home are overfed. As one bit of evidence, $25$ boys (of the same age) are weighed and found to have a mean weight of $88.94$ pounds. Assume the same standard deviation as in the general the population (the unrealistic part of this example).
 
@@ -2752,6 +2764,61 @@ $\bar x=88.94$
 \hfill\textbf{{\color{brown}\hyperref[tStudent]{La distribuzione t di Student \faShare}}}
 \section{T-test}
 \label{T-test}
+
+\subsection{Peso medio delle biglie: esercizio 2}
+
+(Variazione dell'esercizio~\ref{Peso medio delle biglie: esercizio 1}) Abbiamo delle scatole contenenti biglie.
+Il peso delle bigle nelle scatole ha distribuzione approssimativamente  ${\rm N}(\mu_0,\sigma^2)$ con $\mu_0=75$g e $\sigma_0=9.5$g. 
+
+Però qualcuna di queste scatole è anomala, nelle scatole anomale il peso delle biglie ha distribuzione ${\rm N}(\mu,\sigma^2)$ con $\mu\ge\mu_0+\delta$ e $\sigma$ ignota. (N.B. questa è l'unica differenza dall'esempio~\ref{Z-test}.)
+
+Vogliamo scartare le scatole anomale. 
+Progettiamo un test per le seguenti ipotesi:
+
+$H_0:$\kern3.5ex $\mu=\mu_0$
+
+$H_A:$\kern3ex $\mu\ge\mu_0+\delta$
+
+Il test consiste nel prelevare da una scatola un campione di $n$ biglie e calcolare il peso medio di queste. 
+Rigettiamo l'ipotesi nulla se il peso medio delle biglie nel campione è maggiore di un valore di soglia $x_\alpha$ da decidere in base in base alle considerazioni che vedremo tra breve.
+
+Chiamiamo $X_i$ la v.a.\@ che dà il peso dell'$i$-esima biglia del campione.
+Il peso medio del campione è quindi la v.a.\@
+
+
+\ceq{\hfill \bar X}{=}{\frac1n\sum_{i=1}^nX_i}
+
+Vogliamo fissare $x_\alpha$ in modo che l'errore I tipo risulti $\alpha$. 
+Quindi $x_\alpha$ dev'essere tale che $x_\alpha$ tale che $\Pr(\bar X>x_\alpha)=\alpha$.
+
+Assumendo $H_0$ vera $\bar X\sim N\bigg(\mu_0,\dfrac{\sigma^2}{n}\bigg)$.
+Siccome $\sigma$ è ignota non conosciamo la distribuzione di $\bar X$.
+Per ovviare a questo problema possiamo procedere formalmente come esercizio~\ref{Peso medio delle biglie: esercizio 1} sostituendo la deviazione standard con lo stimatore della devizione standard. 
+
+Nell'esercizio~\ref{Peso medio delle biglie: esercizio 1} avevamo scritto
+
+$\alpha\ =\ \Pr\big(\bar X\ge x_\alpha\ \mathbin\big|\ \mu=\mu_0\big)\ =\ \Pr(Y\ge x_\alpha)$, dove $Y\sim {\rm N}(\mu_0,\sigma^2/n)$
+
+Poi avevamo standardizzato\medskip
+
+$\phantom{\alpha}\ =\ \Pr\left(\dfrac{Y-\mu_0}{\sigma/\sqrt{n}}\ge \dfrac{x_\alpha-\mu_0}{\sigma/\sqrt{n}}\right)$\medskip
+
+Ora, non conoscendo $\sigma$ sostituiamo a sinistra lo stimatore della deviazione standard $S$ e a destra il suo valore osservato $s$.
+Vedi paragrafo~\ref{tStudent}.
+Otteniamo\medskip
+
+$\phantom{\alpha}\ =\ \Pr\left(\dfrac{Y-\mu_0}{S/\sqrt{n}}\ge \dfrac{x_\alpha-\mu_0}{s/\sqrt{n}}\right)$\medskip
+
+Quindi\medskip
+
+$\phantom{\alpha}\ =\ \Pr\left(T_{n-1}\ge \dfrac{x_\alpha-\mu_0}{s/\sqrt{n}}\right)$ dove $T_{n-1}\sim t(n-1)$.
+
+Ora possiamo ricavare $\alpha$ usando la funzione quantile di $T_{n-1}$\medskip
+
+\hfill $x_\alpha\ =\ \dfrac{s}{\sqrt n}\,{\tt qt}(1-\alpha,n-1)-\mu_0$.
+
+
+
 \subsection{Una popolazione}
 A professor wants to know if her introductory statistics class has a good grasp of basic math. Six students are chosen at random from the class and given a math proficiency test. The professor wants the class to be able to score above 70 on the test. The six students get scores of 62, 92, 75, 68, 83, and 95. Can the professor have 90\%  confidence that the mean score for the class on the test would be above 70?
 
